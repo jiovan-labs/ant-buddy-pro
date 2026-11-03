@@ -2,6 +2,7 @@
 title: DragModal
 toc: content
 order: 4
+group: 控件
 ---
 
 ## 組件說明

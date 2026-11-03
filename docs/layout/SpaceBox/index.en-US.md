@@ -2,6 +2,7 @@
 title: SpaceBox
 toc: content
 order: 19
+group: Layout
 ---
 
 ## Description

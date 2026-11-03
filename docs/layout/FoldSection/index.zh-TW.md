@@ -2,6 +2,7 @@
 title: FoldSection
 toc: content
 order: 6
+group: 布局
 ---
 
 ## 組件說明

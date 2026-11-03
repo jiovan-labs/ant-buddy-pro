@@ -2,6 +2,7 @@
 title: NotifyBadge
 toc: content
 order: 14
+group: 控件
 ---
 
 ## 组件说明

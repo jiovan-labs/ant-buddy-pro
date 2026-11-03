@@ -2,6 +2,7 @@
 title: AvatarUpload
 toc: content
 order: 1
+group: Form
 ---
 
 ## Description

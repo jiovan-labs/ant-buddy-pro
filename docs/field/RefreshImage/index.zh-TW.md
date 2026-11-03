@@ -2,6 +2,7 @@
 title: RefreshImage
 toc: content
 order: 18
+group: 控件
 ---
 
 ## 組件說明

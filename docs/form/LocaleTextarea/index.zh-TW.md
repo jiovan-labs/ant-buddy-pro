@@ -2,6 +2,7 @@
 title: LocaleTextarea
 toc: content
 order: 12
+group: 表单
 ---
 
 ## 組件說明

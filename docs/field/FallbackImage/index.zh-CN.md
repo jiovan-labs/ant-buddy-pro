@@ -2,6 +2,7 @@
 title: FallbackImage
 toc: content
 order: 6
+group: 控件
 ---
 
 ## 组件说明

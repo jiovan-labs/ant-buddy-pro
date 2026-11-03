@@ -2,6 +2,7 @@
 title: TagInput
 toc: content
 order: 20
+group: 表单
 ---
 
 ## 组件说明

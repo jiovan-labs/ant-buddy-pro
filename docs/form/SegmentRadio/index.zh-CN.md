@@ -2,6 +2,7 @@
 title: SegmentRadio
 toc: content
 order: 19
+group: 表单
 ---
 
 ## 组件说明

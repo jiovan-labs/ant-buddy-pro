@@ -2,6 +2,7 @@
 title: BadgeRibbon
 toc: content
 order: 2
+group: 控件
 ---
 
 ## 组件说明

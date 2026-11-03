@@ -2,6 +2,7 @@
 title: RefreshImage
 toc: content
 order: 18
+group: Field
 ---
 
 ## Description

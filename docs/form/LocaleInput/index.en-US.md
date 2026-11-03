@@ -2,6 +2,7 @@
 title: LocaleInput
 toc: content
 order: 12
+group: Form
 ---
 
 ## Description

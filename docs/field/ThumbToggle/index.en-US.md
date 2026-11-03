@@ -2,6 +2,7 @@
 title: ThumbToggle
 toc: content
 order: 20
+group: Field
 ---
 
 ## Description

@@ -2,6 +2,7 @@
 title: AvatarStamp
 toc: content
 order: 1
+group: 控件
 ---
 
 ## 組件說明

@@ -2,6 +2,7 @@
 title: CaptchaInput
 toc: content
 order: 10
+group: 表单
 ---
 
 ## 組件說明

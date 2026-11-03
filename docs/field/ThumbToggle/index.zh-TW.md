@@ -2,6 +2,7 @@
 title: ThumbToggle
 toc: content
 order: 20
+group: 控件
 ---
 
 ## 組件說明

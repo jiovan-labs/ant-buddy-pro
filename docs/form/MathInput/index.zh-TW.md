@@ -2,6 +2,7 @@
 title: MathInput
 toc: content
 order: 13
+group: 表单
 ---
 
 ## 組件說明

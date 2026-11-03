@@ -2,6 +2,7 @@
 title: SettingDrawer
 toc: content
 order: 19
+group: 控件
 ---
 
 ## 组件说明

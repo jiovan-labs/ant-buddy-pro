@@ -2,6 +2,7 @@
 title: BorderBox
 toc: content
 order: 2
+group: 布局
 ---
 
 ## 组件说明

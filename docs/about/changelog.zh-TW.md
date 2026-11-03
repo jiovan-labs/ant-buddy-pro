@@ -12,8 +12,8 @@ toc: false
 以下是一些裏程碑版本的更新軌跡：
 
   - **v2.0.0** [2026-11-03]
-    - 重命名品牌 `unikue` 為 `jiovan`
-    - 支持 ant-design pro-components v3.x
+    - 替換品牌 `unikue` 為 `jiovan`
+    - 升級 [Ant Design](https://ant.design) v5 到 v6, [Ant ProComponents](https://procomponents.ant.design) v2 到 v3
 
   - **v1.0.36** [2025-08-02]
     - 增加 `util/PaginationUtils`
@@ -31,7 +31,7 @@ toc: false
     - 更新 `SchemaRender` 和其他表單組件以支持 [Ant ProComponents](https://procomponents.ant.design) `FormTable` 的 `schema` 渲染
 
   - **v1.0.0** [2025-05-06]
-    - 升級 [Ant Design](https://ant.design) v4 到 v5, Ant ProComponents v1 到 v2
+    - 升級 [Ant Design](https://ant.design) v4 到 v5, [Ant ProComponents](https://procomponents.ant.design) v1 到 v2
 
   - **v0.1.163** [2025-03-31]
     - 增加 `form/ServerTuple`

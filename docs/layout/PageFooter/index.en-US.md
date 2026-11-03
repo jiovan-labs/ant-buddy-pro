@@ -2,6 +2,7 @@
 title: PageFooter
 toc: content
 order: 16
+group: Layout
 ---
 
 ## Description

@@ -174,7 +174,7 @@ export default defineThemeConfig({
             },
             {
                 title: '🎨 Uniform style',
-                details: "Based on antd 5.0 CSS-in-JS style support, it fully unifies built-in styles and supports custom loading theme",
+                details: "Based on antd 6.0 CSS-in-JS style support, it fully unifies built-in styles and supports custom loading theme",
             },
             {
                 title: '🎮 Simple use',
@@ -200,7 +200,7 @@ export default defineThemeConfig({
             },
             {
                 title: '🎨 样式风格统一',
-                details: '基于 antd v5 CSS-in-JS 样式加持，全面统一内置样式，同时支持自定义主题加载',
+                details: '基于 antd v6 CSS-in-JS 样式加持，全面统一内置样式，同时支持自定义主题加载',
             },
             {
                 title: '🎮 上手简单',
@@ -226,7 +226,7 @@ export default defineThemeConfig({
             },
             {
                 title: '🎨 樣式風格統一',
-                details: '基于 antd v5 CSS-in-JS 樣式加持，全面統一內置樣式，同時支持自定義主題加載',
+                details: '基于 antd v6 CSS-in-JS 樣式加持，全面統一內置樣式，同時支持自定義主題加載',
             },
             {
                 title: '🎮 上手簡單',

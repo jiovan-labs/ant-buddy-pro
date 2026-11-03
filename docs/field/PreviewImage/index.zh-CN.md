@@ -2,6 +2,7 @@
 title: PreviewImage
 toc: content
 order: 16
+group: 控件
 ---
 
 ## 组件说明

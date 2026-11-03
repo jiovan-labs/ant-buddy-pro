@@ -2,6 +2,7 @@
 title: CommentCard
 toc: content
 order: 3
+group: 控件
 ---
 
 ## 组件说明

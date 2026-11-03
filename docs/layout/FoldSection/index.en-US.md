@@ -2,6 +2,7 @@
 title: FoldSection
 toc: content
 order: 6
+group: Layout
 ---
 
 ## Description

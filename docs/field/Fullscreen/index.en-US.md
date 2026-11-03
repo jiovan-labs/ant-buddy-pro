@@ -2,6 +2,7 @@
 title: Fullscreen
 toc: content
 order: 6
+group: Field
 ---
 
 ## Description

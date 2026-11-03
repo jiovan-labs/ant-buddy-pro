@@ -2,6 +2,7 @@
 title: AvatarUpload
 toc: content
 order: 1
+group: 表单
 ---
 
 ## 组件说明

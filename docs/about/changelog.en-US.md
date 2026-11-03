@@ -12,8 +12,8 @@ toc: false
 Here are some milestone versions of the changelog:
 
   - **v2.0.0** [2026-11-03]
-    - Rename brand `unikue` to `jiovan`
-    - Support ant-design pro-components v3.x
+    - Replace brand `unikue` to `jiovan`
+    - Bump from [Ant Design](https://ant.design) v5 to v6, [Ant ProComponents](https://procomponents.ant.design) v2 to v3
 
   - **v1.0.36** [2025-08-02]
     - Add `util/PaginationUtils`

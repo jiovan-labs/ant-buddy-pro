@@ -2,6 +2,7 @@
 title: LocaleTextarea
 toc: content
 order: 12
+group: Form
 ---
 
 ## Description

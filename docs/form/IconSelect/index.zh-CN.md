@@ -2,6 +2,7 @@
 title: IconSelect
 toc: content
 order: 9
+group: 表单
 ---
 
 ## 组件说明

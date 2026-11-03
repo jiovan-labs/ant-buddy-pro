@@ -2,6 +2,7 @@
 title: NotifyBadge
 toc: content
 order: 14
+group: Field
 ---
 
 ## Description
