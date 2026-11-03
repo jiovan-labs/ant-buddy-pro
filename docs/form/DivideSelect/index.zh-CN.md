@@ -11,7 +11,7 @@ DivideSelect, 提供了一下可以将选项的标签和值分开显示的选择
 ## 导入组件
 
 ```tsx | pure
-import {DivideSelect} from '@unikue/ant-buddy-pro';
+import { DivideSelect } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

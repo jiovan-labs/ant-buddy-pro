@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -18,11 +18,9 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
 import { type NamePath } from 'antd/es/form/interface';
-import { ProForm, useIntl } from '@ant-design/pro-components';
-import { type ProFormCaptchaProps } from '@ant-design/pro-components/es/form/components/Captcha';
-import { warpField } from '@ant-design/pro-components/es/form/components/FormItem/warpField';
+import { ProForm, type ProFormCaptchaProps, createProFormField, useIntl } from '@ant-design/pro-components';
 import { omit } from '@rc-component/util';
-import { ArrayUtils, ObjectUtils } from '@unikue/ts-lang-utils';
+import { ArrayUtils, ObjectUtils } from '@jiovan-labs/ts-lang-utils';
 import classnames from 'classnames';
 import { ConsoleUtils } from '@/util/ConsoleUtils';
 import { intlLocales } from './locales';
@@ -337,4 +335,4 @@ const CaptchaInputField: React.ForwardRefExoticComponent<CaptchaInputProps & Rea
 
 
 // @ts-ignore
-export const CaptchaInput = warpField(CaptchaInputField) as typeof CaptchaInputField;
+export const CaptchaInput = createProFormField(CaptchaInputField) as typeof CaptchaInputField;

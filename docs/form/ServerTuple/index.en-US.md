@@ -11,7 +11,7 @@ ServerTuple, provides a capability that displaying a text input box with a numbe
 ## Import
 
 ```tsx | pure
-import {ServerTuple} from '@unikue/ant-buddy-pro';
+import { ServerTuple } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

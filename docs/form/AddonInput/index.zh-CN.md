@@ -15,7 +15,7 @@ AddonInput，提供了一个支持 addonBefore 和 addonAfter 属性的文本输
 ## 导入组件
 
 ```tsx | pure
-import {AddonInput} from '@unikue/ant-buddy-pro';
+import { AddonInput } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

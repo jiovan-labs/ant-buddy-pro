@@ -21,7 +21,7 @@ IconSelect, provides a select box that displaying icons for choosing.
 ## Import
 
 ```tsx | pure
-import {IconSelect} from '@unikue/ant-buddy-pro';
+import { IconSelect } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

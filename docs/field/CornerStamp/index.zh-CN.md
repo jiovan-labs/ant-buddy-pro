@@ -11,7 +11,7 @@ CornerStamp 是一个可以显示带角标的控件。
 ## 导入组件
 
 ```tsx | pure
-import {CornerStamp} from '@unikue/ant-buddy-pro';
+import { CornerStamp } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

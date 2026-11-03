@@ -13,7 +13,7 @@ The typical scenario is, replying to someone under a comment.
 ## Import
 
 ```tsx | pure
-import {CollapseForm} from '@unikue/ant-buddy-pro';
+import { CollapseForm } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

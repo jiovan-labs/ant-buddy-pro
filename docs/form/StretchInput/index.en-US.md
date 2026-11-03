@@ -13,7 +13,7 @@ The typical scenario is, displaying a small search box or an icon, and stretchin
 ## Import
 
 ```tsx | pure
-import {StretchInput} from '@unikue/ant-buddy-pro';
+import { StretchInput } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

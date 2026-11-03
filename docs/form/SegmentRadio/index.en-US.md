@@ -11,7 +11,7 @@ SegmentRadio, Similar to [Segmented](https://ant.design/components/segmented) of
 ## Import
 
 ```tsx | pure
-import {SegmentRadio} from '@unikue/ant-buddy-pro';
+import { SegmentRadio } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

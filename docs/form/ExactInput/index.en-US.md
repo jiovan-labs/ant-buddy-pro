@@ -21,7 +21,7 @@ ExactInput, provides a text input box with a checkbox, aiming to support exact c
 ## Import
 
 ```tsx | pure
-import {ExactInput} from '@unikue/ant-buddy-pro';
+import { ExactInput } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

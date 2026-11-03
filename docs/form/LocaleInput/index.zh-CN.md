@@ -21,7 +21,7 @@ LocaleInput，提供了一个包含多种语言下拉框的文本输入字段，
 ## 导入组件
 
 ```tsx | pure
-import {LocaleInput} from '@unikue/ant-buddy-pro';
+import { LocaleInput } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

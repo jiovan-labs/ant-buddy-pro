@@ -11,7 +11,7 @@ FlexBox component, a flex layout container for alignment.
 ## Import
 
 ```tsx | pure
-import {FlexBox} from '@unikue/ant-buddy-pro';
+import { FlexBox } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

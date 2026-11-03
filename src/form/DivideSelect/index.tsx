@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -19,8 +19,8 @@ import React from 'react';
 import { Form, Select } from 'antd';
 import { ProFormSelect, type ProFormSelectProps, type RequestOptionsType, useDebounceFn } from '@ant-design/pro-components';
 import { omit } from '@rc-component/util';
-import { If } from '@unikue/react-condition';
-import { ObjectUtils, StringUtils } from '@unikue/ts-lang-utils';
+import { If } from '@jiovan-labs/react-condition';
+import { ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import classnames from 'classnames';
 import { type WithFalse, type LabelMixinType, type RequestOptionPlace } from '@/type/declaration';
 import { FieldUtils } from '@/util/FieldUtils';

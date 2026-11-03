@@ -9,14 +9,14 @@ toc: false
 
 ## Copyright
 
-Beijing Unikue Network Technology Ltd.
+Beijing Jiovan Technology Ltd.
 
 ## Contact Us
 
 You can visit us at:
 
-- Unikue: [https://unikue.cn](https://unikue.cn)
-- GitHub: [https://github.com/unikueltd](https://github.com/unikueltd)
+- Jiovan: [https://joivan.com](https://joivan.com)
+- GitHub: [https://github.com/joivan-labs](https://github.com/joivan-labs)
 
 ## Special Thanks
 

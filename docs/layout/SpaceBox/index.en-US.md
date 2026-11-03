@@ -12,7 +12,7 @@ The difference is that, the `Space` provides spaces between more than one compon
 ## Import
 
 ```tsx | pure
-import {SpaceBox} from '@unikue/ant-buddy-pro';
+import { SpaceBox } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

@@ -11,7 +11,7 @@ CornerStamp component, can display a corner stamp.
 ## Import
 
 ```tsx | pure
-import {CornerStamp} from '@unikue/ant-buddy-pro';
+import { CornerStamp } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

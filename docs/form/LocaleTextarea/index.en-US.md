@@ -11,7 +11,7 @@ LocaleTextarea, provides a textarea with a tabs that can switch different locale
 ## Import
 
 ```tsx | pure
-import {LocaleTextarea} from '@unikue/ant-buddy-pro';
+import { LocaleTextarea } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

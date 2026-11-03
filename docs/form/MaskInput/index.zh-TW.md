@@ -11,7 +11,7 @@ MaskInput，提供了壹個可以通过正则表达式来限制输入的文本�
 ## 導入組件
 
 ```tsx | pure
-import {MaskInput} from '@unikue/ant-buddy-pro';
+import { MaskInput } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

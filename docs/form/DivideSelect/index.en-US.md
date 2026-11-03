@@ -11,7 +11,7 @@ DivideSelect, provides a capability that displaying the label and value of optio
 ## Import
 
 ```tsx | pure
-import {DivideSelect} from '@unikue/ant-buddy-pro';
+import { DivideSelect } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

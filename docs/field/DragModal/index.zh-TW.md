@@ -11,7 +11,7 @@ DragModal 用於顯示壹個可拖動的模態對話框。
 ## 導入組件
 
 ```tsx | pure
-import {DragModal} from '@unikue/ant-buddy-pro';
+import { DragModal } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

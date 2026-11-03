@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2024 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -19,7 +19,7 @@ import React from 'react';
 import { Form, Checkbox, InputNumber, Radio, Space, type RadioChangeEvent, type CheckboxOptionType } from 'antd';
 import { useIntl } from '@ant-design/pro-components';
 import { type ValueType as RcValueType } from '@rc-component/input-number';
-import { NanoidUtils, NumberUtils, ObjectUtils, StringUtils } from '@unikue/ts-lang-utils';
+import { NanoidUtils, NumberUtils, ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import classnames from 'classnames';
 import { CronInputContext } from '@/form/CronInput/context';
 import { ConsoleUtils } from '@/util/ConsoleUtils';

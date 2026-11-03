@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -18,7 +18,7 @@
 import React from 'react';
 import { Divider, message as messageApi } from 'antd';
 import { ProForm, ProFormRadio, ProFormSwitch } from '@ant-design/pro-components';
-import { CronInput, ConsoleUtils } from '@unikue/ant-buddy-pro';
+import { CronInput, ConsoleUtils } from '@jiovan-labs/ant-buddy-pro';
 
 
 export default () => {

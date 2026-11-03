@@ -11,7 +11,7 @@ ApartTitle component, displays a title bar and an ornament icon, in order to sep
 ## Import
 
 ```tsx | pure
-import {ApartTitle} from '@unikue/ant-buddy-pro';
+import { ApartTitle } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

@@ -11,7 +11,7 @@ SectionTitle component, displays a title bar and an ornament prefix, in order to
 ## Import
 
 ```tsx | pure
-import {SectionTitle} from '@unikue/ant-buddy-pro';
+import { SectionTitle } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

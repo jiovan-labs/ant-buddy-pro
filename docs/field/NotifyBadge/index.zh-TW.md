@@ -13,7 +13,7 @@ NotifyBadge，提供了一個帶下拉框的徽標。
 ## 導入組件
 
 ```tsx | pure
-import {NotifyBadge} from '@unikue/ant-buddy-pro';
+import { NotifyBadge } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

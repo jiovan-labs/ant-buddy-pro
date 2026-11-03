@@ -11,7 +11,7 @@ MaskInput, provides a text input box with regular expression validation capabili
 ## Import
 
 ```tsx | pure
-import {MaskInput} from '@unikue/ant-buddy-pro';
+import { MaskInput } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

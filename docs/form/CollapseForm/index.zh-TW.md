@@ -13,7 +13,7 @@ CollapseForm，提供了壹個可以折疊展開的表單。
 ## 導入組件
 
 ```tsx | pure
-import {CollapseForm} from '@unikue/ant-buddy-pro';
+import { CollapseForm } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

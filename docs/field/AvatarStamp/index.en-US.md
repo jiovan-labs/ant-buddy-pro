@@ -11,7 +11,7 @@ AvatarStamp component, can display an avatar with a corner stamp.
 ## Import
 
 ```tsx | pure
-import {AvatarStamp} from '@unikue/ant-buddy-pro';
+import { AvatarStamp } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

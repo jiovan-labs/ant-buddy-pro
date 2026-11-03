@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2025 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -16,8 +16,8 @@
 
 
 import React from 'react';
-import HomeBaseLayout from '@byte.n/dumi-theme-antd/dist/builtins/HomeBaseLayout';
-import {Helmet} from 'react-helmet-async';
+import HomeBaseLayout from '@ahooks.js/dumi-theme-antd/dist/builtins/HomeBaseLayout';
+import { Helmet } from 'react-helmet-async';
 import dumiTheme from '#/.dumitheme';
 
 

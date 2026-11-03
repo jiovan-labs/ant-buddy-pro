@@ -11,7 +11,7 @@ ChronoTuple, 提供了一个可以输入数值和选择时间单位的选择框�
 ## 导入组件
 
 ```tsx | pure
-import {ChronoTuple} from '@unikue/ant-buddy-pro';
+import { ChronoTuple } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -16,7 +16,7 @@
 
 
 import { ProForm } from '@ant-design/pro-components';
-import { SegmentRadio } from '@unikue/ant-buddy-pro';
+import { SegmentRadio } from '@jiovan-labs/ant-buddy-pro';
 
 
 export default () => {

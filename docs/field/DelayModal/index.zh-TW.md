@@ -13,7 +13,7 @@ DelayModal 用於在超時後顯示一個模態對話框，如果沒有其它事
 ## 導入組件
 
 ```tsx | pure
-import {DelayModal} from '@unikue/ant-buddy-pro';
+import { DelayModal } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

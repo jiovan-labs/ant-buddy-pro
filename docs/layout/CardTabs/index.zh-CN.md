@@ -11,7 +11,7 @@ order: 3
 ## 导入组件
 
 ```tsx | pure
-import {CardTabs} from '@unikue/ant-buddy-pro';
+import { CardTabs } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

@@ -11,7 +11,7 @@ ApartTitle 組件，可展示壹個帶有裝飾圖標的標題欄，用於分割
 ## Import
 
 ```tsx | pure
-import {ApartTitle} from '@unikue/ant-buddy-pro';
+import { ApartTitle } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

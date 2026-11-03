@@ -11,7 +11,7 @@ CodePreview component, provides a simple segment for displaying code snippet, wi
 ## Import
 
 ```tsx | pure
-import {CodePreview} from '@unikue/ant-buddy-pro';
+import { CodePreview } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

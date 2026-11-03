@@ -15,16 +15,16 @@ order: 12
 ## 導入組件
 
 ```tsx | pure
-import {LoginPortal} from '@unikue/ant-buddy-pro';
+import { LoginPortal } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例
 
 ```tsx | pure
 import React from 'react';
-import {LoginForm} from '@ant-design/pro-form';
-import {LoginPortal, PageFooter} from '@unikue/ant-buddy-pro';
-import {SelectLang} from '@umijs/max';
+import { LoginForm } from '@ant-design/pro-form';
+import { LoginPortal, PageFooter } from '@jiovan-labs/ant-buddy-pro';
+import { SelectLang } from '@umijs/max';
 
 export default () => {
     const loginForm = (

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -17,7 +17,7 @@
 
 import React from 'react';
 import * as icons from '@ant-design/icons';
-import { ReadonlyMultiKeyMap } from '@unikue/ts-multi-map';
+import { ReadonlyMultiKeyMap } from '@jiovan-labs/ts-multi-map';
 
 
 /**

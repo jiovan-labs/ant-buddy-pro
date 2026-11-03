@@ -21,7 +21,7 @@ Fullscreen, provides an icon with the ability to toggle fullscreen mode.
 ## Import
 
 ```tsx | pure
-import {Fullscreen} from '@unikue/ant-buddy-pro';
+import { Fullscreen } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

@@ -13,7 +13,7 @@ ThumbTuple 用於顯示兩個拇指圖標和計數。
 ## 導入組件
 
 ```tsx | pure
-import {ThumbTuple} from '@unikue/ant-buddy-pro';
+import { ThumbTuple } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

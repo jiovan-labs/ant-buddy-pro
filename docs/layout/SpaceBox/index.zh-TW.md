@@ -12,7 +12,7 @@ order: 19
 ## 導入組件
 
 ```tsx | pure
-import {SpaceBox} from '@unikue/ant-buddy-pro';
+import { SpaceBox } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

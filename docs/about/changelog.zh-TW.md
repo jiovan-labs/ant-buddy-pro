@@ -11,6 +11,10 @@ toc: false
 
 以下是一些裏程碑版本的更新軌跡：
 
+  - **v2.0.0** [2026-11-03]
+    - 重命名品牌 `unikue` 為 `jiovan`
+    - 支持 ant-design pro-components v3.x
+
   - **v1.0.36** [2025-08-02]
     - 增加 `util/PaginationUtils`
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2025 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -17,7 +17,7 @@
 
 import { Avatar, Space } from 'antd';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { CommentCard } from '@unikue/ant-buddy-pro';
+import { CommentCard } from '@jiovan-labs/ant-buddy-pro';
 
 
 export default () => {

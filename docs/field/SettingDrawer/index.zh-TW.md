@@ -16,7 +16,7 @@ SettingDrawer 是一個封裝了 pro-components SettingDrawer 的組件，通過
 ## 導入組件
 
 ```tsx | pure
-import {SettingDrawer} from '@unikue/ant-buddy-pro';
+import { SettingDrawer } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

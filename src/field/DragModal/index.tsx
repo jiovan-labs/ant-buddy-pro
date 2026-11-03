@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License.
  *
@@ -19,8 +19,8 @@ import React from 'react';
 import { Modal, type ModalProps } from 'antd';
 import { DndContext, useDraggable } from '@dnd-kit/core';
 import { restrictToWindowEdges } from '@dnd-kit/modifiers';
+import { NanoidUtils } from '@jiovan-labs/ts-lang-utils';
 import { omit } from '@rc-component/util';
-import { NanoidUtils } from '@unikue/ts-lang-utils';
 import classnames from 'classnames';
 
 

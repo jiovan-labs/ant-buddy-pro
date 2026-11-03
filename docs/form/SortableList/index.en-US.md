@@ -11,7 +11,7 @@ SortableList, provides a capability that displaying some sort actions for a Ant 
 ## Import
 
 ```tsx | pure
-import {SortableList} from '@unikue/ant-buddy-pro';
+import { SortableList } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

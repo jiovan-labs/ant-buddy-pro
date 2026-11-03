@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -19,7 +19,7 @@ import React from 'react';
 import { Divider } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { ProForm, ProFormRadio } from '@ant-design/pro-components';
-import { StretchInput, BorderBox } from '@unikue/ant-buddy-pro';
+import { StretchInput, BorderBox } from '@jiovan-labs/ant-buddy-pro';
 
 
 export default () => {

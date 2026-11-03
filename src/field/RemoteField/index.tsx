@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License.
  *
@@ -17,9 +17,8 @@
 
 import React from 'react';
 import { Spin } from 'antd';
-import { useDebounceFn } from '@ant-design/pro-components';
-import { type ProFormFieldRemoteProps } from '@ant-design/pro-components/es/form/typing';
-import { NanoidUtils } from '@unikue/ts-lang-utils';
+import { type ProFormFieldRemoteProps, useDebounceFn } from '@ant-design/pro-components';
+import { NanoidUtils } from '@jiovan-labs/ts-lang-utils';
 import classnames from 'classnames';
 
 

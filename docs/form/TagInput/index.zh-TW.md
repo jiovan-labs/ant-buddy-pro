@@ -11,7 +11,7 @@ TagInput，提供了壹個可通過文本框增加的多標簽。
 ## 導入組件
 
 ```tsx | pure
-import {TagInput} from '@unikue/ant-buddy-pro';
+import { TagInput } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

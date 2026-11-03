@@ -11,7 +11,7 @@ ChronoSelect, provides a capability that displaying a select box with chrono uni
 ## Import
 
 ```tsx | pure
-import {ChronoSelect} from '@unikue/ant-buddy-pro';
+import { ChronoSelect } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -19,12 +19,12 @@ import React from 'react';
 import { ConfigProvider, Form, List, Popconfirm, Space, Tooltip, type InputProps, type FormRule } from 'antd';
 import { TranslationOutlined, SelectOutlined } from '@ant-design/icons';
 import { useIntl } from '@ant-design/pro-components';
-import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext';
+import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext.js';
 import Trigger, { type TriggerProps } from '@rc-component/trigger';
 import '@rc-component/trigger/assets/index.less';
 import { omit } from '@rc-component/util';
-import { If } from '@unikue/react-condition';
-import { BooleanUtils, ElementUtils, NanoidUtils, ObjectUtils, StringUtils } from '@unikue/ts-lang-utils';
+import { If } from '@jiovan-labs/react-condition';
+import { BooleanUtils, ElementUtils, NanoidUtils, ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import { useEventListener, useMutationObserver } from 'ahooks';
 import classnames from 'classnames';
 import { type WithFalse, type BeforeAfterType, type RuleValidateScope } from '@/type/declaration';

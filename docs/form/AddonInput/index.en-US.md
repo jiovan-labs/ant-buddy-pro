@@ -15,7 +15,7 @@ The typical scenario is adding fixed prefixes, suffixes, buttons or other conten
 ## Import
 
 ```tsx | pure
-import {AddonInput} from '@unikue/ant-buddy-pro';
+import { AddonInput } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

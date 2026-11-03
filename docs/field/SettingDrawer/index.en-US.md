@@ -16,7 +16,7 @@ SettingDrawer is a component that wraps pro-components SettingDrawer with a cust
 ## Import
 
 ```tsx | pure
-import {SettingDrawer} from '@unikue/ant-buddy-pro';
+import { SettingDrawer } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

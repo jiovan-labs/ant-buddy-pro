@@ -11,7 +11,7 @@ SortableList, 是一个可以为 Ant `ProFormList` 增加排序能力的包装�
 ## 导入组件
 
 ```tsx | pure
-import {SortableList} from '@unikue/ant-buddy-pro';
+import { SortableList } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

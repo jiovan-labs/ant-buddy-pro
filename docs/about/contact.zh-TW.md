@@ -9,14 +9,14 @@ toc: false
 
 ## 版權所有
 
-北京攸科網絡科技有限公司
+北京玖漫科技有限公司
 
 ## 聯系我們
 
 您可以通過以下方式訪問我們：
 
-- Unikue: [https://unikue.cn](https://unikue.cn)
-- GitHub: [https://github.com/unikueltd](https://github.com/unikueltd)
+- Jiovan: [https://joivan.com](https://joivan.com)
+- GitHub: [https://github.com/joivan-labs](https://github.com/joivan-labs)
 
 ## 特別感謝
 

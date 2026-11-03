@@ -11,7 +11,7 @@ LocaleTextarea，提供了一个可切换多种语言输入的多行文本输入
 ## 导入组件
 
 ```tsx | pure
-import {LocaleTextarea} from '@unikue/ant-buddy-pro';
+import { LocaleTextarea } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

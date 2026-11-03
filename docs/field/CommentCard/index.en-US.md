@@ -13,7 +13,7 @@ This component is referenced from Ant Design Compatible's Comment component and 
 ## Import Component
 
 ```tsx | pure
-import {CommentCard} from '@unikue/ant-buddy-pro';
+import { CommentCard } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Usage Examples

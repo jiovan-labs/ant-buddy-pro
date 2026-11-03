@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -21,5 +21,5 @@
  * @author David Hsing
  */
 export abstract class PackageConst {
-    public static PACKAGE_NAME = '@unikue/ant-buddy-pro';
+    public static PACKAGE_NAME = '@jiovan-labs/ant-buddy-pro';
 }

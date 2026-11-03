@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -19,12 +19,10 @@ import React from 'react';
 import { App, Avatar, Image, Space, Upload, type AvatarProps, type ImageProps, type TooltipProps, type UploadProps } from 'antd';
 import { type RcFile } from 'antd/es/upload/interface';
 import { UserOutlined, LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { useIntl } from '@ant-design/pro-components';
-import { type ProFormFieldItemProps } from '@ant-design/pro-components/es/form/typing';
-import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext';
-import { warpField } from '@ant-design/pro-components/es/form/components/FormItem/warpField';
+import { type ProFormFieldItemProps, createProFormField, useIntl } from '@ant-design/pro-components';
+import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext.js';
+import { FileUtils, NumberUtils, ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import { omit } from '@rc-component/util';
-import { FileUtils, NumberUtils, ObjectUtils, StringUtils } from '@unikue/ts-lang-utils';
 import ImgCrop, { type ImgCropProps } from 'antd-img-crop';
 import classnames from 'classnames';
 import { type CircleSquareShape, type FileSizeUint } from '@/type/declaration';
@@ -469,4 +467,4 @@ const AvatarUploadField: React.ForwardRefExoticComponent<AvatarUploadProps & Rea
 
 
 // @ts-ignore
-export const AvatarUpload = warpField(AvatarUploadField) as typeof AvatarUploadField;
+export const AvatarUpload = createProFormField(AvatarUploadField) as typeof AvatarUploadField;

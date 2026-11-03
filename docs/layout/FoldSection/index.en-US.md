@@ -21,7 +21,7 @@ Similar to [Collapse](https://ant.design/components/collapse) of [Ant Design](ht
 ## Import
 
 ```tsx | pure
-import {FoldSection} from '@unikue/ant-buddy-pro';
+import { FoldSection } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

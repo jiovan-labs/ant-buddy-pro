@@ -13,7 +13,7 @@ Similar to [Badge](https://ant.design/components/badge/#components-badge-demo-ri
 ## Import
 
 ```tsx | pure
-import {BadgeRibbon} from '@unikue/ant-buddy-pro';
+import { BadgeRibbon } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

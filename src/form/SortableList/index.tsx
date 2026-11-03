@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -22,7 +22,7 @@ import { VerticalAlignTopOutlined, VerticalAlignBottomOutlined, ArrowUpOutlined,
 import { ProFormList, type ProFormListProps } from '@ant-design/pro-components';
 import { useIntl } from '@ant-design/pro-components';
 import { omit } from '@rc-component/util';
-import { ObjectUtils } from '@unikue/ts-lang-utils';
+import { ObjectUtils } from '@jiovan-labs/ts-lang-utils';
 import classnames from 'classnames';
 import { intlLocales } from './locales';
 import { useFieldStyle } from './styles';

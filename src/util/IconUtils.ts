@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -18,7 +18,7 @@
 import React from 'react';
 import { type ThemeType } from '@ant-design/icons-svg/es/types';
 import { type MenuDataItem } from '@ant-design/pro-components';
-import { StringUtils } from '@unikue/ts-lang-utils';
+import { StringUtils } from '@jiovan-labs/ts-lang-utils';
 import * as iconTypes from '@/type/design-icon';
 
 

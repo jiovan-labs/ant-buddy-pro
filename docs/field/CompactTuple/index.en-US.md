@@ -15,7 +15,7 @@ In this case, the date picker has borders while the switch/checkbox doesn't. Thi
 ## Import
 
 ```tsx | pure
-import {CompactTuple} from '@unikue/ant-buddy-pro';
+import { CompactTuple } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

@@ -13,7 +13,7 @@ The typical scenario is, displaying two thumbs which acted as `like` and `dislik
 ## Import
 
 ```tsx | pure
-import {ThumbTuple} from '@unikue/ant-buddy-pro';
+import { ThumbTuple } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

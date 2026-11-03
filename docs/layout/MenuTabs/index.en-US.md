@@ -11,7 +11,7 @@ Just like [the live example](https://preview.pro.ant.design/account/settings), `
 ## Import
 
 ```tsx | pure
-import {MenuTabs} from '@unikue/ant-buddy-pro';
+import { MenuTabs } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

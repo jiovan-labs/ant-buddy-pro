@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License.
  *
@@ -21,10 +21,10 @@ import { ListItemMetaProps } from 'antd/es/list/Item';
 import { type TabPlacement } from 'antd/es/tabs';
 import { BellOutlined } from '@ant-design/icons';
 import { useIntl } from '@ant-design/pro-components';
+import { If } from '@jiovan-labs/react-condition';
+import { ArrayUtils, BooleanUtils, ObjectUtils } from '@jiovan-labs/ts-lang-utils';
 import { type Tab as RcTab } from '@rc-component/tabs/es/interface';
 import { omit } from '@rc-component/util';
-import { If } from '@unikue/react-condition';
-import { ArrayUtils, BooleanUtils, ObjectUtils } from '@unikue/ts-lang-utils';
 import classnames from 'classnames';
 import { type WithFalse, type ReadonlyTabsType } from '@/type/declaration';
 import { intlLocales } from './locales';

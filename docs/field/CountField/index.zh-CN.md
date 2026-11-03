@@ -11,7 +11,7 @@ CountField 用于显示一个带计数的字段。
 ## 导入组件
 
 ```tsx | pure
-import {CountField} from '@unikue/ant-buddy-pro';
+import { CountField } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

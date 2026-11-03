@@ -13,7 +13,7 @@ The reason for the appeal is, not all the components of [Ant Design](https://ant
 ## Import
 
 ```tsx | pure
-import {RemoteField} from '@unikue/ant-buddy-pro';
+import { RemoteField } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

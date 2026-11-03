@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -19,7 +19,7 @@ import React from 'react';
 import { type DefaultOptionType } from 'antd/es/select';
 import { type SegmentedLabeledOption } from 'antd/es/segmented';
 import { type ProSchemaValueEnumType, type ProSchemaValueEnumObj, type ProSchemaValueEnumMap } from '@ant-design/pro-components';
-import { ObjectUtils } from '@unikue/ts-lang-utils';
+import { ObjectUtils } from '@jiovan-labs/ts-lang-utils';
 
 
 /**

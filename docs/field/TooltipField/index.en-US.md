@@ -11,7 +11,7 @@ TooltipField component, can display a field with a tooltip.
 ## Import
 
 ```tsx | pure
-import {TooltipField} from '@unikue/ant-buddy-pro';
+import { TooltipField } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

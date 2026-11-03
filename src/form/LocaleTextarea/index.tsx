@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -18,13 +18,12 @@
 import React from 'react';
 import { Form, Input, type TabsProps, type FormRule } from 'antd';
 import { type TextAreaProps, type TextAreaRef } from 'antd/es/input/TextArea';
-import { ProFormTextArea, useIntl } from '@ant-design/pro-components';
-import { type ProFormFieldItemProps } from '@ant-design/pro-components/es/form/typing';
-import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext';
+import { ProFormTextArea, type ProFormFieldItemProps, useIntl } from '@ant-design/pro-components';
+import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext.js';
 import { type TabPaneProps as RcTabPaneProps } from '@rc-component/tabs/es/TabPanelList/TabPane';
+import { If } from '@jiovan-labs/react-condition';
+import { NanoidUtils, ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import { omit } from '@rc-component/util';
-import { If } from '@unikue/react-condition';
-import { NanoidUtils, ObjectUtils, StringUtils } from '@unikue/ts-lang-utils';
 import classnames from 'classnames';
 import { type WithFalse, type ReadonlyTabsType, type RuleValidateScope } from '@/type/declaration';
 import { LabelField } from '@/field/LabelField';

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -18,12 +18,10 @@
 import React from 'react';
 import { ConfigProvider, Form, Flex, Input, Tag, type InputProps, type InputRef, type TagProps, message as messageApi } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import { ProFormText, useIntl, useDebounceFn } from '@ant-design/pro-components';
-import { type FieldProps, type ProFormFieldItemProps, type ProFormFieldRemoteProps } from '@ant-design/pro-components/es/form/typing';
-import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext';
-import { warpField } from '@ant-design/pro-components/es/form/components/FormItem/warpField';
+import { ProFormText, type FieldProps, type ProFormFieldItemProps, type ProFormFieldRemoteProps, createProFormField, useDebounceFn, useIntl } from '@ant-design/pro-components';
+import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext.js';
+import { ArrayUtils, NanoidUtils, NumberUtils, ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import { omit } from '@rc-component/util';
-import { ArrayUtils, NanoidUtils, NumberUtils, ObjectUtils, StringUtils } from '@unikue/ts-lang-utils';
 import classnames from 'classnames';
 import objectHash from 'object-hash';
 import { type WithFalse, type RequestOptionPlace } from '@/type/declaration';
@@ -522,4 +520,4 @@ const TagInputField: React.ForwardRefExoticComponent<TagInputProps & React.RefAt
 
 
 // @ts-ignore
-export const TagInput = warpField(TagInputField) as typeof TagInputField;
+export const TagInput = createProFormField(TagInputField) as typeof TagInputField;

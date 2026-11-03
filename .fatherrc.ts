@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License.
  *
@@ -16,7 +16,7 @@
 
 
 import nodePath from 'node:path';
-import {defineConfig} from 'father';
+import { defineConfig } from 'father';
 
 
 /**
@@ -36,10 +36,10 @@ export default defineConfig({
     alias: {
         '#': nodePath.resolve(__dirname, '.'),
         '@': nodePath.resolve(__dirname, './src'),
-        '@unikue/ant-buddy-pro': nodePath.resolve(__dirname, './src'),
+        '@jiovan-labs/ant-buddy-pro': nodePath.resolve(__dirname, './src'),
     },
     extraBabelPlugins: [
-        ['@unikue/babel-plugin-remove-comment', {
+        ['@jiovan-labs/babel-plugin-remove-comment', {
             scope: 'all',
         }],
     ]

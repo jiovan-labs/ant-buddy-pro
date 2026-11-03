@@ -19,7 +19,7 @@ CaptchaInput，提供了一个可以获取验证码的按钮和一个输入验�
 ## 导入组件
 
 ```tsx | pure
-import {CaptchaInput} from '@unikue/ant-buddy-pro';
+import { CaptchaInput } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

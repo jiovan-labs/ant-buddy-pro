@@ -11,7 +11,7 @@ FlexBox 組件，一個用於對齊的彈性布局容器。
 ## 導入組件
 
 ```tsx | pure
-import {FlexBox} from '@unikue/ant-buddy-pro';
+import { FlexBox } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

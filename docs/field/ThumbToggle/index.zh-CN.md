@@ -11,7 +11,7 @@ ThumbToggle 用于显示一个带计数的拇指图标，并可以切换。
 ## 导入组件
 
 ```tsx | pure
-import {ThumbToggle} from '@unikue/ant-buddy-pro';
+import { ThumbToggle } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

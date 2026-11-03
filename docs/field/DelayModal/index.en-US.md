@@ -13,7 +13,7 @@ The typical scenario is, displaying a dialog to notice user that user hasn't ope
 ## Import
 
 ```tsx | pure
-import {DelayModal} from '@unikue/ant-buddy-pro';
+import { DelayModal } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

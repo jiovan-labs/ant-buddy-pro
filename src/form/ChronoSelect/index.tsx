@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -17,10 +17,9 @@
 
 import React from 'react';
 import { Form, Select } from 'antd';
-import { ProFormSelect, useIntl } from '@ant-design/pro-components';
-import { type ProFormSelectProps } from '@ant-design/pro-components/es/form/components/Select';
+import { ProFormSelect, type ProFormSelectProps, useIntl } from '@ant-design/pro-components';
+import { ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import { omit } from '@rc-component/util';
-import { ObjectUtils, StringUtils } from '@unikue/ts-lang-utils';
 import classnames from 'classnames';
 import { type WithFalse } from '@/type/declaration';
 import { intlLocales } from './locales';

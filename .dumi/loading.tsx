@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2025 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -15,7 +15,7 @@
  */
 
 
-import {PageLoading} from '@ant-design/pro-components/es/layout/components/PageLoading';
+import { PageLoading } from '@ant-design/pro-components/layout';
 
 
 // export {default} from 'dumi-theme-antd/dist/common/Loading';

@@ -11,7 +11,7 @@ CronInput, provides a capability that displaying a text input box with a dropdow
 ## Import
 
 ```tsx | pure
-import {CronInput} from '@unikue/ant-buddy-pro';
+import { CronInput } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

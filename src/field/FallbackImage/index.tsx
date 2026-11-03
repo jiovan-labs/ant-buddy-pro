@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -17,8 +17,8 @@
 
 import React from 'react';
 import { Image, type ImageProps } from 'antd';
+import { ImageUtils, NanoidUtils } from '@jiovan-labs/ts-lang-utils';
 import { omit } from '@rc-component/util';
-import { ImageUtils, NanoidUtils } from '@unikue/ts-lang-utils';
 import classnames from 'classnames';
 
 

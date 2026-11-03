@@ -11,7 +11,7 @@ SegmentRadio 與 [Ant Design](https://ant.design) 的 [Segmented](https://ant.de
 ## 導入組件
 
 ```tsx | pure
-import {SegmentRadio} from '@unikue/ant-buddy-pro';
+import { SegmentRadio } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

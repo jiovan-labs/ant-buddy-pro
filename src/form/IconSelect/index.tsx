@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -21,12 +21,11 @@ import { type LabeledValue } from 'antd/es/select';
 import Wave from 'antd/es/_util/wave';
 import { default as Icon } from '@ant-design/icons';
 import { type ThemeType as IconThemeType } from '@ant-design/icons-svg/es/types';
-import { ProFormSelect, useIntl } from '@ant-design/pro-components';
-import { type FieldProps, type ProFormFieldItemProps } from '@ant-design/pro-components/es/form/typing';
-import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext';
+import { ProFormSelect, type FieldProps, type ProFormFieldItemProps, useIntl } from '@ant-design/pro-components';
+import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext.js';
 import { omit } from '@rc-component/util';
-import { If, For, MapIterator } from '@unikue/react-condition';
-import { NanoidUtils, ObjectUtils, StringUtils } from '@unikue/ts-lang-utils';
+import { If, For, MapIterator } from '@jiovan-labs/react-condition';
+import { NanoidUtils, ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import { useEventListener } from 'ahooks';
 import classnames from 'classnames';
 import { Scrollbars } from 'react-custom-scrollbars-4';

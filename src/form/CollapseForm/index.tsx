@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -19,7 +19,7 @@ import React from 'react';
 import { Form, type FormProps, type FormInstance } from 'antd';
 import { ProForm, type ProFormProps, type ProFormInstance } from '@ant-design/pro-components';
 import { omit } from '@rc-component/util';
-import { NanoidUtils } from '@unikue/ts-lang-utils';
+import { NanoidUtils } from '@jiovan-labs/ts-lang-utils';
 import { useEventListener } from 'ahooks';
 import classnames from 'classnames';
 import { type ClickHoverType } from '@/type/declaration';

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License.
  *
@@ -18,7 +18,7 @@
 import React from 'react';
 import { Space } from 'antd';
 import { SpaceCompactProps } from 'antd/es/space/Compact';
-import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext';
+import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext.js';
 import { css } from '@emotion/css';
 import classnames from 'classnames';
 import { type WithFalse, type BeforeAfterType } from '@/type/declaration';

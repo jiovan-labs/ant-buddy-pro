@@ -11,7 +11,7 @@ FallbackImage, provides a fallback option when the image source can not be loade
 ## Import
 
 ```tsx | pure
-import {FallbackImage} from '@unikue/ant-buddy-pro';
+import { FallbackImage } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

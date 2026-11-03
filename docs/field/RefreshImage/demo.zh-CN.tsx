@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -18,8 +18,8 @@
 import React from 'react';
 import { Button, Divider, message as messageApi } from 'antd';
 import { RedoOutlined } from '@ant-design/icons';
-import { RefreshImage, type RefreshImageRef } from '@unikue/ant-buddy-pro';
-import { RandomUtils } from '@unikue/ts-lang-utils';
+import { RefreshImage, type RefreshImageRef } from '@jiovan-labs/ant-buddy-pro';
+import { RandomUtils } from '@jiovan-labs/ts-lang-utils';
 
 
 export default () => {
@@ -44,7 +44,7 @@ export default () => {
                 height={120}
                 src={() => {
                     const images = [
-                        `https://unikueltd.github.io/ant-buddy-pro/assets/ico/logo-icon.svg?timestamp=${Date.now()}`,
+                        `https://jiovan-labs.github.io/ant-buddy-pro/assets/ico/logo-icon.svg?timestamp=${Date.now()}`,
                         `https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png?timestamp=${Date.now()}`,
                         `https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg?timestamp=${Date.now()}`,
                         `https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg?timestamp=${Date.now()}`,

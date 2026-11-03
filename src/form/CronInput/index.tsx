@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2024 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -20,12 +20,12 @@ import { ConfigProvider, Form, Button, Switch, Space, Input, message as messageA
 import { type TabPosition } from 'antd/es/tabs';
 import { FieldTimeOutlined } from '@ant-design/icons';
 import { useIntl } from '@ant-design/pro-components';
-import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext';
+import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext.js';
+import { If } from '@jiovan-labs/react-condition';
+import { ElementUtils, NanoidUtils, ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import Trigger, { type TriggerProps } from '@rc-component/trigger';
 import '@rc-component/trigger/assets/index.less';
 import { omit } from '@rc-component/util';
-import { If } from '@unikue/react-condition';
-import { ElementUtils, NanoidUtils, ObjectUtils, StringUtils } from '@unikue/ts-lang-utils';
 import { useEventListener, useMutationObserver } from 'ahooks';
 import classnames from 'classnames';
 import cronValidate from 'cron-validate';

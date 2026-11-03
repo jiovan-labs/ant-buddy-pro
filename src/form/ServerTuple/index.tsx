@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -19,9 +19,9 @@ import React from 'react';
 import { Space, InputNumber } from 'antd';
 import { FormContext } from 'antd/es/form/context';
 import { ProFormDigit, type ProFormDigitProps, useIntl } from '@ant-design/pro-components';
-import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext';
+import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext.js';
 import { omit } from '@rc-component/util';
-import { ObjectUtils } from '@unikue/ts-lang-utils';
+import { ObjectUtils } from '@jiovan-labs/ts-lang-utils';
 import classnames from 'classnames';
 import { MaskInput, type MaskInputProps } from '@/form/MaskInput';
 import { intlLocales } from './locales';

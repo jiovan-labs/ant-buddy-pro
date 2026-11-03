@@ -11,7 +11,7 @@ order: 13
 ## 导入组件
 
 ```tsx | pure
-import {MenuTabs} from '@unikue/ant-buddy-pro';
+import { MenuTabs } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License.
  *
@@ -18,8 +18,8 @@
 import React from 'react';
 import { Modal, type ModalProps, type ModalFuncProps } from 'antd';
 import { withConfirm, withInfo, withWarn, withSuccess, withError } from 'antd/es/modal/confirm';
+import { NanoidUtils } from '@jiovan-labs/ts-lang-utils';
 import { omit } from '@rc-component/util';
-import { NanoidUtils } from '@unikue/ts-lang-utils';
 import classnames from 'classnames';
 import { ConsoleUtils } from '@/util/ConsoleUtils';
 

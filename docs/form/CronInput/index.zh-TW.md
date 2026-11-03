@@ -11,7 +11,7 @@ CronInput 是壹個可以通過可視化選項來生成 cron 表達式的組件�
 ## 導入組件
 
 ```tsx | pure
-import {CronInput} from '@unikue/ant-buddy-pro';
+import { CronInput } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

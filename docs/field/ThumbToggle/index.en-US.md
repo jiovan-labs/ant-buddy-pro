@@ -11,7 +11,7 @@ ThumbToggle component, can display a thumb with toggle capability, and a count n
 ## Import
 
 ```tsx | pure
-import {ThumbToggle} from '@unikue/ant-buddy-pro';
+import { ThumbToggle } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

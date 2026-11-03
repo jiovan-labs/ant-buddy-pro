@@ -11,7 +11,7 @@ PreviewImage, provides a preview image component with fallback capability.
 ## Import
 
 ```tsx | pure
-import {PreviewImage} from '@unikue/ant-buddy-pro';
+import { PreviewImage } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

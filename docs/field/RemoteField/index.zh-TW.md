@@ -13,7 +13,7 @@ RemoteField 可以使用遠程數據渲染壹個組件。
 ## 導入組件
 
 ```tsx | pure
-import {RemoteField} from '@unikue/ant-buddy-pro';
+import { RemoteField } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

@@ -11,7 +11,7 @@ FallbackImage 提供了一個加載圖片備用源的選項，用以在圖片常
 ## 導入組件
 
 ```tsx | pure
-import {FallbackImage} from '@unikue/ant-buddy-pro';
+import { FallbackImage } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

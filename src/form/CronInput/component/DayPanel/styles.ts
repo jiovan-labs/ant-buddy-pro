@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2025 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -50,9 +50,9 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
 export function useFieldStyle(prefixCls: string): UseStyleResult {
     return useStyle(`${PackageConst.PACKAGE_NAME}:CronInput:Day`, (token) => {
         const mesh: ExtraProAliasToken = {
+            ...token,
             prefixCls,
             componentCls: `.${prefixCls}`,
-            ...token,
         };
         return [buildFieldStyle(mesh)];
     });

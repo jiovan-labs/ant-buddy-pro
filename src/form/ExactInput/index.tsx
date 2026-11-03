@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -19,7 +19,7 @@ import React from 'react';
 import { Checkbox, Form, type CheckboxProps, type TooltipProps } from 'antd';
 import { useIntl } from '@ant-design/pro-components';
 import { omit } from '@rc-component/util';
-import { ObjectUtils } from '@unikue/ts-lang-utils';
+import { ObjectUtils } from '@jiovan-labs/ts-lang-utils';
 import { type WithFalse, type BeforeAfterType } from '@/type/declaration';
 import { TooltipRender } from '@/render/TooltipRender';
 import { AddonInput, type AddonInputProps } from '@/form/AddonInput';

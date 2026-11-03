@@ -21,7 +21,7 @@ LocaleInput, provides a text input box with a dropdown div of locale input boxes
 ## Import
 
 ```tsx | pure
-import {LocaleInput} from '@unikue/ant-buddy-pro';
+import { LocaleInput } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

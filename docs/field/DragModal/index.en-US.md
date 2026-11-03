@@ -11,7 +11,7 @@ DragModal component, can display a modal dialog with draggable ability.
 ## Import
 
 ```tsx | pure
-import {DragModal} from '@unikue/ant-buddy-pro';
+import { DragModal } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

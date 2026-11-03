@@ -11,7 +11,7 @@ Similar to [GlobalFooter](https://github.com/ant-design/pro-components/tree/mast
 ## Import
 
 ```tsx | pure
-import {PageFooter} from '@unikue/ant-buddy-pro';
+import { PageFooter } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

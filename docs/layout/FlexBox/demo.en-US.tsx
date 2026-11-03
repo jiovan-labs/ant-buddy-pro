@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -18,7 +18,7 @@
 import React from 'react';
 import { Button, Divider } from 'antd';
 import { ProForm, ProFormRadio, ProFormSwitch } from '@ant-design/pro-components';
-import { FlexBox } from '@unikue/ant-buddy-pro';
+import { FlexBox } from '@jiovan-labs/ant-buddy-pro';
 
 
 export default () => {

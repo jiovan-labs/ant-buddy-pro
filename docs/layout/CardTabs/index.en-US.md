@@ -11,7 +11,7 @@ Similar to [Tabs](https://ant.design/components/tabs) of [Ant Design](https://an
 ## Import
 
 ```tsx | pure
-import {CardTabs} from '@unikue/ant-buddy-pro';
+import { CardTabs } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

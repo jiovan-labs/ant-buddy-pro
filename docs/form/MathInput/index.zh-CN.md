@@ -11,7 +11,7 @@ MathInput，提供了一个可以输入数学公式的的录入框。
 ## 导入组件
 
 ```tsx | pure
-import {MathInput} from '@unikue/ant-buddy-pro';
+import { MathInput } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

@@ -11,7 +11,7 @@ MathInput, provides a text input-alike box with math capability.
 ## Import
 
 ```tsx | pure
-import {MathInput} from '@unikue/ant-buddy-pro';
+import { MathInput } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

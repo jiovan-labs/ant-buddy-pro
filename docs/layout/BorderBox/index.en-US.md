@@ -11,7 +11,7 @@ BorderBox component, can display a box with borders.
 ## Import
 
 ```tsx | pure
-import {BorderBox} from '@unikue/ant-buddy-pro';
+import { BorderBox } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

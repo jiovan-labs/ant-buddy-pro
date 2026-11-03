@@ -1,5 +1,5 @@
 /*
- * Copyright (c)  Unikue Ltd. All rights reserved.
+ * Copyright (c)  Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *

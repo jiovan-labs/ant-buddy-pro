@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License.
  *
@@ -16,11 +16,11 @@
 
 
 import nodePath from 'node:path';
-import {defineConfig} from 'dumi';
+import { defineConfig } from 'dumi';
 import dumiTheme from './.dumitheme';
 
 
-const {APP_ENV = 'dev'} = process.env;
+const { APP_ENV = 'dev' } = process.env;
 const ROOT_CONTEXT: string = (APP_ENV === 'dev') ? '' : '/ant-buddy-pro';
 
 
@@ -41,7 +41,7 @@ export default defineConfig({
     ],
     metas: [{
         name: 'keywords',
-        content: 'Unikue, Ant Buddy Pro, Ant Design, Ant ProComponents, React, NPM',
+        content: 'Jiovan, Ant Buddy Pro, Ant Design, Ant ProComponents, React, NPM',
     }],
     favicons: [`${ROOT_CONTEXT}/favicon.ico`],
     links: [
@@ -73,7 +73,7 @@ export default defineConfig({
     alias: {
         '#': nodePath.resolve(__dirname, '.'),
         '@': nodePath.resolve(__dirname, './src'),
-        '@unikue/ant-buddy-pro': nodePath.resolve(__dirname, './src'),
+        '@jiovan-labs/ant-buddy-pro': nodePath.resolve(__dirname, './src'),
     },
     apiParser: {},
     exportStatic: {},
@@ -90,9 +90,9 @@ export default defineConfig({
         editLink: false,
         lastUpdated: false,
         socialLinks: {
-            github: 'https://github.com/unikueltd/ant-buddy-pro',
+            github: 'https://github.com/jiovan-labs/ant-buddy-pro',
         },
-        footer: `Open-source MIT Licensed<br/>Copyright © ${new Date().getFullYear()} Unikue Ltd. All rights reserved`,
+        footer: `Open-source MIT Licensed<br/>Copyright © ${new Date().getFullYear()} Jiovan Ltd. All rights reserved`,
         ...dumiTheme,
     },
 });

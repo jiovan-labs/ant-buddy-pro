@@ -21,7 +21,7 @@ Fullscreen 是一个用来切换全屏的图标按钮。
 ## 导入组件
 
 ```tsx | pure
-import {Fullscreen} from '@unikue/ant-buddy-pro';
+import { Fullscreen } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

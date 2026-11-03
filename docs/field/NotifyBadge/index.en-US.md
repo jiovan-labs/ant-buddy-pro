@@ -13,7 +13,7 @@ The typical scenario is, displaying a small icon with a dropdown which lists not
 ## Import
 
 ```tsx | pure
-import {NotifyBadge} from '@unikue/ant-buddy-pro';
+import { NotifyBadge } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

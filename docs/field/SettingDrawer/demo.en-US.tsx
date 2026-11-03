@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2025 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -19,7 +19,7 @@ import React from 'react';
 import { Divider, Switch } from 'antd';
 import { SkinOutlined } from '@ant-design/icons';
 import { type ProSettings } from '@ant-design/pro-components';
-import { SettingDrawer, BorderBox, LabelField } from '@unikue/ant-buddy-pro';
+import { SettingDrawer, BorderBox, LabelField } from '@jiovan-labs/ant-buddy-pro';
 
 
 export default () => {

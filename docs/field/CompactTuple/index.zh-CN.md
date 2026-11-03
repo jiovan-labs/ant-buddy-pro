@@ -15,7 +15,7 @@ CompactTuple 可以显示紧凑间距模式下的一个控件和一个附加节�
 ## 导入组件
 
 ```tsx | pure
-import {CompactTuple} from '@unikue/ant-buddy-pro';
+import { CompactTuple } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

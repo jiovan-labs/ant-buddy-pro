@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -17,11 +17,10 @@
 
 import React from 'react';
 import { Form, type InputProps } from 'antd';
-import { ProForm, FormListContext, useIntl } from '@ant-design/pro-components';
-import { type ProFormFieldItemProps } from '@ant-design/pro-components/es/form/typing';
-import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext';
+import { ProForm, FormListContext, type ProFormFieldItemProps, useIntl } from '@ant-design/pro-components';
+import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext.js';
+import { NanoidUtils, ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import { omit } from '@rc-component/util';
-import { NanoidUtils, ObjectUtils, StringUtils } from '@unikue/ts-lang-utils';
 import classnames from 'classnames';
 import 'mathlive';
 import 'mathlive/fonts.css';

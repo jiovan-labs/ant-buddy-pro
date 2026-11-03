@@ -11,7 +11,7 @@ CipherStrength, provides a cipher strength indicator with captions and a progres
 ## Import
 
 ```tsx | pure
-import {CipherStrength} from '@unikue/ant-buddy-pro';
+import { CipherStrength } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

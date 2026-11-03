@@ -11,7 +11,7 @@ TagInput, provides some tags with a text input box with addable capability.
 ## Import
 
 ```tsx | pure
-import {TagInput} from '@unikue/ant-buddy-pro';
+import { TagInput } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License.
  *
@@ -18,7 +18,7 @@
 import React from 'react';
 import { Layout } from 'antd';
 import { CopyrightOutlined } from '@ant-design/icons';
-import { If, For } from '@unikue/react-condition';
+import { If, For } from '@jiovan-labs/react-condition';
 import classnames from 'classnames';
 import { type WithFalse } from '@/type/declaration';
 import { useFieldStyle } from './styles';

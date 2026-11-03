@@ -11,7 +11,7 @@ ChronoTuple, provides a capability that displaying a number input box and a sele
 ## Import
 
 ```tsx | pure
-import {ChronoTuple} from '@unikue/ant-buddy-pro';
+import { ChronoTuple } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

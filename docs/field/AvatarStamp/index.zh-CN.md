@@ -11,7 +11,7 @@ AvatarStamp 是一个可以显示带角标的头像控件。
 ## 导入组件
 
 ```tsx | pure
-import {AvatarStamp} from '@unikue/ant-buddy-pro';
+import { AvatarStamp } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

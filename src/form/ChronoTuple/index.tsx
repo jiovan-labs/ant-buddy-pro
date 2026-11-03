@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -18,10 +18,9 @@
 import React from 'react';
 import { Space, InputNumber } from 'antd';
 import { FormContext } from 'antd/es/form/context';
-import { ProFormDigit } from '@ant-design/pro-components';
-import { type ProFormDigitProps } from '@ant-design/pro-components/es/form/components/Digit';
+import { ProFormDigit, type ProFormDigitProps } from '@ant-design/pro-components';
+import { StringUtils } from '@jiovan-labs/ts-lang-utils';
 import { omit } from '@rc-component/util';
-import { StringUtils } from '@unikue/ts-lang-utils';
 import classnames from 'classnames';
 import { ChronoSelect, type ChronoSelectProps } from '@/form/ChronoSelect';
 import { useFieldStyle } from './styles';

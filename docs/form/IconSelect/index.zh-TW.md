@@ -21,7 +21,7 @@ IconSelect，提供了一個可選擇圖標的下拉框。
 ## 導入組件
 
 ```tsx | pure
-import {IconSelect} from '@unikue/ant-buddy-pro';
+import { IconSelect } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

@@ -11,7 +11,7 @@ BorderBox 可以顯示壹個帶邊框的控件。
 ## 導入組件
 
 ```tsx | pure
-import {BorderBox} from '@unikue/ant-buddy-pro';
+import { BorderBox } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

@@ -11,7 +11,7 @@ LabelField component, can display a field with a label.
 ## Import
 
 ```tsx | pure
-import {LabelField} from '@unikue/ant-buddy-pro';
+import { LabelField } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

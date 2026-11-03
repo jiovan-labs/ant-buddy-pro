@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025- Unikue Ltd. All rights reserved.
+ * Copyright (c) 2025- Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -15,11 +15,18 @@
  */
 
 
-import {defineThemeConfig} from '@byte.n/dumi-theme-antd/dist/defineThemeConfig';
+import type { IThemeConfig } from 'dumi/dist/client/theme-api/types';
+import type { IAllThemeConfig } from '@ahooks.js/dumi-theme-antd/dist/types';
+
+// The theme package's main entry imports `dumi/theme/slots/Footer`, which is a
+// bundler-only alias that does not resolve when dumi loads `.dumirc.ts` via Node
+// (dumi 2.4.x). To avoid that runtime import, define the trivial helper locally
+// and pull the type from the theme's `dist/types` (type-only, erased at runtime).
+const defineThemeConfig = (config: IAllThemeConfig): IAllThemeConfig => config;
 
 
 export default defineThemeConfig({
-    title: 'Unikue Ant Buddy Pro',
+    title: 'Jiovan Ant Buddy Pro',
     // localesEnhance: [
     //     {id: 'en-US', switchPrefix: 'EN'},
     //     {id: 'zh-CN', switchPrefix: '中'},
@@ -96,19 +103,19 @@ export default defineThemeConfig({
     moreLinks: [
         {
             text: 'TsLangUtils',
-            link: 'https://unikueltd.github.io/ts-lang-utils'
+            link: 'https://jiovan-labs.github.io/ts-lang-utils'
         },
         {
             text: 'TsMultiMap',
-            link: 'https://unikueltd.github.io/ts-multi-map'
+            link: 'https://jiovan-labs.github.io/ts-multi-map'
         },
         {
             text: 'React Condition',
-            link: 'https://unikueltd.github.io/react-condition'
+            link: 'https://jiovan-labs.github.io/react-condition'
         },
         {
             text: 'Typedoc Theme Dumi',
-            link: 'https://unikueltd.github.io/typedoc-theme-dumi'
+            link: 'https://jiovan-labs.github.io/typedoc-theme-dumi'
         }
     ],
     description: {
@@ -232,4 +239,4 @@ export default defineThemeConfig({
         ]
     },
     sidebarGroupModePath: true,
-});
+}) as IThemeConfig;

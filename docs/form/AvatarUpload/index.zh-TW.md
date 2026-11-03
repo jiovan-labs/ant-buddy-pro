@@ -11,7 +11,7 @@ AvatarUpload，可以顯示壹個頭像，並支持上傳和裁剪。
 ## 導入組件
 
 ```tsx | pure
-import {AvatarUpload} from '@unikue/ant-buddy-pro';
+import { AvatarUpload } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

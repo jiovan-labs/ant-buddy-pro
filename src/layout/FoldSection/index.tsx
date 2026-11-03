@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License.
  *
@@ -20,7 +20,7 @@ import { Empty, type TooltipProps } from 'antd';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import { useIntl } from '@ant-design/pro-components';
 import CssMotion from '@rc-component/motion';
-import { ObjectUtils } from '@unikue/ts-lang-utils';
+import { ObjectUtils } from '@jiovan-labs/ts-lang-utils';
 import classnames from 'classnames';
 import { type WithFalse, type BeforeAfterType } from '@/type/declaration';
 import { TooltipRender } from '@/render/TooltipRender';

@@ -11,7 +11,7 @@ order: 16
 ## 导入组件
 
 ```tsx | pure
-import {PageFooter} from '@unikue/ant-buddy-pro';
+import { PageFooter } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

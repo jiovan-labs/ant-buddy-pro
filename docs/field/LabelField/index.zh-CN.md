@@ -11,7 +11,7 @@ LabelField 可以显示一个带标签的控件。
 ## 导入组件
 
 ```tsx | pure
-import {LabelField} from '@unikue/ant-buddy-pro';
+import { LabelField } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

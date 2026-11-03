@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -18,7 +18,7 @@
 import React from 'react';
 import { Card } from 'antd';
 import { ProForm, ProFormSwitch } from '@ant-design/pro-components';
-import { BadgeRibbon } from '@unikue/ant-buddy-pro';
+import { BadgeRibbon } from '@jiovan-labs/ant-buddy-pro';
 
 
 export default () => {

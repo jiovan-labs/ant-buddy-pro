@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -17,10 +17,8 @@
 import React from 'react';
 import { Form, Segmented, type SegmentedProps } from 'antd';
 import { type SegmentedLabeledOption } from 'antd/es/segmented';
-import { ProForm, useDebounceFn } from '@ant-design/pro-components';
-import { type ProFormFieldItemProps, type ProFormFieldRemoteProps } from '@ant-design/pro-components/es/form/typing';
-import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext';
-import { pickProFormItemProps } from '@ant-design/pro-components/es/utils/pickProFormItemProps';
+import { ProForm, type ProFormFieldItemProps, type ProFormFieldRemoteProps, pickProFormItemProps, useDebounceFn } from '@ant-design/pro-components';
+import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext.js';
 import { type SegmentedRawOption } from '@rc-component/segmented';
 import { omit } from '@rc-component/util';
 import classnames from 'classnames';

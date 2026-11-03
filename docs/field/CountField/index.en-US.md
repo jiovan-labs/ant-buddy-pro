@@ -11,7 +11,7 @@ CountField component, can display a field with a count number.
 ## Import
 
 ```tsx | pure
-import {CountField} from '@unikue/ant-buddy-pro';
+import { CountField } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

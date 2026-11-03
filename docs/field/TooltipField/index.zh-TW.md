@@ -11,7 +11,7 @@ TooltipField 用於顯示壹個帶提示的字段。
 ## 導入組件
 
 ```tsx | pure
-import {TooltipField} from '@unikue/ant-buddy-pro';
+import { TooltipField } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

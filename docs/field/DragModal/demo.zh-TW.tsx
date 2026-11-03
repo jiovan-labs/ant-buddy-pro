@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License (the "License")
  *
@@ -19,8 +19,8 @@ import React from 'react';
 import { Button } from 'antd';
 import { FireOutlined } from '@ant-design/icons';
 import { ProForm, ProFormSwitch } from '@ant-design/pro-components';
-import { DragModal } from '@unikue/ant-buddy-pro';
-import { RandomUtils } from '@unikue/ts-lang-utils';
+import { DragModal } from '@jiovan-labs/ant-buddy-pro';
+import { RandomUtils } from '@jiovan-labs/ts-lang-utils';
 
 
 export default () => {

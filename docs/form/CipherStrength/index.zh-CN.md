@@ -11,7 +11,7 @@ CipherStrength，是一个可以通过进度条和文字来显示密码强度的
 ## 导入组件
 
 ```tsx | pure
-import {CipherStrength} from '@unikue/ant-buddy-pro';
+import { CipherStrength } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

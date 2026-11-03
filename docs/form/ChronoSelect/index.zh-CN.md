@@ -11,7 +11,7 @@ ChronoSelect, 提供了一个可以选择时间单位的选择框，选项数据
 ## 导入组件
 
 ```tsx | pure
-import {ChronoSelect} from '@unikue/ant-buddy-pro';
+import { ChronoSelect } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例

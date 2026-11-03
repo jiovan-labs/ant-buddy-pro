@@ -21,7 +21,7 @@ order: 6
 ## Import
 
 ```tsx | pure
-import {FoldSection} from '@unikue/ant-buddy-pro';
+import { FoldSection } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

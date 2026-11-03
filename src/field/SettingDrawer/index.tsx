@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2025 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License.
  *
@@ -19,8 +19,8 @@ import React from 'react';
 import { ConfigProvider, type TooltipProps } from 'antd';
 import { SkinOutlined } from '@ant-design/icons';
 import { SettingDrawer as ProSettingDrawer, type SettingDrawerProps as ProSettingDrawerProps, useIntl } from '@ant-design/pro-components';
+import { ObjectUtils } from '@jiovan-labs/ts-lang-utils';
 import { omit } from '@rc-component/util';
-import { ObjectUtils } from '@unikue/ts-lang-utils';
 import classnames from 'classnames';
 import { TooltipRender } from '@/render/TooltipRender';
 import { useFieldStyle } from './styles';

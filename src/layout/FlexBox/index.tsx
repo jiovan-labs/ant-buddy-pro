@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2023 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the MIT License.
  *
@@ -17,7 +17,7 @@
 
 import React from 'react';
 import { css } from '@emotion/css';
-import { ObjectUtils, StringUtils } from '@unikue/ts-lang-utils';
+import { ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import classnames from 'classnames';
 import { useFieldStyle } from './styles';
 

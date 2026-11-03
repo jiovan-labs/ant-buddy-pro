@@ -11,7 +11,7 @@ AvatarUpload, provides an avtar with upload and crop capability.
 ## Import
 
 ```tsx | pure
-import {AvatarUpload} from '@unikue/ant-buddy-pro';
+import { AvatarUpload } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## Example

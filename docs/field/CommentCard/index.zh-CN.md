@@ -13,7 +13,7 @@ CommentCard 是一个可以显示评论卡片的控件，支持头像、作者�
 ## 导入组件
 
 ```tsx | pure
-import {CommentCard} from '@unikue/ant-buddy-pro';
+import { CommentCard } from '@jiovan-labs/ant-buddy-pro';
 ```
 
 ## 使用示例
