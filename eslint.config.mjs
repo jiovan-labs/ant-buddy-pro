@@ -12,7 +12,9 @@ export default tslint.config(
             'coverage/**/*',
             'dist/**/*',
             'docs-dist/**/*',
-            'node_modules/**/*'
+            'node_modules/**/*',
+            // dumi 的构建/运行时临时目录（tmp、tmp-production 等），均为生成文件，不参与 lint
+            '.dumi/{tmp,temp}*/**'
         ],
     },
     eslint.configs.recommended,
