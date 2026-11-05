@@ -3,7 +3,6 @@ nav:
   title: 指南
   order: 1
 title: 上手指南
-order: 1
 toc: menu
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: MenuTabs
 toc: content
-order: 13
 group: Layout
 ---
 

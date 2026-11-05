@@ -1,7 +1,6 @@
 ---
 title: AddonInput
 toc: content
-order: 1
 group: 表单
 ---
 

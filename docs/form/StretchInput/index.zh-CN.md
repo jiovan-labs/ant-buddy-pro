@@ -1,7 +1,6 @@
 ---
 title: StretchInput
 toc: content
-order: 19
 group: 表单
 ---
 

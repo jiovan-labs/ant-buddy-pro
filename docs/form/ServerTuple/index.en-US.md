@@ -1,7 +1,6 @@
 ---
 title: ServerTuple
 toc: content
-order: 19
 group: Form
 ---
 

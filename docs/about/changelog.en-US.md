@@ -3,7 +3,6 @@ nav:
   title: Changelog
   order: 10
 title: Changelog
-order: 10
 toc: false
 ---
 

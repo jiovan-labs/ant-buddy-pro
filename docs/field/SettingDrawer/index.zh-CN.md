@@ -1,7 +1,6 @@
 ---
 title: SettingDrawer
 toc: content
-order: 19
 group: 控件
 ---
 

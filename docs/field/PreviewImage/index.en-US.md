@@ -1,7 +1,6 @@
 ---
 title: PreviewImage
 toc: content
-order: 16
 group: Field
 ---
 

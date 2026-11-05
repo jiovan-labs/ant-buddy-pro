@@ -1,7 +1,6 @@
 ---
 title: CipherStrength
 toc: content
-order: 3
 group: Form
 ---
 

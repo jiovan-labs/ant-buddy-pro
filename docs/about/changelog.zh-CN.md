@@ -3,7 +3,6 @@ nav:
   title: 更新日志
   order: 10
 title: 更新日志
-order: 10
 toc: false
 ---
 

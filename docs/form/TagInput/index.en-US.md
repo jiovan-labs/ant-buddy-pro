@@ -1,7 +1,6 @@
 ---
 title: TagInput
 toc: content
-order: 20
 group: Form
 ---
 

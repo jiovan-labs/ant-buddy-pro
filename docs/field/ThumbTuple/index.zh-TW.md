@@ -1,7 +1,6 @@
 ---
 title: ThumbTuple
 toc: content
-order: 20
 group: 控件
 ---
 

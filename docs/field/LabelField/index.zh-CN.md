@@ -1,7 +1,6 @@
 ---
 title: LabelField
 toc: content
-order: 12
 group: 控件
 ---
 

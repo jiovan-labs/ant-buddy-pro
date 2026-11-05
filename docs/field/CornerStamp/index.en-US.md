@@ -1,7 +1,6 @@
 ---
 title: CornerStamp
 toc: content
-order: 3
 group: Field
 ---
 

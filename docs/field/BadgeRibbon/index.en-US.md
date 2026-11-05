@@ -1,7 +1,6 @@
 ---
 title: BadgeRibbon
 toc: content
-order: 2
 group: Field
 ---
 

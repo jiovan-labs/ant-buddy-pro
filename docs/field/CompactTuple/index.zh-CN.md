@@ -1,7 +1,6 @@
 ---
 title: CompactTuple
 toc: content
-order: 3
 group: 控件
 ---
 

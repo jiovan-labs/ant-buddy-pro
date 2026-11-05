@@ -1,7 +1,6 @@
 ---
 title: LocaleTextarea
 toc: content
-order: 12
 group: 表单
 ---
 

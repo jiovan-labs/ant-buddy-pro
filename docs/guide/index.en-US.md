@@ -3,7 +3,6 @@ nav:
   title: Guide
   order: 1
 title: Guidelines
-order: 1
 toc: menu
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: CollapseForm
 toc: content
-order: 3
 group: 表单
 ---
 

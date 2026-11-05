@@ -1,7 +1,6 @@
 ---
 title: MathInput
 toc: content
-order: 13
 group: 表单
 ---
 

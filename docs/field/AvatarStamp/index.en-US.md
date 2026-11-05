@@ -1,7 +1,6 @@
 ---
 title: AvatarStamp
 toc: content
-order: 1
 group: Field
 ---
 

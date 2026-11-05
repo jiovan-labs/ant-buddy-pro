@@ -1,7 +1,6 @@
 ---
 title: IconSelect
 toc: content
-order: 9
 group: Form
 ---
 
