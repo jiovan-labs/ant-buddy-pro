@@ -41,6 +41,6 @@ import { MenuTabs } from '@jiovan-labs/ant-buddy-pro';
 | tabContentClazz    | 选项卡内容 div 的 CSS 类名          | `string`                                                                                | -                 |
 | tabContentStyle    | 选项卡内容 div 的 CSS 样式          | `React.CSSProperties`                                                                   | -                 |
 | adjustLayoutProps  | 自动调整布局的属性                  | `AdjustLayoutProps`                                                                     | -                 |
-| presetStyle        | 预设样式                            | `'padding-xs' \| 'padding-sm' \| 'padding-md' \| 'padding-lg' \| 'padding-xl' \| false` | `'padding-md'`    |
+| presetStyle        | 预设样式                            | `'padding-0' \| 'padding-xxs' \| 'padding-xs' \| 'padding-sm' \| 'padding-md' \| 'padding-lg' \| false` | `'padding-md'`    |
 
 > 注意: 其他属性继承自 Ant Design 的 <a href="https://ant.design/components/menu" target="_blank">Menu</a> 组件。

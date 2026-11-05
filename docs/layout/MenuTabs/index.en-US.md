@@ -41,6 +41,6 @@ import { MenuTabs } from '@jiovan-labs/ant-buddy-pro';
 | tabContentClazz    | The CSS class name of the tab content                   | `string`                                                                                | -                 |
 | tabContentStyle    | The CSS style of the tab content                        | `React.CSSProperties`                                                                   | -                 |
 | adjustLayoutProps  | The properties for auto adjust the layout               | `AdjustLayoutProps`                                                                     | -                 |
-| presetStyle        | The preset style of the component                       | `'padding-xs' \| 'padding-sm' \| 'padding-md' \| 'padding-lg' \| 'padding-xl' \| false` | `'padding-md'`    |
+| presetStyle        | The preset style of the component                       | `'padding-0' \| 'padding-xxs' \| 'padding-xs' \| 'padding-sm' \| 'padding-md' \| 'padding-lg' \| false` | `'padding-md'`    |
 
 > Note: Other properties are inherited from Ant Design's <a href="https://ant.design/components/menu" target="_blank">Menu</a> component.

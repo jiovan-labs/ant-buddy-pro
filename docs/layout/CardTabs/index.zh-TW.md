@@ -20,16 +20,16 @@ import { CardTabs } from '@jiovan-labs/ant-buddy-pro';
 
 ## 組件屬性
 
-| 屬性           | 描述                 | 類型                                                                                    | 預設值            |
-|----------------|----------------------|-----------------------------------------------------------------------------------------|-------------------|
-| clazzPrefix    | 組件的 CSS 類名前綴  | `string`                                                                                | `'abp-card-tabs'` |
-| containerClazz | 容器 div 的 CSS 類名 | `string`                                                                                | -                 |
-| containerStyle | 容器 div 的 CSS 樣式 | `React.CSSProperties`                                                                   | -                 |
-| tabBorder      | 是否顯示標簽的邊框   | `boolean`                                                                               | `true`            |
-| tabPlacement   | 標簽的位置           | `'top' \| 'top-end' \| 'bottom' \| 'bottom-end' \| 'start' \| 'end'`                    | `'top'`           |
-| contentBorder  | 是否顯示內容區的邊框 | `boolean`                                                                               | `true`            |
-| inkBar         | 是否顯示活躍指示條   | `boolean`                                                                               | `true`            |
-| size           | 標簽的大小           | `'small' \| 'middle' \| 'large' \| 'extra-small'`                                       | `'middle'`        |
-| presetStyle    | 預設樣式             | `'padding-xs' \| 'padding-sm' \| 'padding-md' \| 'padding-lg' \| 'padding-xl' \| false` | `'padding-md'`    |
+| 屬性           | 描述                 | 類型                                                                                                    | 預設值            |
+|----------------|----------------------|---------------------------------------------------------------------------------------------------------|-------------------|
+| clazzPrefix    | 組件的 CSS 類名前綴  | `string`                                                                                                | `'abp-card-tabs'` |
+| containerClazz | 容器 div 的 CSS 類名 | `string`                                                                                                | -                 |
+| containerStyle | 容器 div 的 CSS 樣式 | `React.CSSProperties`                                                                                   | -                 |
+| tabBorder      | 是否顯示標簽的邊框   | `boolean`                                                                                               | `true`            |
+| tabPlacement   | 標簽的位置           | `'top' \| 'top-end' \| 'bottom' \| 'bottom-end' \| 'start' \| 'end'`                                    | `'top'`           |
+| contentBorder  | 是否顯示內容區的邊框 | `boolean`                                                                                               | `true`            |
+| inkBar         | 是否顯示活躍指示條   | `boolean`                                                                                               | `true`            |
+| size           | 標簽的大小           | `'small' \| 'middle' \| 'large' \| 'extra-small'`                                                       | `'middle'`        |
+| presetStyle    | 預設樣式             | `'padding-0' \| 'padding-xxs' \| 'padding-xs' \| 'padding-sm' \| 'padding-md' \| 'padding-lg' \| false` |
 
 > 注意: 其他屬性繼承自 Ant Design 的 <a href="https://ant.design/components/tabs" target="_blank">Tabs</a> 組件。

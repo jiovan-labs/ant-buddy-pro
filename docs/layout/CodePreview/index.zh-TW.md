@@ -39,4 +39,4 @@ import { CodePreview } from '@jiovan-labs/ant-buddy-pro';
 | textStyle      | 文本的 CSS 樣式      | `React.CSSProperties`                                                                   | -                    |
 | boundBorder    | 是否顯示邊框         | `boolean`                                                                               | `true`               |
 | boundShadow    | 是否顯示邊框陰影     | `boolean`                                                                               | -                    |
-| presetStyle    | 預設樣式             | `'padding-xs' \| 'padding-sm' \| 'padding-md' \| 'padding-lg' \| 'padding-xl' \| false` | `'padding-md'`       |
+| presetStyle    | 預設樣式             | `'padding-0' \| 'padding-xxs' \| 'padding-xs' \| 'padding-sm' \| 'padding-md' \| 'padding-lg' \| false` | `'padding-md'`       |

@@ -91,66 +91,6 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
             [`&${token.componentCls}-padding-lg ${token.componentCls}-tab`]: {
                 padding: `${token.paddingLG}px ${token.paddingLG}px`,
             },
-
-            [`&${token.componentCls}-padding-x-0 ${token.componentCls}-tab`]: {
-                paddingLeft: 0,
-                paddingRight: 0,
-            },
-
-            [`&${token.componentCls}-padding-x-xxs ${token.componentCls}-tab`]: {
-                paddingLeft: token.paddingXXS,
-                paddingRight: token.paddingXXS,
-            },
-
-            [`&${token.componentCls}-padding-x-xs ${token.componentCls}-tab`]: {
-                paddingLeft: token.paddingXS,
-                paddingRight: token.paddingXS,
-            },
-
-            [`&${token.componentCls}-padding-x-sm ${token.componentCls}-tab`]: {
-                paddingLeft: token.paddingSM,
-                paddingRight: token.paddingSM,
-            },
-
-            [`&${token.componentCls}-padding-x-md ${token.componentCls}-tab`]: {
-                paddingLeft: token.paddingMD,
-                paddingRight: token.paddingMD,
-            },
-
-            [`&${token.componentCls}-padding-x-lg ${token.componentCls}-tab`]: {
-                paddingLeft: token.paddingLG,
-                paddingRight: token.paddingLG,
-            },
-
-            [`&${token.componentCls}-padding-y-0 ${token.componentCls}-tab`]: {
-                paddingTop: 0,
-                paddingBottom: 0,
-            },
-
-            [`&${token.componentCls}-padding-y-xxs ${token.componentCls}-tab`]: {
-                paddingTop: token.paddingXXS,
-                paddingBottom: token.paddingXXS,
-            },
-
-            [`&${token.componentCls}-padding-y-xs ${token.componentCls}-tab`]: {
-                paddingTop: token.paddingXS,
-                paddingBottom: token.paddingXS,
-            },
-
-            [`&${token.componentCls}-padding-y-sm ${token.componentCls}-tab`]: {
-                paddingTop: token.paddingSM,
-                paddingBottom: token.paddingSM,
-            },
-
-            [`&${token.componentCls}-padding-y-md ${token.componentCls}-tab`]: {
-                paddingTop: token.paddingMD,
-                paddingBottom: token.paddingMD,
-            },
-
-            [`&${token.componentCls}-padding-y-lg ${token.componentCls}-tab`]: {
-                paddingTop: token.paddingLG,
-                paddingBottom: token.paddingLG,
-            }
         },
 
         [`@media screen and (max-width:${token.screenMD}px)`]: {

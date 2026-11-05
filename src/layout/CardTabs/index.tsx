@@ -124,6 +124,21 @@ export const CardTabs: React.FC<CardTabsProps> = (props?: CardTabsProps) => {
 
     const fieldStyle = useFieldStyle(clazzPrefix);
 
+    // 面板内边距通过 Tabs 的 classNames.content 语义插槽挂载，不再依赖 antd 内部 DOM 层级
+    //（v6 起 -tabpane 层被移除，面板元素本身就是 -content）。
+    const paneClassName = presetStyle ? `${clazzPrefix}-pane-${presetStyle}` : undefined;
+
+    // 用户传入的 classNames 可能是函数形态 ({ props }) => 对象，需先解析再合并 content，
+    // 避免函数分支被丢弃；hashId 一并挂到面板上，确保 cssinjs 生成的选择器能匹配。
+    const userClassNames = props?.classNames;
+    const tabsClassNames: TabsProps['classNames'] = (info) => {
+        const resolved = (typeof userClassNames === 'function') ? userClassNames(info) : userClassNames;
+        return {
+            ...resolved,
+            content: classnames(resolved?.content, paneClassName, paneClassName && fieldStyle.hashId),
+        };
+    };
+
     const detectTabSize = () => {
         return (size === 'extra-small') ? 'small' : size;
     };
@@ -139,7 +154,7 @@ export const CardTabs: React.FC<CardTabsProps> = (props?: CardTabsProps) => {
         }
     };
 
-    const restTabsProps = !props ? {} : omit(props, ['className', 'clazzPrefix', 'containerClazz', 'containerStyle', 'tabBorder', 'tabPlacement', 'contentBorder', 'inkBar', 'presetStyle', 'type', 'size']);
+    const restTabsProps = !props ? {} : omit(props, ['className', 'classNames', 'clazzPrefix', 'containerClazz', 'containerStyle', 'tabBorder', 'tabPlacement', 'contentBorder', 'inkBar', 'presetStyle', 'type', 'size']);
 
     return (
         <div className={classnames(clazzPrefix, fieldStyle.hashId, `${clazzPrefix}-${size}`, `${clazzPrefix}-${tabPlacement}`, (!presetStyle ? undefined : `${clazzPrefix}-${presetStyle}`), props?.containerClazz)} style={props?.containerStyle}>
@@ -150,6 +165,7 @@ export const CardTabs: React.FC<CardTabsProps> = (props?: CardTabsProps) => {
                 // @ts-ignore
                 tabPlacement={detectTabPlacement()}
                 {...restTabsProps}
+                classNames={tabsClassNames}
             />
         </div>
     );

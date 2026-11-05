@@ -39,4 +39,4 @@ import { CodePreview } from '@jiovan-labs/ant-buddy-pro';
 | textStyle      | The CSS style of the text               | `React.CSSProperties`                                                                   | -                    |
 | boundBorder    | Whether to show the bound border or not | `boolean`                                                                               | `true`               |
 | boundShadow    | Whether to show the bound shadow or not | `boolean`                                                                               | -                    |
-| presetStyle    | The preset style of the component       | `'padding-xs' \| 'padding-sm' \| 'padding-md' \| 'padding-lg' \| 'padding-xl' \| false` | `'padding-md'`       |
+| presetStyle    | The preset style of the component       | `'padding-0' \| 'padding-xxs' \| 'padding-xs' \| 'padding-sm' \| 'padding-md' \| 'padding-lg' \| false` | `'padding-md'`       |

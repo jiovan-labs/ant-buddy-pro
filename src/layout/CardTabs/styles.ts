@@ -53,7 +53,7 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
                         borderTop: `${unit(token.lineWidth)} ${token.lineType} ${token.colorSplit}`,
                     },
 
-                    [`&${token.componentCls}-content-border > ${token.antCls}-tabs-content-holder`]: {
+                    [`&${token.componentCls}-content-border > ${token.antCls}-tabs-body-holder > ${token.antCls}-tabs-body`]: {
                         border: `${unit(token.lineWidth)} ${token.lineType} ${token.colorSplit}`,
                         borderRadius: `0 ${token.borderRadiusLG}px ${token.borderRadiusLG}px ${token.borderRadiusLG}px`,
                         marginTop: -1,
@@ -71,7 +71,7 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
                         borderBottom: `${unit(token.lineWidth)} ${token.lineType} ${token.colorSplit}`,
                     },
 
-                    [`&${token.componentCls}-content-border > ${token.antCls}-tabs-content-holder`]: {
+                    [`&${token.componentCls}-content-border > ${token.antCls}-tabs-body-holder > ${token.antCls}-tabs-body`]: {
                         border: `${unit(token.lineWidth)} ${token.lineType} ${token.colorSplit}`,
                         borderRadius: `${token.borderRadiusLG}px ${token.borderRadiusLG}px ${token.borderRadiusLG}px 0`,
                         marginBottom: -1,
@@ -85,7 +85,7 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
                         borderBottom: `${unit(token.lineWidth)} ${token.lineType} ${token.colorSplit}`,
                     },
 
-                    [`&${token.componentCls}-content-border > ${token.antCls}-tabs-content-holder`]: {
+                    [`&${token.componentCls}-content-border > ${token.antCls}-tabs-body-holder > ${token.antCls}-tabs-body`]: {
                         borderRight: `${unit(token.lineWidth)} ${token.lineType} ${token.colorSplit}`,
                         borderTop: `${unit(token.lineWidth)} ${token.lineType} ${token.colorSplit}`,
                         borderBottom: `${unit(token.lineWidth)} ${token.lineType} ${token.colorSplit}`,
@@ -100,7 +100,7 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
                         borderBottom: `${unit(token.lineWidth)} ${token.lineType} ${token.colorSplit}`,
                     },
 
-                    [`&${token.componentCls}-content-border > ${token.antCls}-tabs-content-holder`]: {
+                    [`&${token.componentCls}-content-border > ${token.antCls}-tabs-body-holder > ${token.antCls}-tabs-body`]: {
                         borderLeft: `${unit(token.lineWidth)} ${token.lineType} ${token.colorSplit}`,
                         borderTop: `${unit(token.lineWidth)} ${token.lineType} ${token.colorSplit}`,
                         borderBottom: `${unit(token.lineWidth)} ${token.lineType} ${token.colorSplit}`,
@@ -111,7 +111,7 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
 
             [`&${token.componentCls}-top-end`]: {
                 [`> ${token.antCls}-tabs`]: {
-                    [`&${token.componentCls}-content-border > ${token.antCls}-tabs-content-holder`]: {
+                    [`&${token.componentCls}-content-border > ${token.antCls}-tabs-body-holder > ${token.antCls}-tabs-body`]: {
                         borderRadius: `${token.borderRadiusLG}px 0 ${token.borderRadiusLG}px ${token.borderRadiusLG}px`,
                         marginTop: -1,
                     }
@@ -120,7 +120,7 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
 
             [`&${token.componentCls}-bottom-end`]: {
                 [`> ${token.antCls}-tabs`]: {
-                    [`&${token.componentCls}-content-border > ${token.antCls}-tabs-content-holder`]: {
+                    [`&${token.componentCls}-content-border > ${token.antCls}-tabs-body-holder > ${token.antCls}-tabs-body`]: {
                         borderRadius: `${token.borderRadiusLG}px ${token.borderRadiusLG}px 0 ${token.borderRadiusLG}px`,
                         marginBottom: -1,
                     }
@@ -139,89 +139,29 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
                 }
             },
 
-            [`&${token.componentCls}-padding-0 > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
+            [`${token.componentCls}-pane-padding-0`]: {
                 padding: 0,
             },
 
-            [`&${token.componentCls}-padding-xxs > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
+            [`${token.componentCls}-pane-padding-xxs`]: {
                 padding: `${token.paddingXXS}px ${token.paddingXXS}px`,
             },
 
-            [`&${token.componentCls}-padding-xs > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder > ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
+            [`${token.componentCls}-pane-padding-xs`]: {
                 padding: `${token.paddingXS}px ${token.paddingXS}px`,
             },
 
-            [`&${token.componentCls}-padding-sm > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder > ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
+            [`${token.componentCls}-pane-padding-sm`]: {
                 padding: `${token.paddingSM}px ${token.paddingSM}px`,
             },
 
-            [`&${token.componentCls}-padding-md > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder > ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
+            [`${token.componentCls}-pane-padding-md`]: {
                 padding: `${token.paddingMD}px ${token.paddingMD}px`,
             },
 
-            [`&${token.componentCls}-padding-lg > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder > ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
+            [`${token.componentCls}-pane-padding-lg`]: {
                 padding: `${token.paddingLG}px ${token.paddingLG}px`,
             },
-
-            [`&${token.componentCls}-padding-x-0 > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder > ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
-                paddingLeft: 0,
-                paddingRight: 0,
-            },
-
-            [`&${token.componentCls}-padding-x-xxs > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder > ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
-                paddingLeft: token.paddingXXS,
-                paddingRight: token.paddingXXS,
-            },
-
-            [`&${token.componentCls}-padding-x-xs > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder > ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
-                paddingLeft: token.paddingXS,
-                paddingRight: token.paddingXS,
-            },
-
-            [`&${token.componentCls}-padding-x-sm > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder > ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
-                paddingLeft: token.paddingSM,
-                paddingRight: token.paddingSM,
-            },
-
-            [`&${token.componentCls}-padding-x-md > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder > ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
-                paddingLeft: token.paddingMD,
-                paddingRight: token.paddingMD,
-            },
-
-            [`&${token.componentCls}-padding-x-lg > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder > ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
-                paddingLeft: token.paddingLG,
-                paddingRight: token.paddingLG,
-            },
-
-            [`&${token.componentCls}-padding-y-0 > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder > ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
-                paddingTop: 0,
-                paddingBottom: 0,
-            },
-
-            [`&${token.componentCls}-padding-y-xxs > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder > ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
-                paddingTop: token.paddingXXS,
-                paddingBottom: token.paddingXXS,
-            },
-
-            [`&${token.componentCls}-padding-y-xs > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder > ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
-                paddingTop: token.paddingXS,
-                paddingBottom: token.paddingXS,
-            },
-
-            [`&${token.componentCls}-padding-y-sm > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder > ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
-                paddingTop: token.paddingSM,
-                paddingBottom: token.paddingSM,
-            },
-
-            [`&${token.componentCls}-padding-y-md > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder > ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
-                paddingTop: token.paddingMD,
-                paddingBottom: token.paddingMD,
-            },
-
-            [`&${token.componentCls}-padding-y-lg > ${token.antCls}-tabs > ${token.antCls}-tabs-content-holder > ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
-                paddingTop: token.paddingLG,
-                paddingBottom: token.paddingLG,
-            }
         }
     };
 }
