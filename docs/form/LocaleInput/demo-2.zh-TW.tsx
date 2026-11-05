@@ -37,7 +37,7 @@ export default () => {
                     }
                 }}
                 onFinish={async () => {
-                    messageInvoker.success('您點擊了提交按鈕');
+                    messageInvoker.success('您點擊了提交按鈕').then(() => {});
                 }}
             >
                 <LocaleInput

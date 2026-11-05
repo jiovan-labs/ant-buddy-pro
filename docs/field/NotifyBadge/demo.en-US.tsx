@@ -69,13 +69,13 @@ export default () => {
                             showMore: true,
                             presetStyle: 'notice',
                             onClick: (_ev, id) => {
-                                messageInvoker.info(`You've clicked the notice ${id} item`);
+                                messageInvoker.info(`You've clicked the notice ${id} item`).then(() => {});
                             },
                             onClear: () => {
-                                messageInvoker.info(`You've clicked the clear notices button`);
+                                messageInvoker.info(`You've clicked the clear notices button`).then(() => {});
                             },
                             onMore: () => {
-                                messageInvoker.info(`You've clicked the more notices button`);
+                                messageInvoker.info(`You've clicked the more notices button`).then(() => {});
                             }
                         },
                         {
@@ -109,13 +109,13 @@ export default () => {
                             showMore: true,
                             presetStyle: 'task',
                             onClick: (_ev, id) => {
-                                messageInvoker.info(`You've clicked the task ${id} item`);
+                                messageInvoker.info(`You've clicked the task ${id} item`).then(() => {});
                             },
                             onClear: () => {
-                                messageInvoker.info(`You've clicked the clear tasks button`);
+                                messageInvoker.info(`You've clicked the clear tasks button`).then(() => {});
                             },
                             onMore: () => {
-                                messageInvoker.info(`You've clicked the more tasks button`);
+                                messageInvoker.info(`You've clicked the more tasks button`).then(() => {});
                             }
                         }
                     ],

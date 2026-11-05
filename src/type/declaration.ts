@@ -22,7 +22,7 @@ import { type Placement as RcPlacement } from '@rc-component/select/es/BaseSelec
 // noinspection JSUnusedGlobalSymbols
 export type ActionStyleType = 'success' | 'info' | 'warning' | 'error';
 
-export type AxisDirectionType = 'horizontal' | 'vertical';
+export type AxisOrientationType = 'horizontal' | 'vertical';
 
 export type BeforeAfterType = 'before' | 'after';
 

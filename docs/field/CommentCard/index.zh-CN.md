@@ -23,13 +23,13 @@ import { CommentCard } from '@jiovan-labs/ant-buddy-pro';
 
 ## 组件属性
 
-| 属性             | 描述              | 类型                    | 默认值                  |
-|----------------|-----------------|-----------------------|----------------------|
-| clazzPrefix    | 组件的 CSS 类名前缀    | `string`              | `'abp-comment-card'` |
-| containerClazz | 容器 div 的 CSS 类名 | `string`              | -                    |
-| containerStyle | 容器 div 的 CSS 样式 | `React.CSSProperties` | -                    |
-| avatar         | 显示为评论头像的元素      | `React.ReactNode`     | -                    |
-| author         | 显示为评论作者的元素      | `React.ReactNode`     | -                    |
-| content        | 评论的主要内容         | `React.ReactNode`     | -                    |
-| datetime       | 包含要显示时间的日期时间元素  | `React.ReactNode`     | -                    |
+| 属性           | 描述                           | 类型                  | 默认值               |
+|----------------|--------------------------------|-----------------------|----------------------|
+| clazzPrefix    | 组件的 CSS 类名前缀            | `string`              | `'abp-comment-card'` |
+| containerClazz | 容器 div 的 CSS 类名           | `string`              | -                    |
+| containerStyle | 容器 div 的 CSS 样式           | `React.CSSProperties` | -                    |
+| avatar         | 显示为评论头像的元素           | `React.ReactNode`     | -                    |
+| author         | 显示为评论作者的元素           | `React.ReactNode`     | -                    |
+| content        | 评论的主要内容                 | `React.ReactNode`     | -                    |
+| datetime       | 包含要显示时间的日期时间元素   | `React.ReactNode`     | -                    |
 | actions        | 在评论内容下方呈现的操作项列表 | `React.ReactNode[]`   | -                    |

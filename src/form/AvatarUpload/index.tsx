@@ -312,11 +312,11 @@ const AvatarUploadField: React.ForwardRefExoticComponent<AvatarUploadProps & Rea
     const handleBeforeUpload = (file: RcFile, fileList: RcFile[]) => {
         if (props?.uploadProps?.allowedFileTypes && !props.uploadProps.allowedFileTypes.some(item => file.type === item)) {
             if (!props?.uploadProps?.warnWithTypes) {
-                messageApi.error(ObjectUtils.firstNotNil(props?.localeProps?.disallowType, intlLocales.get([locale, 'disallowType']), intlLocales.get(['en_US', 'disallowType'])));
+                messageApi.error(ObjectUtils.firstNotNil(props?.localeProps?.disallowType, intlLocales.get([locale, 'disallowType']), intlLocales.get(['en_US', 'disallowType']))).then(() => {});
             } else {
                 const template = ObjectUtils.firstNotNil(props?.localeProps?.allowTypes, intlLocales.get([locale, 'allowTypes']), intlLocales.get(['en_US', 'allowTypes']));
                 const types = StringUtils.join(props.uploadProps.allowedFileTypes.map(item => (item === 'image/jpeg') ? 'jpg' : StringUtils.substringAfterLast(item, '/')) as string[], '/');
-                messageApi.error(StringUtils.formatBrace(template, types));
+                messageApi.error(StringUtils.formatBrace(template, types)).then(() => {});
             }
             return false;
         }
@@ -341,7 +341,7 @@ const AvatarUploadField: React.ForwardRefExoticComponent<AvatarUploadProps & Rea
             // @ts-ignore
             if (fileSize > props.uploadProps.maxFileSize) {
                 const template = ObjectUtils.firstNotNil(props?.localeProps?.maxFileSize, intlLocales.get([locale, 'maxFileSize']), intlLocales.get(['en_US', 'maxFileSize']));
-                messageApi.error(StringUtils.formatBrace(template, props.uploadProps.maxFileSize, props.uploadProps.fileSizeUint));
+                messageApi.error(StringUtils.formatBrace(template, props.uploadProps.maxFileSize, props.uploadProps.fileSizeUint)).then(() => {});
                 return false;
             }
         }

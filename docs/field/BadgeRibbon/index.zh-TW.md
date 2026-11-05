@@ -23,9 +23,9 @@ import { BadgeRibbon } from '@jiovan-labs/ant-buddy-pro';
 
 ## 組件屬性
 
-| 屬性             | 描述              | 類型                    | 預設值                  |
-|----------------|-----------------|-----------------------|----------------------|
-| clazzPrefix    | 組件的 CSS 類名前綴    | `string`              | `'abp-badge-ribbon'` |
+| 屬性           | 描述                 | 類型                  | 預設值               |
+|----------------|----------------------|-----------------------|----------------------|
+| clazzPrefix    | 組件的 CSS 類名前綴  | `string`              | `'abp-badge-ribbon'` |
 | containerClazz | 容器 div 的 CSS 類名 | `string`              | -                    |
 | containerStyle | 容器 div 的 CSS 樣式 | `React.CSSProperties` | -                    |
 | transparent    | 是否透明色           | `boolean`             | -                    |

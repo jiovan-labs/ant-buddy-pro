@@ -23,20 +23,20 @@ import { ThumbTuple } from '@jiovan-labs/ant-buddy-pro';
 
 ## 组件属性
 
-| 属性                | 描述                   | 类型                                              | 默认值                  |
-|-------------------|----------------------|-------------------------------------------------|----------------------|
-| clazzPrefix       | 组件的 CSS 类名前缀         | `string`                                        | `'abp-thumb-tuple'`  |
-| containerClazz    | 容器 div 的 CSS 类名      | `string`                                        | -                    |
-| containerStyle    | 容器 div 的 CSS 样式      | `React.CSSProperties`                           | -                    |
-| spaceProps        | 间距的属性                | `SpaceProps`                                    | -                    |
-| thumbLikeProps    | 喜欢的属性                | `Omit<ThumbToggleProps, 'ref' \| 'actionType'>` | -                    |
-| thumbDislikeProps | 不喜欢的属性               | `Omit<ThumbToggleProps, 'ref' \| 'actionType'>` | -                    |
+| 属性              | 描述                 | 类型                                            | 默认值              |
+|-------------------|----------------------|-------------------------------------------------|---------------------|
+| clazzPrefix       | 组件的 CSS 类名前缀  | `string`                                        | `'abp-thumb-tuple'` |
+| containerClazz    | 容器 div 的 CSS 类名 | `string`                                        | -                   |
+| containerStyle    | 容器 div 的 CSS 样式 | `React.CSSProperties`                           | -                   |
+| spaceProps        | 间距的属性           | `SpaceProps`                                    | -                   |
+| thumbLikeProps    | 喜欢的属性           | `Omit<ThumbToggleProps, 'ref' \| 'actionType'>` | -                   |
+| thumbDislikeProps | 不喜欢的属性         | `Omit<ThumbToggleProps, 'ref' \| 'actionType'>` | -                   |
 
 ## 组件方法
 
 通过 `ref` 可以访问以下方法：
 
-| 方法名                | 参数 | 描述             |
-|--------------------|----|----------------|
-| getThumbLikeRef    | 无  | 获取喜欢拇指组件的 ref  |
-| getThumbDislikeRef | 无  | 获取不喜欢拇指组件的 ref |
+| 方法名             | 参数 | 描述                     |
+|--------------------|------|--------------------------|
+| getThumbLikeRef    | 无   | 获取喜欢拇指组件的 ref   |
+| getThumbDislikeRef | 无   | 获取不喜欢拇指组件的 ref |

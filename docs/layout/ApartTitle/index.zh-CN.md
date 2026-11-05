@@ -21,9 +21,9 @@ import { ApartTitle } from '@jiovan-labs/ant-buddy-pro';
 
 ## 组件属性
 
-| 属性             | 描述               | 类型                                                                            | 默认值                 |
-|----------------|------------------|-------------------------------------------------------------------------------|---------------------|
-| clazzPrefix    | 组件的 CSS 类名前缀     | `string`                                                                      | `'abp-apart-title'` |
+| 属性           | 描述                  | 类型                                                                          | 默认值              |
+|----------------|-----------------------|-------------------------------------------------------------------------------|---------------------|
+| clazzPrefix    | 组件的 CSS 类名前缀   | `string`                                                                      | `'abp-apart-title'` |
 | containerClazz | 容器 div 的 CSS 类名  | `string`                                                                      | -                   |
 | containerStyle | 容器 div 的 CSS 样式  | `React.CSSProperties`                                                         | -                   |
 | ornament       | 装饰 span 的内容      | `React.ReactNode`                                                             | -                   |
@@ -33,6 +33,6 @@ import { ApartTitle } from '@jiovan-labs/ant-buddy-pro';
 | content        | 标题 span 的内容      | `React.ReactNode`                                                             | -                   |
 | contentClazz   | 标题 span 的 CSS 类名 | `string`                                                                      | -                   |
 | contentStyle   | 标题 span 的 CSS 样式 | `React.CSSProperties`                                                         | -                   |
-| boundBorder    | 外边界是否有边框         | `boolean`                                                                     | `true`              |
-| widthBlock     | 是否匹配父节点的宽度       | `boolean`                                                                     | -                   |
-| presetStyle    | 预设样式             | `'default' \| 'success' \| 'info' \| 'warn' \| 'error' \| 'classic' \| false` | `'default'`         |
+| boundBorder    | 外边界是否有边框      | `boolean`                                                                     | `true`              |
+| widthBlock     | 是否匹配父节点的宽度  | `boolean`                                                                     | -                   |
+| presetStyle    | 预设样式              | `'default' \| 'success' \| 'info' \| 'warn' \| 'error' \| 'classic' \| false` | `'default'`         |

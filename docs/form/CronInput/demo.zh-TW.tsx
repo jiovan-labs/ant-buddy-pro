@@ -105,7 +105,7 @@ export default () => {
                 }}
                 onFinish={async (values) => {
                     ConsoleUtils.logTimestamp(false, false, 'CronInput', values, '提交的數據');
-                    messageInvoker.success('您點擊了提交按鈕');
+                    messageInvoker.success('您點擊了提交按鈕').then(() => {});
                 }}
             >
                 <CronInput

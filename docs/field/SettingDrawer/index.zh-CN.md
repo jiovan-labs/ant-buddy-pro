@@ -28,14 +28,14 @@ import { SettingDrawer } from '@jiovan-labs/ant-buddy-pro';
 
 SettingDrawer 继承了 pro-components SettingDrawer 的所有属性，并新增了以下属性：
 
-| 属性             | 描述                  | 类型                            | 默认值                                       |
-|----------------|---------------------|-------------------------------|-------------------------------------------|
-| clazzPrefix    | 组件的 CSS 类名前缀        | `string`                      | `'abp-setting-drawer'`                    |
+| 属性           | 描述                     | 类型                          | 默认值                                    |
+|----------------|--------------------------|-------------------------------|-------------------------------------------|
+| clazzPrefix    | 组件的 CSS 类名前缀      | `string`                      | `'abp-setting-drawer'`                    |
 | containerClazz | 容器 span 的 CSS 类名    | `string`                      | -                                         |
 | containerStyle | 容器 span 的 CSS 样式    | `React.CSSProperties`         | -                                         |
-| triggerDom     | 自定义触发 DOM 元素        | `React.ReactNode`             | `<SkinOutlined style={{fontSize: 16}} />` |
-| tooltipCtrl    | 是否使用 Tooltip        | `boolean`                     | -                                         |
-| tooltipProps   | Tooltip 属性          | `Omit<TooltipProps, 'title'>` | -                                         |
+| triggerDom     | 自定义触发 DOM 元素      | `React.ReactNode`             | `<SkinOutlined style={{fontSize: 16}} />` |
+| tooltipCtrl    | 是否使用 Tooltip         | `boolean`                     | -                                         |
+| tooltipProps   | Tooltip 属性             | `Omit<TooltipProps, 'title'>` | -                                         |
 | locale         | 组件的语言, e.g. 'zh_CN' | `string`                      | -                                         |
 | localeProps    | 多语言属性               | `IntlLocaleProps`             | -                                         |
 
@@ -50,6 +50,6 @@ SettingDrawer 继承了 pro-components SettingDrawer 的所有属性，并新增
 
 通过 `ref` 可以访问以下方法：
 
-| 方法名  | 参数 | 描述            |
-|------|----|---------------|
-| open | 无  | 以编程方式打开设置抽屉面板 |
+| 方法名 | 参数 | 描述                       |
+|--------|------|----------------------------|
+| open   | 无   | 以编程方式打开设置抽屉面板 |

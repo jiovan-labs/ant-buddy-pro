@@ -28,16 +28,16 @@ import { SettingDrawer } from '@jiovan-labs/ant-buddy-pro';
 
 SettingDrawer 繼承了 pro-components SettingDrawer 的所有屬性，並新增了以下屬性：
 
-| 屬性             | 描述                 | 類型                            | 默認值                                       |
-|----------------|--------------------|-------------------------------|-------------------------------------------|
-| clazzPrefix    | 組件的 CSS 類名前綴       | `string`                      | `'abp-setting-drawer'`                    |
-| containerClazz | 容器 span 的 CSS 類名   | `string`                      | -                                         |
-| containerStyle | 容器 span 的 CSS 樣式   | `React.CSSProperties`         | -                                         |
-| triggerDom     | 自定義觸發 DOM 元素       | `React.ReactNode`             | `<SkinOutlined style={{fontSize: 16}} />` |
-| tooltipCtrl    | 是否使用 Tooltip       | `boolean`                     | -                                         |
-| tooltipProps   | Tooltip 屬性         | `Omit<TooltipProps, 'title'>` | -                                         |
+| 屬性           | 描述                     | 類型                          | 默認值                                    |
+|----------------|--------------------------|-------------------------------|-------------------------------------------|
+| clazzPrefix    | 組件的 CSS 類名前綴      | `string`                      | `'abp-setting-drawer'`                    |
+| containerClazz | 容器 span 的 CSS 類名    | `string`                      | -                                         |
+| containerStyle | 容器 span 的 CSS 樣式    | `React.CSSProperties`         | -                                         |
+| triggerDom     | 自定義觸發 DOM 元素      | `React.ReactNode`             | `<SkinOutlined style={{fontSize: 16}} />` |
+| tooltipCtrl    | 是否使用 Tooltip         | `boolean`                     | -                                         |
+| tooltipProps   | Tooltip 屬性             | `Omit<TooltipProps, 'title'>` | -                                         |
 | locale         | 組件的語言，e.g. 'zh_TW' | `string`                      | -                                         |
-| localeProps    | 多語言屬性              | `IntlLocaleProps`             | -                                         |
+| localeProps    | 多語言屬性               | `IntlLocaleProps`             | -                                         |
 
 此外，支持 pro-components SettingDrawer 的所有其他屬性，例如：
 - `settings` - 當前設置
@@ -50,6 +50,6 @@ SettingDrawer 繼承了 pro-components SettingDrawer 的所有屬性，並新增
 
 通過 `ref` 可以訪問以下方法：
 
-| 方法名  | 參數 | 描述            |
-|------|----|---------------|
-| open | 無  | 以編程方式打開設置抽屜面板 |
+| 方法名 | 參數 | 描述                       |
+|--------|------|----------------------------|
+| open   | 無   | 以編程方式打開設置抽屜面板 |

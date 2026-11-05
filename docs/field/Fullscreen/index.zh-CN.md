@@ -31,15 +31,15 @@ import { Fullscreen } from '@jiovan-labs/ant-buddy-pro';
 
 ## 组件属性
 
-| 属性             | 描述                  | 类型                                                        | 默认值                        |
-|----------------|---------------------|-----------------------------------------------------------|----------------------------|
-| clazzPrefix    | 组件的 CSS 类名前缀        | `string`                                                  | `'abp-fullscreen'`         |
+| 属性           | 描述                     | 类型                                                      | 默认值                     |
+|----------------|--------------------------|-----------------------------------------------------------|----------------------------|
+| clazzPrefix    | 组件的 CSS 类名前缀      | `string`                                                  | `'abp-fullscreen'`         |
 | containerClazz | 容器 span 的 CSS 类名    | `string`                                                  | -                          |
 | containerStyle | 容器 span 的 CSS 样式    | `React.CSSProperties`                                     | -                          |
-| triggerFor     | 要切换全屏的 DOM 元素       | `Element \| null \| (() => Element \| null \| undefined)` | `document.documentElement` |
-| onChange       | 全屏更改后的回调函数          | `(fullscreen?: boolean) => void`                          | -                          |
-| tooltipCtrl    | 是否使用 Tooltip        | `boolean`                                                 | -                          |
-| tooltipProps   | Tooltip 属性          | `Omit<TooltipProps, 'title'>`                             | -                          |
+| triggerFor     | 要切换全屏的 DOM 元素    | `Element \| null \| (() => Element \| null \| undefined)` | `document.documentElement` |
+| onChange       | 全屏更改后的回调函数     | `(fullscreen?: boolean) => void`                          | -                          |
+| tooltipCtrl    | 是否使用 Tooltip         | `boolean`                                                 | -                          |
+| tooltipProps   | Tooltip 属性             | `Omit<TooltipProps, 'title'>`                             | -                          |
 | locale         | 组件的语言, e.g. 'zh_CN' | `string`                                                  | -                          |
 | localeProps    | 多语言属性               | `IntlLocaleProps`                                         | -                          |
 
@@ -47,9 +47,9 @@ import { Fullscreen } from '@jiovan-labs/ant-buddy-pro';
 
 通过 `ref` 可以访问以下方法：
 
-| 方法名            | 参数   | 描述      |
-|---------------|------|---------|
-| isFullscreen  | 无    | 检查是否处于全屏状态 |
-| enterFullscreen | 无  | 进入全屏    |
-| exitFullscreen | 无   | 退出全屏    |
-| toggleFullscreen | 无 | 切换全屏状态  |
+| 方法名           | 参数 | 描述                 |
+|------------------|------|----------------------|
+| isFullscreen     | 无   | 检查是否处于全屏状态 |
+| enterFullscreen  | 无   | 进入全屏             |
+| exitFullscreen   | 无   | 退出全屏             |
+| toggleFullscreen | 无   | 切换全屏状态         |

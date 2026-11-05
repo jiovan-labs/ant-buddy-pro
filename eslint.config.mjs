@@ -1,4 +1,5 @@
-// @ts-check
+// noinspection NpmUsedModulesInstalled
+
 import eslint from '@eslint/js';
 import tslint from 'typescript-eslint';
 import jestlint from 'eslint-plugin-jest';

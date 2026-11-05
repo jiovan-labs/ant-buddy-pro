@@ -35,9 +35,9 @@ export default defineConfig({
     base: `${ROOT_CONTEXT}/`,
     publicPath: `${ROOT_CONTEXT}/`,
     locales: [
-        {id: 'en-US', name: 'English', suffix: ''},
-        {id: 'zh-CN', name: '简体中文', suffix: '-cn'},
-        {id: 'zh-TW', name: '繁體中文', suffix: '-tw'},
+        { id: 'en-US', name: 'English', suffix: '' },
+        { id: 'zh-CN', name: '简体中文', suffix: '-cn' },
+        { id: 'zh-TW', name: '繁體中文', suffix: '-tw' },
     ],
     metas: [{
         name: 'keywords',

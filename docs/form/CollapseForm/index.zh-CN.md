@@ -23,34 +23,34 @@ import { CollapseForm } from '@jiovan-labs/ant-buddy-pro';
 
 ## 组件属性
 
-| 属性               | 说明                      | 类型                                                         | 默认值                   |
-|------------------|-------------------------|------------------------------------------------------------|-----------------------|
-| clazzPrefix      | 组件的 CSS 类名前缀            | `string`                                                   | `'abp-collapse-form'` |
-| autoEntryCursor  | 是否自动改变鼠标指针样式            | `boolean`                                                  | -                     |
-| closedEntry      | 表单关闭时的入口节点              | `React.ReactNode \| (() => React.ReactNode \| undefined)`  | -                     |
+| 属性             | 说明                                 | 类型                                                       | 默认值                |
+|------------------|--------------------------------------|------------------------------------------------------------|-----------------------|
+| clazzPrefix      | 组件的 CSS 类名前缀                  | `string`                                                   | `'abp-collapse-form'` |
+| autoEntryCursor  | 是否自动改变鼠标指针样式             | `boolean`                                                  | -                     |
+| closedEntry      | 表单关闭时的入口节点                 | `React.ReactNode \| (() => React.ReactNode \| undefined)`  | -                     |
 | closedEntryClazz | 表单关闭时的入口节点 div 的 CSS 类名 | `string`                                                   | -                     |
 | closedEntryStyle | 表单关闭时的入口节点 div 的 CSS 样式 | `React.CSSProperties`                                      | -                     |
-| openedEntry      | 表单展开时的入口节点              | `React.ReactNode \| (() => React.ReactNode \| undefined)`  | -                     |
+| openedEntry      | 表单展开时的入口节点                 | `React.ReactNode \| (() => React.ReactNode \| undefined)`  | -                     |
 | openedEntryClazz | 表单展开时的入口节点 div 的 CSS 类名 | `string`                                                   | -                     |
 | openedEntryStyle | 表单展开时的入口节点 div 的 CSS 样式 | `React.CSSProperties`                                      | -                     |
-| formContent      | 表单内容节点                  | `React.ReactNode \| (() => React.ReactNode \| undefined)`  | -                     |
-| formContentClazz | 表单内容节点 div 的 CSS 类名     | `string`                                                   | -                     |
-| formContentStyle | 表单内容节点 div 的 CSS 样式     | `React.CSSProperties`                                      | -                     |
-| formProps        | 表单属性                    | `Omit<ProFormProps, 'formRef'> \| Omit<FormProps, 'form'>` | -                     |
+| formContent      | 表单内容节点                         | `React.ReactNode \| (() => React.ReactNode \| undefined)`  | -                     |
+| formContentClazz | 表单内容节点 div 的 CSS 类名         | `string`                                                   | -                     |
+| formContentStyle | 表单内容节点 div 的 CSS 样式         | `React.CSSProperties`                                      | -                     |
+| formProps        | 表单属性                             | `Omit<ProFormProps, 'formRef'> \| Omit<FormProps, 'form'>` | -                     |
 | closeOnBlur      | 表单失去焦点后是否关闭表单           | `boolean`                                                  | `true`                |
 | closeOnFinish    | 表单提交成功后是否关闭表单           | `boolean`                                                  | `true`                |
-| defaultOpen      | 是否默认展开表单                | `boolean`                                                  | -                     |
-| triggerType      | 展开表单的触发方式               | `'click' \| 'hover'`                                       | `'click'`             |
-| proField         | 是否使用 ProFormField 控件    | `boolean`                                                  | `true`                |
+| defaultOpen      | 是否默认展开表单                     | `boolean`                                                  | -                     |
+| triggerType      | 展开表单的触发方式                   | `'click' \| 'hover'`                                       | `'click'`             |
+| proField         | 是否使用 ProFormField 控件           | `boolean`                                                  | `true`                |
 
 ## 组件方法
 
 通过 `ref` 可以访问以下方法：
 
-| 方法名        | 参数 | 描述          |
-|------------|----|-------------|
-| getForm    | 无  | 获取表单实例      |
-| getFormRef | 无  | 获取表单 ref 引用 |
-| isFormOpen | 无  | 检查表单是否展开    |
-| openForm   | 无  | 展开表单        |
-| closeForm  | 无  | 关闭表单        |
+| 方法名     | 参数 | 描述              |
+|------------|------|-------------------|
+| getForm    | 无   | 获取表单实例      |
+| getFormRef | 无   | 获取表单 ref 引用 |
+| isFormOpen | 无   | 检查表单是否展开  |
+| openForm   | 无   | 展开表单          |
+| closeForm  | 无   | 关闭表单          |

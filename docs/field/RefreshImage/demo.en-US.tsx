@@ -55,7 +55,7 @@ export default () => {
                 title='Click to refresh'
                 handCursor={true}
                 onRefresh={() => {
-                    messageInvoker.success('Image has been refreshed');
+                    messageInvoker.success('Image has been refreshed').then(() => {});
                 }}
             />
         </>

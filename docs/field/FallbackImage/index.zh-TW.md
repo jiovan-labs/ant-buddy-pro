@@ -21,10 +21,10 @@ import { FallbackImage } from '@jiovan-labs/ant-buddy-pro';
 
 ## 組件屬性
 
-| 屬性          | 描述           | 類型                                                                                                      | 預設值                    |
-|-------------|--------------|---------------------------------------------------------------------------------------------------------|------------------------|
+| 屬性        | 描述                | 類型                                                                                                    | 預設值                 |
+|-------------|---------------------|---------------------------------------------------------------------------------------------------------|------------------------|
 | clazzPrefix | 組件的 CSS 類名前綴 | `string`                                                                                                | `'abp-fallback-image'` |
-| src         | 圖片源          | `string \| Promise<string \| undefined> \| (() => string \| undefined \| Promise<string \| undefined>)` | -                      |
-| fallback    | 備用圖片源        | `string \| Promise<string \| undefined> \| (() => string \| undefined \| Promise<string \| undefined>)` | -                      |
+| src         | 圖片源              | `string \| Promise<string \| undefined> \| (() => string \| undefined \| Promise<string \| undefined>)` | -                      |
+| fallback    | 備用圖片源          | `string \| Promise<string \| undefined> \| (() => string \| undefined \| Promise<string \| undefined>)` | -                      |
 
 > 註：其他屬性繼承自 rc-image 的 Image 組件。

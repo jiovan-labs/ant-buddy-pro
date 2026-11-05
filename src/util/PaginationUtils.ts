@@ -48,7 +48,7 @@ export abstract class PaginationUtils {
         }
         const pageInfo = actionRef.current.pageInfo;
         if (!pageInfo || deletedCount <= 0) {
-            actionRef.current.reload();
+            actionRef.current.reload().then(() => {});
             return;
         }
         const { current, pageSize, total } = pageInfo;
@@ -59,6 +59,6 @@ export abstract class PaginationUtils {
                 current: current - 1,
             });
         }
-        actionRef.current.reload();
+        actionRef.current.reload().then(() => {});
     }
 }

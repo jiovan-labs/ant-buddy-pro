@@ -21,7 +21,7 @@ import { FormContext } from 'antd/es/form/context';
 import { type SpaceSize } from 'antd/es/space';
 import classnames from 'classnames';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import { type WithFalse, type AxisDirectionType } from '@/type/declaration';
+import { type WithFalse, type AxisOrientationType } from '@/type/declaration';
 import { useFieldStyle } from './styles';
 
 
@@ -57,7 +57,7 @@ export type LabelFieldProps = React.PropsWithChildren<{
      * @description.zh-TW 標簽和內容的布局樣式
      * @default 'horizontal'
      */
-    layout?: AxisDirectionType;
+    layout?: AxisOrientationType;
 
     /**
      * @description The label element

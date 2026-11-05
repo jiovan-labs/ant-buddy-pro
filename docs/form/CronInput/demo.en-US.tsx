@@ -105,7 +105,7 @@ export default () => {
                 }}
                 onFinish={async (values) => {
                     ConsoleUtils.logTimestamp(false, false, 'CronInput', values, 'Submitted data');
-                    messageInvoker.success(`Yep, you've clicked the submit button`);
+                    messageInvoker.success(`Yep, you've clicked the submit button`).then(() => {});
                 }}
             >
                 <CronInput

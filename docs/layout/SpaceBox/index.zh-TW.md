@@ -22,13 +22,13 @@ import { SpaceBox } from '@jiovan-labs/ant-buddy-pro';
 
 ## 組件屬性
 
-| 屬性             | 描述              | 類型                    | 預設值               |
-|----------------|-----------------|-----------------------|-------------------|
-| clazzPrefix    | 組件的 CSS 類名前綴    | `string`              | `'abp-space-box'` |
+| 屬性           | 描述                 | 類型                  | 預設值            |
+|----------------|----------------------|-----------------------|-------------------|
+| clazzPrefix    | 組件的 CSS 類名前綴  | `string`              | `'abp-space-box'` |
 | containerClazz | 容器 div 的 CSS 類名 | `string`              | -                 |
 | containerStyle | 容器 div 的 CSS 樣式 | `React.CSSProperties` | -                 |
-| boundBorder    | 外邊界是否有邊框        | `boolean`             | -                 |
-| boundPadding   | 外邊框是否填充內邊距      | `boolean`             | `true`            |
-| widthBlock     | 是否匹配父節點的寬度      | `boolean`             | -                 |
+| boundBorder    | 外邊界是否有邊框     | `boolean`             | -                 |
+| boundPadding   | 外邊框是否填充內邊距 | `boolean`             | `true`            |
+| widthBlock     | 是否匹配父節點的寬度 | `boolean`             | -                 |
 
 > 注意: 其他屬性繼承自 Ant Design 的 <a href="https://ant.design/components/space" target="_blank">Space</a> 組件。

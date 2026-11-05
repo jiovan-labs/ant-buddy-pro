@@ -37,7 +37,7 @@ export default () => {
                     }
                 }}
                 onFinish={async () => {
-                    messageInvoker.success(`Yep, you've clicked the submit button`);
+                    messageInvoker.success(`Yep, you've clicked the submit button`).then(() => {});
                 }}
             >
                 <LocaleInput

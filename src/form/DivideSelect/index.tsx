@@ -155,6 +155,13 @@ export const DivideSelect: React.FC<DivideSelectProps> = (props?: DivideSelectPr
 
     const fieldStyle = useFieldStyle(clazzPrefix);
 
+    // antd 的 SelectProps.classNames 既可以是对象，也可以是 (info) => 对象 的函数；
+    // 这里统一解析成对象形态（函数则调用之），再读取用户自定义的 root / popup.root，避免函数分支被丢弃。
+    const userClassNames = props?.fieldProps?.classNames;
+    const resolvedClassNames = (typeof userClassNames === 'function') ? userClassNames({ props: props?.fieldProps ?? {} }) : userClassNames;
+    const userRootClassName = resolvedClassNames?.root;
+    const userPopupRootClassName = resolvedClassNames?.popup?.root;
+
     // noinspection DuplicatedCode
     const [optionItems, setOptionItems] = React.useState<any[] | undefined>(() => {
         const rawOptions = props?.fieldProps?.options ?? [];
@@ -259,10 +266,9 @@ export const DivideSelect: React.FC<DivideSelectProps> = (props?: DivideSelectPr
                 {...restProps}
                 fieldProps={{
                     classNames: {
-                        // @ts-ignore
-                        root: classnames(clazzPrefix, props?.fieldProps?.classNames?.root),
+                        root: classnames(clazzPrefix, userRootClassName),
                         popup: {
-                            root: classnames(`${clazzPrefix}-popup`, fieldStyle.hashId, props?.fieldProps?.classNames?.popup?.root),
+                            root: classnames(`${clazzPrefix}-popup`, fieldStyle.hashId, userPopupRootClassName),
                         }
                     },
                     options: optionItems,
@@ -325,10 +331,9 @@ export const DivideSelect: React.FC<DivideSelectProps> = (props?: DivideSelectPr
         return (
             <Select
                 classNames={{
-                    // @ts-ignore
-                    root: classnames(clazzPrefix, props?.fieldProps?.classNames?.root),
+                    root: classnames(clazzPrefix, userRootClassName),
                     popup: {
-                        root: classnames(`${clazzPrefix}-popup`, fieldStyle.hashId, props?.fieldProps?.classNames?.popup?.root),
+                        root: classnames(`${clazzPrefix}-popup`, fieldStyle.hashId, userPopupRootClassName),
                     }
                 }}
                 placeholder={StringUtils.join(props?.placeholder) ?? props?.fieldProps?.placeholder}

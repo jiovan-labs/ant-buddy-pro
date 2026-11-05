@@ -20,7 +20,7 @@ import { ConfigProvider, Badge, Space, type BadgeProps, type TooltipProps } from
 import { type SpaceSize } from 'antd/es/space';
 import { omit } from '@rc-component/util';
 import classnames from 'classnames';
-import { type AxisDirectionType } from '@/type/declaration';
+import { type AxisOrientationType } from '@/type/declaration';
 import { TooltipRender } from '@/render/TooltipRender';
 import { ConsoleUtils } from '@/util/ConsoleUtils';
 import { useFieldStyle } from './styles';
@@ -85,7 +85,7 @@ export type CountFieldProps = React.PropsWithChildren<{
      * @description.zh-TW 標簽和內容的布局樣式
      * @default 'horizontal'
      */
-    layout?: AxisDirectionType;
+    layout?: AxisOrientationType;
 
     /**
      * @description Whether to show the count or not

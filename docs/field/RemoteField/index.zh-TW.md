@@ -23,15 +23,15 @@ import { RemoteField } from '@jiovan-labs/ant-buddy-pro';
 
 ## 組件屬性
 
-| 屬性             | 描述              | 類型                                                                     | 預設值                  |
-|----------------|-----------------|------------------------------------------------------------------------|----------------------|
-| clazzPrefix    | 組件的 CSS 類名前綴    | `string`                                                               | `'abp-remote-field'` |
-| containerClazz | 容器 div 的 CSS 類名 | `string`                                                               | -                    |
-| containerStyle | 容器 div 的 CSS 樣式 | `React.CSSProperties`                                                  | -                    |
-| request        | 遠程請求            | `(params?: any) => Promise<any>`                                       | -                    |
-| render         | 獲取遠程數據後的回調函數    | `React.ReactNode \| ((outcome?: any) => React.ReactNode \| undefined)` | -                    |
-| fallback       | 組件的佔位符          | `React.ReactNode \| (() => React.ReactNode \| undefined)`              | `<Spin/>`            |
-| autoStart      | 是否自動開始獲取遠程數據    | `boolean`                                                              | `true`               |
+| 屬性           | 描述                     | 類型                                                                   | 預設值               |
+|----------------|--------------------------|------------------------------------------------------------------------|----------------------|
+| clazzPrefix    | 組件的 CSS 類名前綴      | `string`                                                               | `'abp-remote-field'` |
+| containerClazz | 容器 div 的 CSS 類名     | `string`                                                               | -                    |
+| containerStyle | 容器 div 的 CSS 樣式     | `React.CSSProperties`                                                  | -                    |
+| request        | 遠程請求                 | `(params?: any) => Promise<any>`                                       | -                    |
+| render         | 獲取遠程數據後的回調函數 | `React.ReactNode \| ((outcome?: any) => React.ReactNode \| undefined)` | -                    |
+| fallback       | 組件的佔位符             | `React.ReactNode \| (() => React.ReactNode \| undefined)`              | `<Spin/>`            |
+| autoStart      | 是否自動開始獲取遠程數據 | `boolean`                                                              | `true`               |
 
 > 註：其他屬性繼承自 Pro Components 的 ProFormFieldRemoteProps。
 
@@ -39,8 +39,8 @@ import { RemoteField } from '@jiovan-labs/ant-buddy-pro';
 
 通過 `ref` 可以訪問以下方法：
 
-| 方法名         | 參數 | 描述          |
-|-------------|----|-------------|
-| getOutcome  | 無  | 獲取遠程請求的結果數據 |
-| isAutoStart | 無  | 檢查是否自動啟動    |
-| refresh     | 無  | 刷新遠程數據      |
+| 方法名      | 參數 | 描述                   |
+|-------------|------|------------------------|
+| getOutcome  | 無   | 獲取遠程請求的結果數據 |
+| isAutoStart | 無   | 檢查是否自動啟動       |
+| refresh     | 無   | 刷新遠程數據           |

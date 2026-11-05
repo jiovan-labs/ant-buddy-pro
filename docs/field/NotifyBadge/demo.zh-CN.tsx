@@ -69,13 +69,13 @@ export default () => {
                             showMore: true,
                             presetStyle: 'notice',
                             onClick: (_ev, id) => {
-                                messageInvoker.info(`您点击了通知项 ${id}`);
+                                messageInvoker.info(`您点击了通知项 ${id}`).then(() => {});
                             },
                             onClear: () => {
-                                messageInvoker.info('您点击了清除通知按钮');
+                                messageInvoker.info('您点击了清除通知按钮').then(() => {});
                             },
                             onMore: () => {
-                                messageInvoker.info('您点击了更多通知按钮');
+                                messageInvoker.info('您点击了更多通知按钮').then(() => {});
                             }
                         },
                         {
@@ -109,13 +109,13 @@ export default () => {
                             showMore: true,
                             presetStyle: 'task',
                             onClick: (_ev, id) => {
-                                messageInvoker.info(`您点击了任务项 ${id}`);
+                                messageInvoker.info(`您点击了任务项 ${id}`).then(() => {});
                             },
                             onClear: () => {
-                                messageInvoker.info('您点击了清除任务按钮');
+                                messageInvoker.info('您点击了清除任务按钮').then(() => {});
                             },
                             onMore: () => {
-                                messageInvoker.info('您点击了更多任务按钮');
+                                messageInvoker.info('您点击了更多任务按钮').then(() => {});
                             }
                         }
                     ],

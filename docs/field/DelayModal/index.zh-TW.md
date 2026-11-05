@@ -23,32 +23,32 @@ import { DelayModal } from '@jiovan-labs/ant-buddy-pro';
 
 ## 組件屬性
 
-| 屬性            | 描述                | 類型                                                                                | 預設值                                  |
-|---------------|-------------------|-----------------------------------------------------------------------------------|--------------------------------------|
-| clazzPrefix   | 組件的 CSS 類名前綴      | `string`                                                                          | `'abp-delay-modal'`                  |
-| actionType    | 顯示模態對話框的動作類型      | `'confirm' \| 'info' \| 'warn' \| 'success' \| 'error' \| 'custom'`               | `'info'`                             |
-| autoStart     | 是否自動開始模態對話框的計時器   | `boolean`                                                                         | `true`                               |
-| onceOnly      | 是否只顯示一次模態對話框      | `boolean`                                                                         | `true`                               |
-| preventEvents | 阻止顯示模態對話框的事件      | `Array<keyof GlobalEventHandlersEventMap>`                                        | `['keydown', 'mousedown', 'scroll']` |
+| 屬性          | 描述                               | 類型                                                                              | 預設值                               |
+|---------------|------------------------------------|-----------------------------------------------------------------------------------|--------------------------------------|
+| clazzPrefix   | 組件的 CSS 類名前綴                | `string`                                                                          | `'abp-delay-modal'`                  |
+| actionType    | 顯示模態對話框的動作類型           | `'confirm' \| 'info' \| 'warn' \| 'success' \| 'error' \| 'custom'`               | `'info'`                             |
+| autoStart     | 是否自動開始模態對話框的計時器     | `boolean`                                                                         | `true`                               |
+| onceOnly      | 是否只顯示一次模態對話框           | `boolean`                                                                         | `true`                               |
+| preventEvents | 阻止顯示模態對話框的事件           | `Array<keyof GlobalEventHandlersEventMap>`                                        | `['keydown', 'mousedown', 'scroll']` |
 | timeout       | 顯示模態對話框的超時時間，單位毫秒 | `number`                                                                          | `1000 * 60 * 15`                     |
-| triggerFor    | 要觸發延遲事件的 DOM 元素   | `Document \| Element \| null \| (() => Document \| Element \| null \| undefined)` | `document`                           |
-| modalProps    | 模態對話框的屬性          | `MixinModalProps`                                                                 | -                                    |
-| modalFunProps | 函數型模態對話框的屬性       | `MixinModalFuncProps`                                                             | -                                    |
-| skipCondition | 跳過單次計時器的條件        | `boolean \| (() => boolean \| undefined)`                                         | -                                    |
-| stopCondition | 停止計時器的條件          | `boolean \| (() => boolean \| undefined)`                                         | -                                    |
-| onOpenChange  | 顯示狀態變化時的回調函數      | `(open: boolean) => void`                                                         | -                                    |
+| triggerFor    | 要觸發延遲事件的 DOM 元素          | `Document \| Element \| null \| (() => Document \| Element \| null \| undefined)` | `document`                           |
+| modalProps    | 模態對話框的屬性                   | `MixinModalProps`                                                                 | -                                    |
+| modalFunProps | 函數型模態對話框的屬性             | `MixinModalFuncProps`                                                             | -                                    |
+| skipCondition | 跳過單次計時器的條件               | `boolean \| (() => boolean \| undefined)`                                         | -                                    |
+| stopCondition | 停止計時器的條件                   | `boolean \| (() => boolean \| undefined)`                                         | -                                    |
+| onOpenChange  | 顯示狀態變化時的回調函數           | `(open: boolean) => void`                                                         | -                                    |
 
 ## 組件方法
 
 通過 `ref` 可以訪問以下方法：
 
-| 方法名            | 參數 | 描述           |
-|----------------|----|--------------|
-| isOpening      | 無  | 檢查模態框是否正在打開  |
-| isTiming       | 無  | 檢查計時器是否正在運行  |
-| hasOpened      | 無  | 檢查模態框是否已經打開過 |
-| startTimer     | 無  | 啟動計時器        |
-| stopTimer      | 無  | 停止計時器        |
-| resetTimer     | 無  | 重置計時器        |
-| addListener    | 無  | 添加事件監聽器      |
-| removeListener | 無  | 移除事件監聽器      |
+| 方法名         | 參數 | 描述                     |
+|----------------|------|--------------------------|
+| isOpening      | 無   | 檢查模態框是否正在打開   |
+| isTiming       | 無   | 檢查計時器是否正在運行   |
+| hasOpened      | 無   | 檢查模態框是否已經打開過 |
+| startTimer     | 無   | 啟動計時器               |
+| stopTimer      | 無   | 停止計時器               |
+| resetTimer     | 無   | 重置計時器               |
+| addListener    | 無   | 添加事件監聽器           |
+| removeListener | 無   | 移除事件監聽器           |

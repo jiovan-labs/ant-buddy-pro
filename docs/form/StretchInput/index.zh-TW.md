@@ -23,14 +23,14 @@ import { StretchInput } from '@jiovan-labs/ant-buddy-pro';
 
 ## 組件屬性
 
-| 屬性              | 說明                   | 類型                            | 預設值                   |
-|-----------------|----------------------|-------------------------------|-----------------------|
-| clazzPrefix     | 組件的 CSS 類名前綴         | `string`                      | `'abp-stretch-input'` |
-| containerClazz  | 容器 div 的 CSS 類名      | `string`                      | -                     |
-| containerStyle  | 容器 div 的 CSS 樣式      | `React.CSSProperties`         | -                     |
-| miniature       | 文本框折疊（失去焦點）時的替代節點內容  | `React.ReactNode`             | -                     |
-| stretchClazz    | 拉伸狀態時的 CSS 類名        | `string`                      | -                     |
-| stretchStyle    | 拉伸狀態時的 CSS 樣式        | `React.CSSProperties`         | -                     |
-| triggerType     | 當需要拉伸已折疊的 DOM 時的觸發方式 | `'click' \| 'hover'`          | `'click'`             |
-| proField        | 是否使用 ProFormField 控件 | `boolean`                     | -                     |
-| onStretchChange | 拉伸狀態變化時的回調函數         | `(stretch?: boolean) => void` | -                     |
+| 屬性            | 說明                                   | 類型                          | 預設值                |
+|-----------------|----------------------------------------|-------------------------------|-----------------------|
+| clazzPrefix     | 組件的 CSS 類名前綴                    | `string`                      | `'abp-stretch-input'` |
+| containerClazz  | 容器 div 的 CSS 類名                   | `string`                      | -                     |
+| containerStyle  | 容器 div 的 CSS 樣式                   | `React.CSSProperties`         | -                     |
+| miniature       | 文本框折疊（失去焦點）時的替代節點內容 | `React.ReactNode`             | -                     |
+| stretchClazz    | 拉伸狀態時的 CSS 類名                  | `string`                      | -                     |
+| stretchStyle    | 拉伸狀態時的 CSS 樣式                  | `React.CSSProperties`         | -                     |
+| triggerType     | 當需要拉伸已折疊的 DOM 時的觸發方式    | `'click' \| 'hover'`          | `'click'`             |
+| proField        | 是否使用 ProFormField 控件             | `boolean`                     | -                     |
+| onStretchChange | 拉伸狀態變化時的回調函數               | `(stretch?: boolean) => void` | -                     |

@@ -18,12 +18,12 @@
 import React from 'react';
 import { Input, Divider } from 'antd';
 import { ProForm, ProFormRadio, ProFormSwitch } from '@ant-design/pro-components';
-import { LabelField, type AxisDirectionType } from '@jiovan-labs/ant-buddy-pro';
+import { LabelField, type AxisOrientationType } from '@jiovan-labs/ant-buddy-pro';
 import { type LabelPresetStyle } from '@jiovan-labs/ant-buddy-pro/field/LabelField';
 
 
 export default () => {
-    const [layout, setLayout] = React.useState<AxisDirectionType>('vertical');
+    const [layout, setLayout] = React.useState<AxisOrientationType>('vertical');
     const [required, setRequired] = React.useState<boolean>(false);
     const [presetStyle, setPresetStyle] = React.useState<LabelPresetStyle | false>('field-prior');
 

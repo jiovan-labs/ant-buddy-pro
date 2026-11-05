@@ -21,16 +21,16 @@ import { BorderBox } from '@jiovan-labs/ant-buddy-pro';
 
 ## 組件屬性
 
-| 屬性             | 描述              | 類型                    | 預設值                |
-|----------------|-----------------|-----------------------|--------------------|
-| clazzPrefix    | 組件的 CSS 類名前綴    | `string`              | `'abp-border-box'` |
-| containerClazz | 容器 div 的 CSS 類名 | `string`              | -                  |
-| containerStyle | 容器 div 的 CSS 樣式 | `React.CSSProperties` | -                  |
-| boundShape     | 邊框形狀            | `'rect' \| 'circle'`  | `'rect'`           |
+| 屬性           | 描述                    | 類型                  | 預設值             |
+|----------------|-------------------------|-----------------------|--------------------|
+| clazzPrefix    | 組件的 CSS 類名前綴     | `string`              | `'abp-border-box'` |
+| containerClazz | 容器 div 的 CSS 類名    | `string`              | -                  |
+| containerStyle | 容器 div 的 CSS 樣式    | `React.CSSProperties` | -                  |
+| boundShape     | 邊框形狀                | `'rect' \| 'circle'`  | `'rect'`           |
 | boundShadow    | 是否顯示邊框陰影        | `boolean`             | -                  |
 | borderAll      | 是否全部都有邊框        | `boolean`             | -                  |
-| borderTop      | 頂部是否有邊框         | `boolean`             | `true`             |
-| borderBottom   | 底部是否有邊框         | `boolean`             | `true`             |
-| borderLeft     | 左側是否有邊框         | `boolean`             | `true`             |
-| borderRight    | 右側是否有邊框         | `boolean`             | `true`             |
+| borderTop      | 頂部是否有邊框          | `boolean`             | `true`             |
+| borderBottom   | 底部是否有邊框          | `boolean`             | `true`             |
+| borderLeft     | 左側是否有邊框          | `boolean`             | `true`             |
+| borderRight    | 右側是否有邊框          | `boolean`             | `true`             |
 | tokenBg        | 是否使用 token 的背景色 | `boolean`             | -                  |

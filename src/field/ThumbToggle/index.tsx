@@ -21,7 +21,7 @@ import { LikeOutlined, LikeFilled, DislikeOutlined, DislikeFilled, StarOutlined,
 import { useIntl } from '@ant-design/pro-components';
 import { ObjectUtils } from '@jiovan-labs/ts-lang-utils';
 import classnames from 'classnames';
-import { type AxisDirectionType } from '@/type/declaration';
+import { type AxisOrientationType } from '@/type/declaration';
 import { CountField, type CountFieldRef } from '@/field/CountField';
 import { ConsoleUtils } from '@/util/ConsoleUtils';
 import { intlLocales } from './locales';
@@ -155,7 +155,7 @@ export type ThumbToggleProps = Pick<CheckboxProps, 'checked' | 'defaultChecked'>
      * @description.zh-TW 圖標和內容的布局樣式
      * @default 'horizontal'
      */
-    layout?: AxisDirectionType;
+    layout?: AxisOrientationType;
 
     /**
      * @description Whether to show the count or not

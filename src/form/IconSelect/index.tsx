@@ -333,6 +333,13 @@ export const IconSelect: React.FC<IconSelectProps> = (props?: IconSelectProps) =
     const searchRef = React.useRef<InputRef>(null);
     const fieldStyle = useFieldStyle(clazzPrefix, subClazzPrefix);
 
+    // antd 的 SelectProps.classNames 既可以是对象，也可以是 (info) => 对象 的函数；
+    // 这里统一解析成对象形态（函数则调用之），再读取用户自定义的 root / popup.root，避免函数分支被丢弃。
+    const userClassNames = props?.fieldProps?.classNames;
+    const resolvedClassNames = (typeof userClassNames === 'function') ? userClassNames({ props: props?.fieldProps ?? {} }) : userClassNames;
+    const userRootClassName = resolvedClassNames?.root;
+    const userPopupRootClassName = resolvedClassNames?.popup?.root;
+
     // noinspection DuplicatedCode
     const handleWindowResize = () => {
         const inspect = document.querySelector<HTMLDivElement>(`.${clazzPrefix}-entry-${fieldId}`);
@@ -442,7 +449,7 @@ export const IconSelect: React.FC<IconSelectProps> = (props?: IconSelectProps) =
                     });
                     if (form && props?.name) {
                         form.setFieldValue(props.name, result);
-                        form.validateFields([props.name]);
+                        form.validateFields([props.name]).then(() => {});
                     }
                     props?.fieldProps?.onChange?.(result, {
                         label: iconName,
@@ -451,7 +458,7 @@ export const IconSelect: React.FC<IconSelectProps> = (props?: IconSelectProps) =
                 } else {
                     if (form && props?.name) {
                         form.setFieldValue(props.name, undefined);
-                        form.validateFields([props.name]);
+                        form.validateFields([props.name]).then(() => {});
                     }
                     props?.fieldProps?.onChange?.(undefined, {
                         label: iconName,
@@ -461,7 +468,7 @@ export const IconSelect: React.FC<IconSelectProps> = (props?: IconSelectProps) =
             } else {
                 if (form && props?.name) {
                     form.setFieldValue(props.name, undefined);
-                    form.validateFields([props.name]);
+                    form.validateFields([props.name]).then(() => {});
                 }
                 props?.fieldProps?.onChange?.(undefined, {
                     label: iconName,
@@ -489,7 +496,7 @@ export const IconSelect: React.FC<IconSelectProps> = (props?: IconSelectProps) =
                     const newValue = [...fieldValue, value];
                     if (form && props?.name) {
                         form.setFieldValue(props.name, newValue);
-                        form.validateFields([props.name]);
+                        form.validateFields([props.name]).then(() => {});
                     }
                     props?.fieldProps?.onChange?.(newValue, {
                         label: iconName,
@@ -499,7 +506,7 @@ export const IconSelect: React.FC<IconSelectProps> = (props?: IconSelectProps) =
                     const newValue = [...fieldValue, iconName];
                     if (form && props?.name) {
                         form.setFieldValue(props.name, newValue);
-                        form.validateFields([props.name]);
+                        form.validateFields([props.name]).then(() => {});
                     }
                     props?.fieldProps?.onChange?.(newValue, {
                         label: iconName,
@@ -519,7 +526,7 @@ export const IconSelect: React.FC<IconSelectProps> = (props?: IconSelectProps) =
                 }
                 if (form && props?.name) {
                     form.setFieldValue(props.name, newValue);
-                    form.validateFields([props.name]);
+                    form.validateFields([props.name]).then(() => {});
                 }
                 props?.fieldProps?.onChange?.(newValue, {
                     label: iconName,
@@ -773,10 +780,9 @@ export const IconSelect: React.FC<IconSelectProps> = (props?: IconSelectProps) =
                 {...restProps}
                 fieldProps={{
                     classNames: {
-                        // @ts-ignore
-                        root: classnames(clazzPrefix, `${clazzPrefix}-entry-${fieldId}`, props?.fieldProps?.classNames?.root),
+                        root: classnames(clazzPrefix, `${clazzPrefix}-entry-${fieldId}`, userRootClassName),
                         popup: {
-                            root: classnames(`${clazzPrefix}-popup`, fieldStyle.hashId, `${clazzPrefix}-popup-${fieldId}`, props?.fieldProps?.classNames?.popup?.root),
+                            root: classnames(`${clazzPrefix}-popup`, fieldStyle.hashId, `${clazzPrefix}-popup-${fieldId}`, userPopupRootClassName),
                         }
                     },
                     disabled: entryImmutable,
@@ -799,10 +805,9 @@ export const IconSelect: React.FC<IconSelectProps> = (props?: IconSelectProps) =
         return (
             <Select
                 classNames={{
-                    // @ts-ignore
-                    root: classnames(clazzPrefix, `${clazzPrefix}-entry-${fieldId}`, props?.fieldProps?.classNames?.root),
+                    root: classnames(clazzPrefix, `${clazzPrefix}-entry-${fieldId}`, userRootClassName),
                     popup: {
-                        root: classnames(`${clazzPrefix}-popup`, fieldStyle.hashId, `${clazzPrefix}-popup-${fieldId}`, props?.fieldProps?.classNames?.popup?.root),
+                        root: classnames(`${clazzPrefix}-popup`, fieldStyle.hashId, `${clazzPrefix}-popup-${fieldId}`, userPopupRootClassName),
                     }
                 }}
                 placeholder={StringUtils.join(props?.placeholder) ?? props?.fieldProps?.placeholder}

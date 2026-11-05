@@ -21,36 +21,36 @@ import { AvatarUpload } from '@jiovan-labs/ant-buddy-pro';
 
 ## 組件屬性
 
-| 屬性                  | 說明                  | 類型                                                                                                   | 預設值                   |
-|---------------------|---------------------|------------------------------------------------------------------------------------------------------|-----------------------|
+| 屬性                | 說明                       | 類型                                                                                                 | 預設值                |
+|---------------------|----------------------------|------------------------------------------------------------------------------------------------------|-----------------------|
 | clazzPrefix         | 組件的 CSS 類名前綴        | `string`                                                                                             | `'abp-avatar-upload'` |
-| containerClazz      | 容器 div 的 CSS 類名     | `string`                                                                                             | -                     |
-| containerStyle      | 容器 div 的 CSS 樣式     | `React.CSSProperties`                                                                                | -                     |
-| fieldRef            | 組件的 ref 句柄          | `React.Ref<AvatarUploadRef \| null \| undefined>`                                                    | -                     |
-| imageSrc            | 圖片源                 | `string`                                                                                             | -                     |
-| fallbackSrc         | 備用圖片源               | `string`                                                                                             | -                     |
-| shape               | 組件的形狀               | `'circle' \| 'square'`                                                                               | `'circle'`            |
-| avatarProps         | 頭像屬性                | `Omit<AvatarProps, 'src' \| 'srcSet' \| 'shape' \| 'children'>`                                      | -                     |
-| imageProps          | 圖像屬性                | `Omit<RcImageProps, 'src' \| 'srcSet' \| 'fallback' \| 'width' \| 'height' \| 'preview' \| 'title'>` | -                     |
-| uploadEnabled       | 是否啟用上傳              | `boolean`                                                                                            | `false`               |
-| uploadProps         | 上傳屬性                | `FileUploadProps`                                                                                    | -                     |
-| cropEnabled         | 是否啟用裁剪              | `boolean`                                                                                            | `true`                |
-| cropProps           | 裁剪屬性                | `Omit<ImgCropProps, 'children'>`                                                                     | -                     |
-| tooltipCtrl         | 是否使用 Tooltip        | `boolean`                                                                                            | -                     |
-| tooltipProps        | Tooltip 屬性          | `TooltipProps`                                                                                       | -                     |
-| onImageSrcChange    | 圖片源變化時的回調函數         | `(src?: string) => void`                                                                             | -                     |
-| onFallbackSrcChange | 備用圖片源變化時的回調函數       | `(src?: string) => void`                                                                             | -                     |
-| locale              | 組件的語言, e.g. 'zh_TW' | `string`                                                                                             | -                     |
-| localeProps         | 多語言屬性               | `IntlLocaleProps`                                                                                    | -                     |
+| containerClazz      | 容器 div 的 CSS 類名       | `string`                                                                                             | -                     |
+| containerStyle      | 容器 div 的 CSS 樣式       | `React.CSSProperties`                                                                                | -                     |
+| fieldRef            | 組件的 ref 句柄            | `React.Ref<AvatarUploadRef \| null \| undefined>`                                                    | -                     |
+| imageSrc            | 圖片源                     | `string`                                                                                             | -                     |
+| fallbackSrc         | 備用圖片源                 | `string`                                                                                             | -                     |
+| shape               | 組件的形狀                 | `'circle' \| 'square'`                                                                               | `'circle'`            |
+| avatarProps         | 頭像屬性                   | `Omit<AvatarProps, 'src' \| 'srcSet' \| 'shape' \| 'children'>`                                      | -                     |
+| imageProps          | 圖像屬性                   | `Omit<RcImageProps, 'src' \| 'srcSet' \| 'fallback' \| 'width' \| 'height' \| 'preview' \| 'title'>` | -                     |
+| uploadEnabled       | 是否啟用上傳               | `boolean`                                                                                            | `false`               |
+| uploadProps         | 上傳屬性                   | `FileUploadProps`                                                                                    | -                     |
+| cropEnabled         | 是否啟用裁剪               | `boolean`                                                                                            | `true`                |
+| cropProps           | 裁剪屬性                   | `Omit<ImgCropProps, 'children'>`                                                                     | -                     |
+| tooltipCtrl         | 是否使用 Tooltip           | `boolean`                                                                                            | -                     |
+| tooltipProps        | Tooltip 屬性               | `TooltipProps`                                                                                       | -                     |
+| onImageSrcChange    | 圖片源變化時的回調函數     | `(src?: string) => void`                                                                             | -                     |
+| onFallbackSrcChange | 備用圖片源變化時的回調函數 | `(src?: string) => void`                                                                             | -                     |
+| locale              | 組件的語言, e.g. 'zh_TW'   | `string`                                                                                             | -                     |
+| localeProps         | 多語言屬性                 | `IntlLocaleProps`                                                                                    | -                     |
 
 ## 組件方法
 
 通過 `ref` 可以訪問以下方法：
 
-| 方法名            | 參數           | 描述        |
-|----------------|--------------|-----------|
-| isLoading      | 無            | 檢查是否正在加載  |
-| getImageSrc    | 無            | 獲取圖片源地址   |
-| setImageSrc    | src?: string | 設置圖片源地址   |
-| getFallbackSrc | 無            | 獲取備用圖片源地址 |
+| 方法名         | 參數         | 描述               |
+|----------------|--------------|--------------------|
+| isLoading      | 無           | 檢查是否正在加載   |
+| getImageSrc    | 無           | 獲取圖片源地址     |
+| setImageSrc    | src?: string | 設置圖片源地址     |
+| getFallbackSrc | 無           | 獲取備用圖片源地址 |
 | setFallbackSrc | src?: string | 設置備用圖片源地址 |

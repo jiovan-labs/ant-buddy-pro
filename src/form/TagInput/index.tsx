@@ -369,7 +369,7 @@ const TagInputField: React.ForwardRefExoticComponent<TagInputProps & React.RefAt
                 setTagContents(contents);
             } else {
                 if (warnExists && !proField) {
-                    messageInvoker.warning(ObjectUtils.firstNotNil(props?.localeProps?.tagExists, intlLocales.get([locale, 'tagExists']), intlLocales.get(['en_US', 'tagExists'])));
+                    messageInvoker.warning(ObjectUtils.firstNotNil(props?.localeProps?.tagExists, intlLocales.get([locale, 'tagExists']), intlLocales.get(['en_US', 'tagExists']))).then(() => {});
                 }
             }
         }

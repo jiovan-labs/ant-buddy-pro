@@ -60,7 +60,7 @@ export default () => {
                     phoneName='mobile'
                     countDown={29}
                     onGenerate={() => {
-                        messageInvoker.success('Captcha sent successfully');
+                        messageInvoker.success('Captcha sent successfully').then(() => {});
                     }}
                     onTimer={count => {
                         ConsoleUtils.logTimestamp(false, false, 'CaptchaInput', 'onTimer count = ' + count);

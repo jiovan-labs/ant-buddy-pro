@@ -31,12 +31,12 @@ import { SegmentRadio } from '@jiovan-labs/ant-buddy-pro';
 
 ## 組件屬性
 
-| 屬性                  | 說明                                   | 類型                                                                                                                         | 預設值                   |
-|---------------------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------|-----------------------|
-| clazzPrefix         | 組件的 CSS 類名前綴                         | `string`                                                                                                                   | `'abp-segment-radio'` |
-| containerClazz      | 容器 div 的 CSS 類名                      | `string`                                                                                                                   | -                     |
-| containerStyle      | 容器 div 的 CSS 樣式                      | `React.CSSProperties`                                                                                                      | -                     |
-| request             | 遠程數據請求                               | `(params?: Record<string, any>, props?: Record<string, any>) => Promise<(SegmentedRawOption \| SegmentedLabeledOption)[]>` | -                     |
+| 屬性                | 說明                                               | 類型                                                                                                                       | 預設值                |
+|---------------------|----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|-----------------------|
+| clazzPrefix         | 組件的 CSS 類名前綴                                | `string`                                                                                                                   | `'abp-segment-radio'` |
+| containerClazz      | 容器 div 的 CSS 類名                               | `string`                                                                                                                   | -                     |
+| containerStyle      | 容器 div 的 CSS 樣式                               | `React.CSSProperties`                                                                                                      | -                     |
+| request             | 遠程數據請求                                       | `(params?: Record<string, any>, props?: Record<string, any>) => Promise<(SegmentedRawOption \| SegmentedLabeledOption)[]>` | -                     |
 | requestOptionPlace  | 使用 `request` 數據的同時，是否保留 `options` 數據 | `'before' \| 'after' \| 'override' \| false`                                                                               | -                     |
-| proField            | 是否使用 ProFormField 控件                 | `boolean`                                                                                                                  | `true`                |
-| onOptionItemsChange | 選項變化時的回調函數                           | `(options?: (SegmentedRawOption \| SegmentedLabeledOption)[]) => void`                                                     | -                     |
+| proField            | 是否使用 ProFormField 控件                         | `boolean`                                                                                                                  | `true`                |
+| onOptionItemsChange | 選項變化時的回調函數                               | `(options?: (SegmentedRawOption \| SegmentedLabeledOption)[]) => void`                                                     | -                     |

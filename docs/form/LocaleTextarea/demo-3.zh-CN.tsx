@@ -36,7 +36,7 @@ export default () => {
                     }
                 }}
                 onFinish={async () => {
-                    messageInvoker.success('您点击了提交按钮');
+                    messageInvoker.success('您点击了提交按钮').then(() => {});
                 }}
             >
                 <LocaleTextarea

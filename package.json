@@ -1,6 +1,6 @@
 {
     "name": "@jiovan-labs/ant-buddy-pro",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "title": "Ant Buddy Pro",
     "description": "Awesome components based on Ant Design & Ant ProComponents",
     "homepage": "https://jiovan-labs.github.io/ant-buddy-pro",
@@ -49,10 +49,11 @@
     },
     "dependencies": {
         "@ant-design/pro-components": "^3.1.15-9",
-        "@jiovan-labs/react-condition": "^2.0.0",
-        "@jiovan-labs/ts-lang-utils": "^2.0.0",
-        "@jiovan-labs/ts-multi-map": "^2.0.0",
+        "@jiovan-labs/react-condition": "^2.0.1",
+        "@jiovan-labs/ts-lang-utils": "^2.0.1",
+        "@jiovan-labs/ts-multi-map": "^2.0.1",
         "ahooks": "^3.11.0",
+        "antd": "^6.7.0",
         "antd-img-crop": "^4.30.0",
         "antd-style": "^4.1.0",
         "cron-validate": "^1.5.3",
@@ -87,7 +88,7 @@
         "typescript-eslint": "^8.72.1"
     },
     "overrides": {
-        "antd": "^6.3.7",
+        "antd": "^6.7.0",
         "less-loader": "^12.0.0",
         "react": "^19.3.1",
         "react-dom": "^19.3.1"

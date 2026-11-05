@@ -17,13 +17,14 @@
 
 import React from 'react';
 import { Divider } from 'antd';
-import { ProForm, ProFormSwitch } from '@ant-design/pro-components';
-import { SpaceBox } from '@jiovan-labs/ant-buddy-pro';
+import { ProForm, ProFormRadio, ProFormSwitch } from '@ant-design/pro-components';
+import { SpaceBox, type AxisOrientationType } from '@jiovan-labs/ant-buddy-pro';
 
 
 export default () => {
     const [boundBorder, setBoundBorder] = React.useState<boolean>(true);
     const [widthBlock, setWidthBlock] = React.useState<boolean>(true);
+    const [layout, setLayout] = React.useState<AxisOrientationType>('horizontal');
 
     return (
         <>
@@ -53,10 +54,26 @@ export default () => {
                         }}
                     />
                 </ProForm.Group>
+                <ProFormRadio.Group
+                    label='Orientation'
+                    radioType='button'
+                    fieldProps={{
+                        value: layout,
+                        buttonStyle: 'solid',
+                        onChange: (event: any) => {
+                            setLayout(event.target?.value);
+                        }
+                    }}
+                    options={[
+                        { label: 'Horizontal', value: 'horizontal' },
+                        { label: 'Vertical', value: 'vertical' },
+                    ]}
+                />
             </ProForm>
             <Divider />
             <SpaceBox
                 size='middle'
+                orientation={layout}
                 boundBorder={boundBorder}
                 widthBlock={widthBlock}
             >

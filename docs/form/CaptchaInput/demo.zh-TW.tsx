@@ -60,7 +60,7 @@ export default () => {
                     phoneName='mobile'
                     countDown={29}
                     onGenerate={() => {
-                        messageInvoker.success('驗證碼發送成功');
+                        messageInvoker.success('驗證碼發送成功').then(() => {});
                     }}
                     onTimer={count => {
                         ConsoleUtils.logTimestamp(false, false, 'CaptchaInput', 'onTimer count = ' + count);

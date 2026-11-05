@@ -545,7 +545,7 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                                 if (validateRule && !!event.target.value) {
                                     const validate = cronValidate(event.target.value, validateOptions);
                                     if (validate.isError()) {
-                                        messageInvoker.warning(ObjectUtils.firstNotNil(props?.localeProps?.invalidExpress, intlLocales.get([locale, 'invalidExpress']), intlLocales.get(['en_US', 'invalidExpress'])));
+                                        messageInvoker.warning(ObjectUtils.firstNotNil(props?.localeProps?.invalidExpress, intlLocales.get([locale, 'invalidExpress']), intlLocales.get(['en_US', 'invalidExpress']))).then(() => {});
                                     }
                                 }
                                 setIncomeExpress(event.target.value);
@@ -752,7 +752,7 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                                                         setShowSecond(checked);
                                                         const rawName = props?.name ?? props?.fieldProps?.name;
                                                         if (validateRule && rawName && form && form.getFieldValue(rawName)) {
-                                                            form.validateFields([rawName]);
+                                                            form.validateFields([rawName]).then(() => {});
                                                         }
                                                     }}
                                                 />
@@ -767,7 +767,7 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                                                         setShowYear(checked);
                                                         const rawName = props?.name ?? props?.fieldProps?.name;
                                                         if (validateRule && rawName && form && form.getFieldValue(rawName)) {
-                                                            form.validateFields([rawName]);
+                                                            form.validateFields([rawName]).then(() => {});
                                                         }
                                                     }}
                                                 />

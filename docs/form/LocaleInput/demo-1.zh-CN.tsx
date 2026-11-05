@@ -38,7 +38,7 @@ export default () => {
                 }}
                 onFinish={async (values) => {
                     ConsoleUtils.logTimestamp(false, false, 'LocaleInput', values, '提交的数据');
-                    messageInvoker.success('您点击了提交按钮');
+                    messageInvoker.success('您点击了提交按钮').then(() => {});
                 }}
             >
                 <LocaleInput

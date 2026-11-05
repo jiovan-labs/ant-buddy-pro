@@ -55,7 +55,7 @@ export default () => {
                 title='点击刷新图片'
                 handCursor={true}
                 onRefresh={() => {
-                    messageInvoker.success('图片已刷新');
+                    messageInvoker.success('图片已刷新').then(() => {});
                 }}
             />
         </>

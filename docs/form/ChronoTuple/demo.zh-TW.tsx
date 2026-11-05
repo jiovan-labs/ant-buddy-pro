@@ -18,11 +18,11 @@
 import React from 'react';
 import { Divider } from 'antd';
 import { ProForm, ProFormRadio, ProFormSwitch } from '@ant-design/pro-components';
-import { ChronoTuple, type AxisDirectionType } from '@jiovan-labs/ant-buddy-pro';
+import { ChronoTuple, type AxisOrientationType } from '@jiovan-labs/ant-buddy-pro';
 
 
 export default () => {
-    const [layout, setLayout] = React.useState<AxisDirectionType>('vertical');
+    const [layout, setLayout] = React.useState<AxisOrientationType>('vertical');
     const [widthBlock, setWidthBlock] = React.useState<boolean>(true);
 
     return (
