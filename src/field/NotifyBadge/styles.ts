@@ -50,29 +50,48 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
                         paddingRight: token.paddingXS,
                     },
 
-                    [`${token.componentCls}-tab-list`]: {
+                    [`${token.componentCls}-tab-list-wrapper`]: {
                         maxHeight: 400,
                         overflow: 'auto',
 
                         [`&::-webkit-scrollbar`]: {
                             display: 'none',
                         },
+                    },
 
-                        [`${token.antCls}-list-footer`]: {
-                            paddingBottom: 0,
-                        }
+                    [`${token.componentCls}-tab-list`]: {
+                        [`&${token.componentCls}-tab-list-bordered`]: {
+                            border: `${unit(token.lineWidth)} ${token.lineType} ${token.colorSplit}`,
+                            borderRadius: token.borderRadius,
+                        },
+
+                        // Listy 默认已为每项写入 borderBottom（文档「基础用法」效果），这里只去掉最后一项的底线
+                        [`${token.antCls}-listy-item:last-child`]: {
+                            borderBottom: 'none',
+                        },
+                    },
+
+                    [`${token.componentCls}-listy-item`]: {
+                        cursor: 'pointer',
+                        transition: 'all 0.3s',
+
+                        [`&:hover`]: {
+                            backgroundColor: token.controlItemBgActive,
+                        },
                     },
 
                     [`${token.componentCls}-list-item`]: {
-                        borderRadius: token.borderRadius,
-                        cursor: 'pointer',
-                        paddingRight: token.paddingXS,
-                        paddingLeft: token.paddingXS,
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: token.paddingXS,
                         overflow: 'hidden',
-                        transition: 'all 0.3s',
 
                         [`&&-read`]: {
                             opacity: 0.4,
+                        },
+
+                        [`&-avatar-wrapper`]: {
+                            flex: 'none',
                         },
 
                         [`&-avatar`]: {
@@ -100,6 +119,7 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
                         [`&-timestamp`]: {
                             marginTop: token.marginXXS,
                             fontSize: token.fontSizeSM,
+                            color: token.colorTextTertiary,
                         },
 
                         [`&-extra`]: {
@@ -109,14 +129,6 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
                             color: token.colorTextSecondary,
                             fontWeight: 'normal',
                         },
-
-                        [`&:hover`]: {
-                            backgroundColor: token.controlItemBgActive,
-                        },
-
-                        [`&:last-child`]: {
-                            borderBottom: 'none !important',
-                        }
                     },
 
                     [`${token.componentCls}-builtin-footer`]: {
@@ -125,9 +137,12 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
                         display: 'flex',
                         alignItems: 'start',
                         textAlign: 'center',
-                        borderTop: `${unit(token.lineWidth)} ${token.lineType} ${token.colorSplit}`,
-                        borderRadius: `0 0 ${token.borderRadius}px ${token.borderRadius}px`,
                         transition: 'all 0.3s',
+
+                        [`&${token.componentCls}-builtin-footer-bordered`]: {
+                            borderTop: `${unit(token.lineWidth)} ${token.lineType} ${token.colorSplit}`,
+                            borderRadius: `0 0 ${token.borderRadius}px ${token.borderRadius}px`,
+                        },
 
                         [`${token.componentCls}-action-button`]: {
                             display: 'flex',

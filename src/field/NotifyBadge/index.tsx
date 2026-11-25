@@ -16,12 +16,10 @@
 
 
 import React from 'react';
-import { Avatar, Badge, Dropdown, Empty, List, Tabs, type BadgeProps, type DropdownProps, type ListProps, type MenuProps, type TabsProps } from 'antd';
-import { ListItemMetaProps } from 'antd/es/list/Item';
+import { Avatar, Badge, Dropdown, Empty, Listy, Tabs, type BadgeProps, type DropdownProps, type ListyProps, type MenuProps, type TabsProps } from 'antd';
 import { type TabPlacement } from 'antd/es/tabs';
 import { BellOutlined } from '@ant-design/icons';
 import { useIntl } from '@ant-design/pro-components';
-import { If } from '@jiovan-labs/react-condition';
 import { ArrayUtils, BooleanUtils, ObjectUtils } from '@jiovan-labs/ts-lang-utils';
 import { type Tab as RcTab } from '@rc-component/tabs/es/interface';
 import { omit } from '@rc-component/util';
@@ -35,13 +33,34 @@ export type NotifyPresetStyle = WithFalse<'notice' | 'task'>;
 
 export type NotifyTabPosition = Exclude<TabPlacement, 'bottom'>;
 
-export type NotifyDataItem = Omit<ListItemMetaProps, 'children'> & {
+export type NotifyDataItem = {
     /**
      * @description The ID of the item
      * @description.zh-CN 条目的 ID
      * @description.zh-TW 條目的 ID
      */
     id?: string;
+
+    /**
+     * @description The avatar of the item (a string means an image URL, otherwise a custom node)
+     * @description.zh-CN 条目的头像（字符串表示图片地址，否则为自定义节点）
+     * @description.zh-TW 條目的頭像（字符串表示圖片地址，否則為自定義節點）
+     */
+    avatar?: React.ReactNode;
+
+    /**
+     * @description The title of the item
+     * @description.zh-CN 条目的标题
+     * @description.zh-TW 條目的標題
+     */
+    title?: React.ReactNode;
+
+    /**
+     * @description The description of the item
+     * @description.zh-CN 条目的描述
+     * @description.zh-TW 條目的描述
+     */
+    description?: React.ReactNode;
 
     /**
      * @description The extra node of the item
@@ -63,6 +82,37 @@ export type NotifyDataItem = Omit<ListItemMetaProps, 'children'> & {
      * @description.zh-TW 條目的時間戳
      */
     timestamp?: string;
+};
+
+
+export type NotifyListProps = Omit<ListyProps<any>, 'itemRender' | 'rowKey'> & {
+    /**
+     * @description The data source of the list (alias of `items`, kept for backward compatibility with Ant `List`)
+     * @description.zh-CN 列表的数据源（`items` 的别名，兼容 Ant `List`）
+     * @description.zh-TW 列表的數據源（`items` 的別名，兼容 Ant `List`）
+     */
+    dataSource?: any[];
+
+    /**
+     * @description The render function of the item (alias of `itemRender`, kept for backward compatibility with Ant `List`)
+     * @description.zh-CN 列表项的渲染函数（`itemRender` 的别名，兼容 Ant `List`）
+     * @description.zh-TW 列表項的渲染函數（`itemRender` 的別名，兼容 Ant `List`）
+     */
+    renderItem?: (item: any, index: number) => React.ReactNode;
+
+    /**
+     * @description The row key of the list
+     * @description.zh-CN 列表行的 key
+     * @description.zh-TW 列表行的 key
+     */
+    rowKey?: ListyProps<any>['rowKey'];
+
+    /**
+     * @description The footer of the list
+     * @description.zh-CN 列表的页脚
+     * @description.zh-TW 列表的頁腳
+     */
+    footer?: React.ReactNode;
 };
 
 
@@ -106,6 +156,14 @@ export type HyperlinkProps = {
 
 export type MixinTabProps = Omit<RcTab, 'children'> & {
     /**
+     * @description Whether to show a border around the list
+     * @description.zh-CN 是否给列表显示四周边框
+     * @description.zh-TW 是否為列表顯示四周边框
+     * @default false
+     */
+    bordered?: boolean;
+
+    /**
      * @description The properties of the label badge
      * @description.zh-CN 标签页徽标的属性
      * @description.zh-TW 標籤頁徽標的屬性
@@ -117,7 +175,7 @@ export type MixinTabProps = Omit<RcTab, 'children'> & {
      * @description.zh-CN 列表的属性
      * @description.zh-TW 列表的屬性
      */
-    listProps?: ListProps<any>;
+    listProps?: NotifyListProps;
 
     /**
      * @description The DOM of placeholder for the list
@@ -337,52 +395,41 @@ export const NotifyBadge: React.FC<NotifyBadgeProps> = (props?: NotifyBadgeProps
 
     const renderPresetList = (item: any, index: number, tab: MixinTabProps): React.ReactNode => {
         const avatar = !item.avatar ? undefined : (
-            <>
-                <If condition={typeof item.avatar === 'string'} validation={false}>
-                    <If.Then>
-                        <Avatar className={`${clazzPrefix}-list-item-avatar`} src={item.avatar} />
-                    </If.Then>
-                    <If.Else>
-                        <span className={`${clazzPrefix}-list-item-icon`}>{item.avatar}</span>
-                    </If.Else>
-                </If>
-            </>
+            (typeof item.avatar === 'string')
+                ? <Avatar className={`${clazzPrefix}-list-item-avatar`} src={item.avatar} />
+                : <span className={`${clazzPrefix}-list-item-icon`}>{item.avatar}</span>
         );
         return (
-            <List.Item
-                key={item.key || item.id || index}
+            <div
                 className={classnames(`${clazzPrefix}-list-item`, `${clazzPrefix}-list-item-${item.read ? 'read' : 'unread'}`)}
                 onClick={event => tab.onClick?.(event, item.key || item.id || index)}
             >
-                <List.Item.Meta
-                    className={`${clazzPrefix}-list-item-meta`}
-                    avatar={avatar}
-                    title={
-                        <div className={`${clazzPrefix}-list-item-title`}>
-                            {item.title}
-                            <If condition={item.extra} validation={false}>
-                                <div className={`${clazzPrefix}-list-item-extra`}>
-                                    {item.extra}
-                                </div>
-                            </If>
+                {!!avatar && (
+                    <div className={`${clazzPrefix}-list-item-avatar-wrapper`}>
+                        {avatar}
+                    </div>
+                )}
+                <div className={`${clazzPrefix}-list-item-meta`}>
+                    <div className={`${clazzPrefix}-list-item-title`}>
+                        {item.title}
+                        {!!item.extra && (
+                            <div className={`${clazzPrefix}-list-item-extra`}>
+                                {item.extra}
+                            </div>
+                        )}
+                    </div>
+                    {!!item.description && (
+                        <div className={`${clazzPrefix}-list-item-description`}>
+                            {item.description}
                         </div>
-                    }
-                    description={
-                        <>
-                            <If condition={item.description} validation={false}>
-                                <div className={`${clazzPrefix}-list-item-description`}>
-                                    {item.description}
-                                </div>
-                            </If>
-                            <If condition={item.timestamp} validation={false}>
-                                <div className={`${clazzPrefix}-list-item-timestamp`}>
-                                    {item.timestamp}
-                                </div>
-                            </If>
-                        </>
-                    }
-                />
-            </List.Item>
+                    )}
+                    {!!item.timestamp && (
+                        <div className={`${clazzPrefix}-list-item-timestamp`}>
+                            {item.timestamp}
+                        </div>
+                    )}
+                </div>
+            </div>
         );
     };
 
@@ -395,23 +442,23 @@ export const NotifyBadge: React.FC<NotifyBadgeProps> = (props?: NotifyBadgeProps
         return (
             <>
                 {tab.listProps?.footer}
-                <div className={`${clazzPrefix}-builtin-footer`}>
-                    <If condition={showClear} validation={false}>
+                <div className={classnames(`${clazzPrefix}-builtin-footer`, (tab.bordered ? undefined : `${clazzPrefix}-builtin-footer-bordered`))}>
+                    {showClear && (
                         <div
                             className={`${clazzPrefix}-action-button`}
                             onClick={event => tab.onClear?.(event, tab.key ?? tab.presetStyle)}
                         >
                             {ObjectUtils.firstNotNil(props?.localeProps?.clear, intlLocales.get([locale, 'clear']), intlLocales.get(['en_US', 'clear']))}
                         </div>
-                    </If>
-                    <If condition={showMore} validation={false}>
+                    )}
+                    {showMore && (
                         <div
                             className={`${clazzPrefix}-action-button`}
                             onClick={event => tab.onMore?.(event, tab.key ?? tab.presetStyle)}
                         >
                             {ObjectUtils.firstNotNil(props?.localeProps?.more, intlLocales.get([locale, 'more']), intlLocales.get(['en_US', 'more']))}
                         </div>
-                    </If>
+                    )}
                 </div>
             </>
         );
@@ -422,20 +469,26 @@ export const NotifyBadge: React.FC<NotifyBadgeProps> = (props?: NotifyBadgeProps
             return undefined;
         }
         return props.tabsProps.items.map((tab: MixinTabProps) => {
-            const empty = !tab.listProps?.dataSource || (Array.isArray(tab.listProps.dataSource) && !tab.listProps.dataSource.length);
+            const listItems = tab.listProps?.items ?? tab.listProps?.dataSource;
+            const empty = !listItems || (Array.isArray(listItems) && !listItems.length);
             const placeholder = tab.listPlaceholder ?? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />;
             const content = empty ? placeholder : (
-                <List
-                    className={classnames(`${clazzPrefix}-tab-list`, tab.listProps?.className)}
-                    {...(!tab?.listProps ? {} : omit(tab.listProps, ['className', 'footer', 'renderItem']))}
-                    footer={renderListFooter(tab)}
-                    renderItem={(item: any, index: number) => {
-                        if (tab.listProps?.renderItem) {
-                            return tab.listProps.renderItem(item, index);
-                        }
-                        return (tab.presetStyle === 'notice' || tab.presetStyle === 'task') ? renderPresetList(item, index, tab) : undefined;
-                    }}
-                />
+                <div className={`${clazzPrefix}-tab-list-wrapper`}>
+                    <Listy
+                        className={classnames(`${clazzPrefix}-tab-list`, (tab.bordered ? `${clazzPrefix}-tab-list-bordered` : undefined), tab.listProps?.className)}
+                        items={listItems}
+                        rowKey={tab.listProps?.rowKey ?? ((item: any) => item?.key ?? item?.id)}
+                        classNames={{ item: `${clazzPrefix}-listy-item` }}
+                        {...(!tab?.listProps ? {} : omit(tab.listProps, ['className', 'footer', 'renderItem', 'dataSource', 'items', 'rowKey', 'classNames']))}
+                        itemRender={(item: any, index: number) => {
+                            if (tab.listProps?.renderItem) {
+                                return tab.listProps.renderItem(item, index);
+                            }
+                            return (tab.presetStyle === 'notice' || tab.presetStyle === 'task') ? renderPresetList(item, index, tab) : undefined;
+                        }}
+                    />
+                    {renderListFooter(tab)}
+                </div>
             );
             return {
                 key: tab.key ?? tab.presetStyle,

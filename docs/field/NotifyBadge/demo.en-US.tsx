@@ -15,15 +15,23 @@
  */
 
 
-import { Empty, Tag, message as messageApi } from 'antd';
+import React from 'react';
+import { Divider, Empty, Space, Switch, Tag, Typography, message as messageApi } from 'antd';
 import { NotifyBadge, ConsoleUtils } from '@jiovan-labs/ant-buddy-pro';
 
 
 export default () => {
     const [messageInvoker, messageContext] = messageApi.useMessage();
+    const [bordered, setBordered] = React.useState<boolean>(false);
+
     return (
         <>
             {messageContext}
+            <Space style={{ marginBottom: 16 }}>
+                <Typography.Text>Bordered</Typography.Text>
+                <Switch checked={bordered} onChange={setBordered} />
+            </Space>
+            <Divider />
             <NotifyBadge
                 badgeProps={{
                     dot: true,
@@ -41,6 +49,7 @@ export default () => {
                     items: [
                         {
                             key: 'notice',
+                            bordered,
                             label: 'Notice',
                             labelBadgeProps: {
                                 size: 'small',
@@ -80,6 +89,7 @@ export default () => {
                         },
                         {
                             key: 'task',
+                            bordered,
                             label: 'Task',
                             labelBadgeProps: {
                                 size: 'small',

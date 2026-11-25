@@ -33,3 +33,20 @@ import { NotifyBadge } from '@jiovan-labs/ant-buddy-pro';
 | tabsProps       | 標簽頁的屬性             | `MixinTabsProps`                                             | -                    |
 | locale          | 組件的語言，e.g. 'zh_TW' | `string`                                                     | -                    |
 | localeProps     | 多語言屬性               | `IntlLocaleProps`                                            | -                    |
+
+## 彈出層
+
+下拉彈出層沒有固定寬度，會跟隨當前標簽頁的內容寬度變化，因此在內容長度不同的標簽頁之間切換時，寬度可能改變。若需固定寬度，可透過 `dropdownProps.styles.root` 設定——它是 [Dropdown](https://ant.design/components/dropdown-cn#semantic-dom) 的 `root` 語義插槽，作用於彈出層根節點：
+
+```tsx | pure
+<NotifyBadge
+    dropdownProps={{
+        styles: {
+            root: { width: 360 },
+        },
+    }}
+    // ...
+/>
+```
+
+組件預設在彈出層根節點上設定了 `minWidth: 320`，你可以透過 `styles.root` 覆蓋調整，以適配自己的內容。

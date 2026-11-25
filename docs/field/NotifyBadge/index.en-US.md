@@ -33,3 +33,20 @@ import { NotifyBadge } from '@jiovan-labs/ant-buddy-pro';
 | tabsProps       | The properties of the tabs                | `MixinTabsProps`                                             | -                    |
 | locale          | The locale of the component, e.g. 'en_US' | `string`                                                     | -                    |
 | localeProps     | The props of locale                       | `IntlLocaleProps`                                            | -                    |
+
+## Dropdown
+
+The dropdown popup has no fixed width and grows with the content of the active tab, so switching between tabs with different content lengths may change its width. To set a fixed width, use `dropdownProps.styles.root` (the semantic `root` of [Dropdown](https://ant.design/components/dropdown#semantic-dom)), which is applied to the popup root element:
+
+```tsx | pure
+<NotifyBadge
+    dropdownProps={{
+        styles: {
+            root: { width: 360 },
+        },
+    }}
+    // ...
+/>
+```
+
+The component sets `minWidth: 320` on the popup root by default; overriding `styles.root` lets you fine-tune the width to fit your content.
