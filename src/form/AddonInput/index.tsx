@@ -116,6 +116,9 @@ export const AddonInput: React.FC<AddonInputProps> = (props?: AddonInputProps) =
     } = props ?? {};
 
     const fieldStyle = useFieldStyle(clazzPrefix);
+    const compositionRef = React.useRef<boolean>(false);
+    const [composingValue, setComposingValue] = React.useState<string | undefined>(undefined);
+    const webkitBrowser = navigator.userAgent.indexOf('WebKit') !== -1;
 
     const addonBeforeDom = (typeof props?.addonBefore === 'function') ? props.addonBefore() : props?.addonBefore;
     const addonAfterDom = (typeof props?.addonAfter === 'function') ? props.addonAfter() : props?.addonAfter;
@@ -141,7 +144,45 @@ export const AddonInput: React.FC<AddonInputProps> = (props?: AddonInputProps) =
     const widthBlockClazz = !widthBlock ? undefined : `${clazzPrefix}-width-block`;
     const entryReadModeClazz = !entryReadMode ? undefined : `${clazzPrefix}-read-mode`;
     const entryImmutableClazz = !entryImmutable ? undefined : `${clazzPrefix}-immutable`;
-    const omitFieldProps = !props?.fieldProps ? {} : omit(props?.fieldProps, ['className', 'name', 'id', 'placeholder', 'allowClear', 'readOnly', 'disabled', 'value', 'onChange']);
+    const omitFieldProps = !props?.fieldProps ? {} : omit(props?.fieldProps, ['className', 'name', 'id', 'placeholder', 'allowClear', 'readOnly', 'disabled', 'value', 'onChange', 'onCompositionStart', 'onCompositionEnd']);
+
+    // IME 组合输入期间不写回表单，避免中文拼音的中间态覆盖输入框导致无法正常上屏
+    const setFieldValue = (value: string) => {
+        if (simpleName) {
+            form?.setFieldValue(simpleName, value);
+        }
+    };
+
+    const handleChange = (event: any) => {
+        if (compositionRef.current) {
+            // IME 组合期间用本地 state 承接输入，避免受控 value 回灌覆盖拼音
+            setComposingValue(event.target.value);
+            return;
+        }
+        // 无表单绑定时 Input 默认非受控，用本地 state 持续维护值，避免受控/非受控切换重置 DOM
+        if (!simpleName) {
+            setComposingValue(event.target.value);
+        }
+        setFieldValue(event.target.value);
+        props?.fieldProps?.onChange?.(event);
+    };
+
+    const handleCompositionStart = (event: React.CompositionEvent<HTMLInputElement>) => {
+        compositionRef.current = true;
+        props?.fieldProps?.onCompositionStart?.(event);
+    };
+
+    const handleCompositionEnd = (event: React.CompositionEvent<HTMLInputElement>) => {
+        compositionRef.current = false;
+        props?.fieldProps?.onCompositionEnd?.(event);
+        const finalValue = event.currentTarget.value;
+        // 有表单绑定时回退到 form 值；无绑定时保留本地值，避免切回非受控导致中文被清空
+        setComposingValue(simpleName ? undefined : finalValue);
+        // WebKit（Chrome）的 compositionEnd 晚于最后一次 onChange，需补写最终值
+        if (webkitBrowser) {
+            setFieldValue(finalValue);
+        }
+    };
 
     if (proField) {
         const restProps = !props ? {} : omit(props, ['className', 'name', 'allowClear', 'fieldProps', 'proFieldProps', 'clazzPrefix', 'addonBefore', 'addonAfter', 'cursorBefore', 'cursorAfter', 'paddingBefore', 'paddingAfter', 'widthBlock', 'proField']);
@@ -158,17 +199,14 @@ export const AddonInput: React.FC<AddonInputProps> = (props?: AddonInputProps) =
                             className={classnames (`${clazzPrefix}-input`, props?.fieldProps?.className)}
                             placeholder={StringUtils.join(props?.placeholder) ?? props?.fieldProps?.placeholder}
                             name={simpleName}
-                            value={entryReadMode ? (fieldValue || props?.proFieldProps?.emptyText || '-') :fieldValue}
+                            value={composingValue ?? (entryReadMode ? (fieldValue || props?.proFieldProps?.emptyText || '-') :fieldValue)}
                             allowClear={!entryImmutable && props?.allowClear !== false && props?.fieldProps?.allowClear !== false}
                             readOnly={entryReadMode || entryReadonly}
                             disabled={entryDisabled}
                             style={!inputWidth ? undefined : { width: inputWidth }}
-                            onChange={(event: any) => {
-                                if (simpleName) {
-                                    form?.setFieldValue(simpleName, event.target.value);
-                                }
-                                props?.fieldProps?.onChange?.(event);
-                            }}
+                            onChange={handleChange}
+                            onCompositionStart={handleCompositionStart}
+                            onCompositionEnd={handleCompositionEnd}
                             {...omitFieldProps}
                         />
                         {!!addonAfterDom && (
@@ -193,16 +231,13 @@ export const AddonInput: React.FC<AddonInputProps> = (props?: AddonInputProps) =
                         className={classnames (`${clazzPrefix}-input`, props?.fieldProps?.className)}
                         name={simpleName}
                         placeholder={StringUtils.join(props?.placeholder) ?? props?.fieldProps?.placeholder}
-                        value={entryReadMode ? (fieldValue || props?.proFieldProps?.emptyText || '-') :fieldValue}
+                        value={composingValue ?? (entryReadMode ? (fieldValue || props?.proFieldProps?.emptyText || '-') :fieldValue)}
                         readOnly={entryReadMode || entryReadonly}
                         disabled={entryDisabled}
                         style={!inputWidth ? undefined : { width: inputWidth }}
-                        onChange={(event: any) => {
-                            if (props?.name) {
-                                form?.setFieldValue(props.name, event.target.value);
-                            }
-                            props?.fieldProps?.onChange?.(event);
-                        }}
+                        onChange={handleChange}
+                        onCompositionStart={handleCompositionStart}
+                        onCompositionEnd={handleCompositionEnd}
                         {...omitFieldProps}
                     />
                     {!!addonAfterDom && (

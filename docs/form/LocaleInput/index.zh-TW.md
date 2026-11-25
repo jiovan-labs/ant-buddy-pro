@@ -42,9 +42,15 @@ import { LocaleInput } from '@jiovan-labs/ant-buddy-pro';
 
 <code src="./demo-3.zh-TW.tsx"></code>
 
-### Tags 無校驗，已禁用
+### Tags 無校驗，禁用
 
 <code src="./demo-4.zh-TW.tsx"></code>
+
+### 單語言模式
+
+當 `multilingual` 為 `false` 時，組件僅渲染主輸入框（無語言下拉彈層），主輸入框可正常透過輸入法輸入中文等內容。
+
+<code src="./demo-5.zh-TW.tsx"></code>
 
 ## 組件屬性
 

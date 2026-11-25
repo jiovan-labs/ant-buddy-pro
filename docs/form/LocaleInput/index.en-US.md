@@ -46,6 +46,12 @@ import { LocaleInput } from '@jiovan-labs/ant-buddy-pro';
 
 <code src="./demo-4.en-US.tsx"></code>
 
+### Monolingual mode
+
+When `multilingual` is `false`, the component renders only the main input box (no locale dropdown). The main input box supports IME input (e.g. typing Chinese) normally.
+
+<code src="./demo-5.en-US.tsx"></code>
+
 ## Properties
 
 | Property          | Description                                                                                 | Type                                                          | Default                  |

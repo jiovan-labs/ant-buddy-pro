@@ -16,7 +16,7 @@
 
 
 import React from 'react';
-import { ConfigProvider, Form, List, Popconfirm, Space, Tooltip, type InputProps, type FormRule } from 'antd';
+import { ConfigProvider, Form, Listy, Popconfirm, Space, Tooltip, type InputProps, type FormRule } from 'antd';
 import { TranslationOutlined, SelectOutlined } from '@ant-design/icons';
 import { useIntl } from '@ant-design/pro-components';
 import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext.js';
@@ -349,8 +349,13 @@ export const LocaleInput: React.FC<LocaleInputProps> = (props?: LocaleInputProps
 
     const addonEntryDom = (typeof addon === 'function') ? addon() : addon;
     const buildEntryAddonDom = (before: boolean) => {
-        return ((before && addonPos === 'before') || (!before && addonPos === 'after')) ? addonEntryDom : undefined;
+        if (!((before && addonPos === 'before') || (!before && addonPos === 'after'))) {
+            return undefined;
+        }
+        // 单语言模式下没有弹层可打开，addon 呈灰色禁用态
+        return multilingual ? addonEntryDom : <span className={`${clazzPrefix}-entry-addon-disabled`}>{addonEntryDom}</span>;
     };
+    const entryAddonCursor = multilingual ? 'pointer' : 'not-allowed';
 
     // noinspection DuplicatedCode
     const renderEntryReadonly = (dom: React.ReactNode) => (
@@ -380,8 +385,8 @@ export const LocaleInput: React.FC<LocaleInputProps> = (props?: LocaleInputProps
                     <AddonInput
                         addonBefore={buildEntryAddonDom(true)}
                         addonAfter={buildEntryAddonDom(false)}
-                        cursorBefore={addonPos === 'before' ? 'pointer' : undefined}
-                        cursorAfter={addonPos === 'after' ? 'pointer' : undefined}
+                        cursorBefore={addonPos === 'before' ? entryAddonCursor : undefined}
+                        cursorAfter={addonPos === 'after' ? entryAddonCursor : undefined}
                         fieldProps={{
                             className: classnames(`${clazzPrefix}-entry-${fieldId}`, props?.className ?? props?.fieldProps?.className),
                             allowClear: props?.allowClear || props?.fieldProps?.allowClear,
@@ -406,8 +411,8 @@ export const LocaleInput: React.FC<LocaleInputProps> = (props?: LocaleInputProps
                         placeholder={StringUtils.join(props?.placeholder) ?? props?.fieldProps?.placeholder}
                         addonBefore={buildEntryAddonDom(true)}
                         addonAfter={buildEntryAddonDom(false)}
-                        cursorBefore={addonPos === 'before' ? 'pointer' : undefined}
-                        cursorAfter={addonPos === 'after' ? 'pointer' : undefined}
+                        cursorBefore={addonPos === 'before' ? entryAddonCursor : undefined}
+                        cursorAfter={addonPos === 'after' ? entryAddonCursor : undefined}
                         proField={proField}
                         // @ts-ignore
                         onChange={(event: any) => {
@@ -650,15 +655,15 @@ export const LocaleInput: React.FC<LocaleInputProps> = (props?: LocaleInputProps
                     }, 200);
                 }}
             >
-                <List
-                    className={`${clazzPrefix}-popup-list`}
-                    dataSource={tagInputs}
-                    bordered={true}
-                    size='small'
-                    renderItem={item => (
-                        <List.Item className={`${clazzPrefix}-popup-list-item`}>
+                <Listy
+                    className={classnames(`${clazzPrefix}-popup-list`, `${clazzPrefix}-popup-list-bordered`)}
+                    items={tagInputs}
+                    rowKey={(_item: React.ReactNode, index: number) => index}
+                    classNames={{ item: `${clazzPrefix}-popup-listy-item` }}
+                    itemRender={(item: React.ReactNode) => (
+                        <div className={`${clazzPrefix}-popup-list-item`}>
                             {item}
-                        </List.Item>
+                        </div>
                     )}
                 />
             </div>
