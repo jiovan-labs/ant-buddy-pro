@@ -309,6 +309,7 @@ export const LocaleInput: React.FC<LocaleInputProps> = (props?: LocaleInputProps
     const [fieldId] = React.useState<string>(NanoidUtils.getPopularId());
     const [triggerOpen, setTriggerOpen] = React.useState<boolean>(props?.defaultOpen ?? false);
     const [triggerOffset, setTriggerOffset] = React.useState<number>(4);
+    const [confirmOpen, setConfirmOpen] = React.useState<boolean>();
     const compositionRef = React.useRef<boolean>(false);
     const closeTimerRef = React.useRef<NodeJS.Timeout | null>(null);
     // noinspection DuplicatedCode
@@ -432,8 +433,6 @@ export const LocaleInput: React.FC<LocaleInputProps> = (props?: LocaleInputProps
     if (!multilingual || (!props?.popupInputProps && !props?.popupQuickTags)) {
         return buildEntryDom();
     }
-
-    const [confirmOpen, setConfirmOpen] = React.useState<boolean>();
 
     const entryImmutable = editContext.mode === 'read' || props?.proFieldProps?.mode === 'read' || props?.fieldProps?.readOnly || props?.proFieldProps?.readonly || props?.disabled || props?.fieldProps?.disabled;
 

@@ -116,23 +116,28 @@ export const RemoteField: React.ForwardRefExoticComponent<RemoteFieldProps & Rea
         }
     }));
 
-    if (props?.request) {
-        const { run } = useDebounceFn(props.request, props?.debounceTime ?? 0);
+    // 注意：hooks 不能被包在条件分支中，否则条件切换时会触发 "Rendered fewer hooks than expected"
+    const { run } = useDebounceFn((params?: Record<string, any>) => {
+        return !props?.request ? Promise.resolve(undefined) : props.request(params);
+    }, props?.debounceTime ?? 0);
 
-        React.useEffect(() => {
-            if (autoStart) {
-                run(props?.params).then((data: any) => {
-                    setOutcome(data);
-                }).catch(() => {});
-            }
-        }, []);
+    React.useEffect(() => {
+        if (!props?.request || !autoStart) {
+            return;
+        }
+        run(props?.params).then((data: any) => {
+            setOutcome(data);
+        }).catch(() => {});
+    }, []);
 
-        React.useEffect(() => {
-            run(props?.params).then((data: any) => {
-                setOutcome(data);
-            }).catch(() => {});
-        }, [refreshId]);
-    }
+    React.useEffect(() => {
+        if (!props?.request) {
+            return;
+        }
+        run(props?.params).then((data: any) => {
+            setOutcome(data);
+        }).catch(() => {});
+    }, [refreshId]);
 
     return (
         <div

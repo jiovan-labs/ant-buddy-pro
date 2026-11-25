@@ -257,25 +257,24 @@ export const MenuTabs: React.FC<MenuTabsProps> = (props?: MenuTabsProps) => {
     const [menuMode, setMenuMode] = React.useState<MenuMode>('inline');
     const fieldStyle = useFieldStyle(clazzPrefix);
 
-    if (adjustLayoutProps?.adjustOnResize !== false) {
-        const handleWindowResize = () => {
-            requestAnimationFrame(() => {
-                if (!fieldRef.current) {
-                    return;
-                }
-                let shouldMode: MenuMode = 'inline';
-                const { offsetWidth } = fieldRef.current;
-                if (offsetWidth > (adjustLayoutProps?.minOffsetWidth ?? 400) && fieldRef.current?.offsetWidth < (adjustLayoutProps?.maxOffsetWidth ?? 640)) {
-                    shouldMode = 'horizontal';
-                }
-                if (offsetWidth > (adjustLayoutProps?.minOffsetWidth ?? 400) && window.innerWidth < (adjustLayoutProps?.maxWindowWidth ?? 768)) {
-                    shouldMode = 'horizontal';
-                }
-                setMenuMode(shouldMode);
-            });
-        };
-        useEventListener('resize', handleWindowResize);
-    }
+    // 注意：hooks 不能被包在条件分支中，否则条件切换时会触发 "Rendered fewer hooks than expected"
+    const handleWindowResize = () => {
+        requestAnimationFrame(() => {
+            if (!fieldRef.current) {
+                return;
+            }
+            let shouldMode: MenuMode = 'inline';
+            const { offsetWidth } = fieldRef.current;
+            if (offsetWidth > (adjustLayoutProps?.minOffsetWidth ?? 400) && fieldRef.current?.offsetWidth < (adjustLayoutProps?.maxOffsetWidth ?? 640)) {
+                shouldMode = 'horizontal';
+            }
+            if (offsetWidth > (adjustLayoutProps?.minOffsetWidth ?? 400) && window.innerWidth < (adjustLayoutProps?.maxWindowWidth ?? 768)) {
+                shouldMode = 'horizontal';
+            }
+            setMenuMode(shouldMode);
+        });
+    };
+    useEventListener('resize', handleWindowResize, { enable: adjustLayoutProps?.adjustOnResize !== false });
 
     const buildTabsDom = () => {
         if (!props?.menuProps?.items || !props.menuProps.items.length) {

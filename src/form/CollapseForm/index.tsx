@@ -212,10 +212,8 @@ export const CollapseForm: React.ForwardRefExoticComponent<CollapseFormProps & R
             setFormOpen(false);
         }
     };
-
-    if (closeOnBlur) {
-        useEventListener(['keydown', 'mousedown'], restoreLayout);
-    }
+    // 注意：hooks 不能被包在条件分支中，否则条件切换时会触发 "Rendered fewer hooks than expected"
+    useEventListener(['keydown', 'mousedown'], restoreLayout, { enable: closeOnBlur });
 
     const buildEntryDom = () => {
         if (formOpen) {

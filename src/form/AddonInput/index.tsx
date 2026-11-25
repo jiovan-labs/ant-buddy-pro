@@ -133,7 +133,10 @@ export const AddonInput: React.FC<AddonInputProps> = (props?: AddonInputProps) =
 
     const simpleName = props?.name ?? props?.fieldProps?.name;
     const fieldName = !simpleName ? undefined : (formListContext?.listName ? [...formListContext.listName, simpleName] : simpleName);
-    const fieldValue = (simpleName && form) ? Form.useWatch(fieldName, form) : props?.fieldProps?.value;
+    // 注意：useWatch 必须无条件调用（hooks 数量恒定），未绑定表单时使用内部实例与占位字段名，其返回值被忽略
+    const [fallbackForm] = Form.useForm();
+    const watchedValue = Form.useWatch(fieldName ?? '__abp_watch_placeholder__', form ?? fallbackForm);
+    const fieldValue = !simpleName ? props?.fieldProps?.value : watchedValue;
     const inputWidth = !widthBlock ? undefined : (PropUtils.calculateWidth(props?.width ?? (typeof props?.fieldProps?.style?.width === 'string' ? props.fieldProps.style.width : undefined)));
 
     const entryReadMode = editContext.mode === 'read' || props?.proFieldProps?.mode === 'read';

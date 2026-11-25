@@ -122,7 +122,6 @@ export const StretchInput: React.FC<StretchInputProps> = (props?: StretchInputPr
             setStretched(false);
         }
     };
-
     useEventListener(['keydown', 'mousedown'], restoreLayout);
 
     const handleInputFocus = (event: any) => {

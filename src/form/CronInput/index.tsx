@@ -563,10 +563,6 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
         }
     };
 
-    if (entryImmutable) {
-        return buildEntryDom();
-    }
-
     // noinspection DuplicatedCode
     const handleWindowResize = () => {
         const inspect = document.querySelector<HTMLDivElement>(`.${clazzPrefix}-entry-${fieldId}`);
@@ -576,7 +572,12 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
             StyleUtils.addStyle(sponsor, 'min-width', `${inspect.offsetWidth}px`);
         }
     };
+    // 注意：hooks 必须位于任何提前返回之前，否则条件切换时会触发 "Rendered fewer hooks than expected"
     useEventListener('resize', handleWindowResize);
+
+    if (entryImmutable) {
+        return buildEntryDom();
+    }
 
     const buildPopupDom = () => {
         const tabItems: CardTabsProps['items'] = [

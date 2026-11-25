@@ -103,27 +103,32 @@ export const SegmentRadio: React.FC<SegmentRadioProps> = (props?: SegmentRadioPr
         return [...rawOptions, ...enumOptions];
     });
 
-    if (props?.request && props?.requestOptionPlace !== false) {
-        const { run } = useDebounceFn(props.request, props?.debounceTime ?? 0);
-        React.useEffect(() => {
-            run(props?.params).then((values?: (SegmentedRawOption | SegmentedLabeledOption)[]) => {
-                // noinspection DuplicatedCode
-                if (!values) {
-                    if (props?.requestOptionPlace === 'override') {
-                        setOptionItems(undefined);
-                    }
-                    return;
+    // 注意：hooks 不能被包在条件分支中，否则条件切换时会触发 "Rendered fewer hooks than expected"
+    const { run } = useDebounceFn((params?: Record<string, any>) => {
+        return !props?.request ? Promise.resolve(undefined) : props.request(params);
+    }, props?.debounceTime ?? 0);
+
+    React.useEffect(() => {
+        if (!props?.request || props?.requestOptionPlace === false) {
+            return;
+        }
+        run(props?.params).then((values?: (SegmentedRawOption | SegmentedLabeledOption)[]) => {
+            // noinspection DuplicatedCode
+            if (!values) {
+                if (props?.requestOptionPlace === 'override') {
+                    setOptionItems(undefined);
                 }
-                if (props?.requestOptionPlace === undefined || props?.requestOptionPlace === 'override') {
-                    setOptionItems(values);
-                } else if (props?.requestOptionPlace === 'before') {
-                    setOptionItems([...values, ...(optionItems ?? [])]);
-                } else if (props?.requestOptionPlace === 'after') {
-                    setOptionItems([...(optionItems ?? []), ...values]);
-                }
-            }).catch(() => {});
-        }, []);
-    }
+                return;
+            }
+            if (props?.requestOptionPlace === undefined || props?.requestOptionPlace === 'override') {
+                setOptionItems(values);
+            } else if (props?.requestOptionPlace === 'before') {
+                setOptionItems([...values, ...(optionItems ?? [])]);
+            } else if (props?.requestOptionPlace === 'after') {
+                setOptionItems([...(optionItems ?? []), ...values]);
+            }
+        }).catch(() => {});
+    }, []);
 
     React.useEffect(() => {
         props?.onOptionItemsChange?.(optionItems);

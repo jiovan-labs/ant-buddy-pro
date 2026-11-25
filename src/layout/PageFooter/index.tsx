@@ -220,11 +220,12 @@ export const PageFooter: React.FC<PageFooterProps> = (props?: PageFooterProps) =
         presetStyle = 'default',
     } = props ?? {};
 
+    // 注意：hooks 必须位于任何提前返回之前，否则条件切换时会触发 "Rendered fewer hooks than expected"
+    const fieldStyle = useFieldStyle(clazzPrefix);
+
     if ((!props?.links || !props.links.length) && !props?.copyright) {
         return null;
     }
-
-    const fieldStyle = useFieldStyle(clazzPrefix);
 
     return (
         <Layout.Footer

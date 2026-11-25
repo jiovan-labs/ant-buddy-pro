@@ -214,7 +214,11 @@ const CaptchaInputField: React.ForwardRefExoticComponent<CaptchaInputProps & Rea
             return timing;
         },
         startTimer: (): void => {
-            validateDependFields().then(() => {
+            validateDependFields().then((validated) => {
+                // validateDependFields 通过返回值表示校验结果，校验失败时不能启动倒计时
+                if (!validated) {
+                    return;
+                }
                 setTiming(true);
             }).catch(() => {});
         },
@@ -250,7 +254,9 @@ const CaptchaInputField: React.ForwardRefExoticComponent<CaptchaInputProps & Rea
         return [props?.phoneName, props?.dependName].flat().filter((item: any) => !!item);
     }, [props?.phoneName, props?.dependName]);
 
-    const watchValues = !props?.autoValidate ? [] : ProForm.useWatch([], { form, preserve: true });
+    // 注意：useWatch 必须无条件调用（hooks 数量恒定），无表单实例时使用内部实例
+    const [fallbackForm] = Form.useForm();
+    const watchValues = ProForm.useWatch([], { form: form ?? fallbackForm, preserve: true });
 
     const checkSubmittable = () => {
         if (ArrayUtils.isNotEmpty(watchFields)) {

@@ -245,38 +245,44 @@ const TagInputField: React.ForwardRefExoticComponent<TagInputProps & React.RefAt
         }
     }));
 
-    if (props?.compactMargin) {
-        React.useLayoutEffect(() => {
-            const parentClazz = configContext.getPrefixCls('form-item');
-            const targetClazz = `${clazzPrefix}-compact-margin`;
-            fieldRef.current?.closest(`.${parentClazz}`)?.classList?.add(targetClazz);
-        }, []);
-    }
+    // 注意：hooks 不能被包在条件分支中，否则条件切换时会触发 "Rendered fewer hooks than expected"
+    React.useLayoutEffect(() => {
+        if (!props?.compactMargin) {
+            return;
+        }
+        const parentClazz = configContext.getPrefixCls('form-item');
+        const targetClazz = `${clazzPrefix}-compact-margin`;
+        fieldRef.current?.closest(`.${parentClazz}`)?.classList?.add(targetClazz);
+    }, []);
 
-    if (props?.request && props?.requestOptionPlace !== false) {
-        const { run } = useDebounceFn(props.request, props?.debounceTime ?? 0);
-        React.useEffect(() => {
-            run(props?.params).then((values?: (string | number | TextTagProps)[]) => {
-                if (!values) {
-                    if (props?.requestOptionPlace === 'override') {
-                        setTagContents(null);
-                    }
-                    return;
+    const { run } = useDebounceFn((params?: Record<string, any>) => {
+        return !props?.request ? Promise.resolve(undefined) : props.request(params);
+    }, props?.debounceTime ?? 0);
+
+    React.useEffect(() => {
+        if (!props?.request || props?.requestOptionPlace === false) {
+            return;
+        }
+        run(props?.params).then((values?: (string | number | TextTagProps)[]) => {
+            if (!values) {
+                if (props?.requestOptionPlace === 'override') {
+                    setTagContents(null);
                 }
-                const result = [...new Set(values?.map(item => {
-                    return (typeof item === 'string' || typeof item === 'number') ? item : item.content;
-                }))] as (string | number)[];
-                ConsoleUtils.warn(result.length === values.length, true, 'TagInput', `Field '${props?.name}' prop 'request' must includes unique response`);
-                if (props?.requestOptionPlace === undefined || props?.requestOptionPlace === 'override') {
-                    setTagContents(result);
-                } else if (props?.requestOptionPlace === 'before') {
-                    setTagContents([...result, ...(tagContents ?? [])]);
-                } else if (props?.requestOptionPlace === 'after') {
-                    setTagContents([...(tagContents ?? []), ...result]);
-                }
-            }).catch(() => {});
-        }, []);
-    }
+                return;
+            }
+            const result = [...new Set(values?.map(item => {
+                return (typeof item === 'string' || typeof item === 'number') ? item : item.content;
+            }))] as (string | number)[];
+            ConsoleUtils.warn(result.length === values.length, true, 'TagInput', `Field '${props?.name}' prop 'request' must includes unique response`);
+            if (props?.requestOptionPlace === undefined || props?.requestOptionPlace === 'override') {
+                setTagContents(result);
+            } else if (props?.requestOptionPlace === 'before') {
+                setTagContents([...result, ...(tagContents ?? [])]);
+            } else if (props?.requestOptionPlace === 'after') {
+                setTagContents([...(tagContents ?? []), ...result]);
+            }
+        }).catch(() => {});
+    }, []);
 
     React.useEffect(() => {
         setInputName(inputVisible ? fieldId : undefined);

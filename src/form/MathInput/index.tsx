@@ -140,7 +140,10 @@ export const MathInput: React.FC<MathInputProps> = (props?: MathInputProps) => {
 
     const [fieldId] = React.useState<string>(NanoidUtils.getPopularId());
     const fieldName = !props?.name ? undefined : [...(formListContext?.listName ?? []), props.name];
-    const fieldValue = (props?.name && form) ? Form.useWatch(fieldName, form) : props?.value;
+    // 注意：useWatch 必须无条件调用（hooks 数量恒定），未绑定表单时使用内部实例与占位字段名，其返回值被忽略
+    const [fallbackForm] = Form.useForm();
+    const watchedValue = Form.useWatch(fieldName ?? '__abp_watch_placeholder__', form ?? fallbackForm);
+    const fieldValue = !props?.name ? props?.value : watchedValue;
     const containerRef = React.useRef<HTMLDivElement>(null);
     const fieldRef = React.useRef<any>(null);
     const fieldStyle = useFieldStyle(clazzPrefix);
