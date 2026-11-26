@@ -22,10 +22,13 @@ import { CronInput, ConsoleUtils } from '@jiovan-labs/ant-buddy-pro';
 
 
 export default () => {
+    // noinspection DuplicatedCode
     const [messageInvoker, messageContext] = messageApi.useMessage();
     const [tabPos, setTabPos] = React.useState<'top' | 'bottom'>('top');
-    const [allowSecond, setAllowSecond] = React.useState(true);
-    const [allowYear, setAllowYear] = React.useState(true);
+    const [showSecond, setShowSecond] = React.useState(false);
+    const [showYear, setShowYear] = React.useState(false);
+    const [monthAlias, setMonthAlias] = React.useState(false);
+    const [weekAlias, setWeekAlias] = React.useState(true);
     const [allowOkEcho, setAllowOkEcho] = React.useState(true);
     const [proField, setProField] = React.useState<boolean>(true);
 
@@ -55,21 +58,39 @@ export default () => {
                 />
                 <ProForm.Group>
                     <ProFormSwitch
-                        label='Allow Second'
+                        label='Show Second'
                         checkedChildren='True'
                         unCheckedChildren='False'
                         fieldProps={{
-                            checked: allowSecond,
-                            onChange: setAllowSecond,
+                            checked: showSecond,
+                            onChange: setShowSecond,
                         }}
                     />
                     <ProFormSwitch
-                        label='Allow Year'
+                        label='Show Year'
                         checkedChildren='True'
                         unCheckedChildren='False'
                         fieldProps={{
-                            checked: allowYear,
-                            onChange: setAllowYear,
+                            checked: showYear,
+                            onChange: setShowYear,
+                        }}
+                    />
+                    <ProFormSwitch
+                        label='Month Alias'
+                        checkedChildren='True'
+                        unCheckedChildren='False'
+                        fieldProps={{
+                            checked: monthAlias,
+                            onChange: setMonthAlias,
+                        }}
+                    />
+                    <ProFormSwitch
+                        label='Week Alias'
+                        checkedChildren='True'
+                        unCheckedChildren='False'
+                        fieldProps={{
+                            checked: weekAlias,
+                            onChange: setWeekAlias,
                         }}
                     />
                     <ProFormSwitch
@@ -112,8 +133,10 @@ export default () => {
                     name='foobar'
                     label='Demo field'
                     placeholder='Please input this field'
-                    allowSecond={allowSecond}
-                    allowYear={allowYear}
+                    showSecond={showSecond}
+                    showYear={showYear}
+                    monthAlias={monthAlias}
+                    weekAlias={weekAlias}
                     allowOkEcho={allowOkEcho}
                     tabsProps={{
                         tabPlacement: tabPos,

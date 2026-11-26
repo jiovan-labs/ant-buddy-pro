@@ -19,7 +19,6 @@ import { ReadonlyMultiKeyMap } from '@jiovan-labs/ts-multi-map';
 
 
 export const intlLocales = ReadonlyMultiKeyMap.of([
-    [['en_US', 'semanticAlias'], 'Alias'],
     [['en_US', 'everyMonth'], 'Every month'],
     [['en_US', 'fromToPrefix'], 'Every month between month'],
     [['en_US', 'fromToMiddle'], 'and month'],
@@ -29,7 +28,6 @@ export const intlLocales = ReadonlyMultiKeyMap.of([
     [['en_US', 'fromIntervalSuffix'], 'month(s)'],
     [['en_US', 'specificMonth'], 'Specific month(s)'],
 
-    [['zh_CN', 'semanticAlias'], '别名'],
     [['zh_CN', 'everyMonth'], '每月'],
     [['zh_CN', 'fromToPrefix'], '每月，从第'],
     [['zh_CN', 'fromToMiddle'], '月，到第'],
@@ -39,7 +37,6 @@ export const intlLocales = ReadonlyMultiKeyMap.of([
     [['zh_CN', 'fromIntervalSuffix'], '月'],
     [['zh_CN', 'specificMonth'], '指定的月'],
 
-    [['zh_TW', 'semanticAlias'], '别名'],
     [['zh_TW', 'everyMonth'], '每月'],
     [['zh_TW', 'fromToPrefix'], '每月，從第'],
     [['zh_TW', 'fromToMiddle'], '月，到第'],

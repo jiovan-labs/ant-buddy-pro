@@ -16,12 +16,11 @@
 
 
 import React from 'react';
-import { Form, Checkbox, InputNumber, Radio, Switch, Space, type RadioChangeEvent, type CheckboxOptionType } from 'antd';
+import { Form, Checkbox, InputNumber, Radio, Space, type RadioChangeEvent, type CheckboxOptionType } from 'antd';
 import { useIntl } from '@ant-design/pro-components';
 import { type ValueType as RcValueType } from '@rc-component/input-number';
 import { MapUtils, NanoidUtils, NumberUtils, ObjectUtils, RegexUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import classnames from 'classnames';
-import { BadgeRibbon } from '@/field/BadgeRibbon';
 import { CronInputContext } from '@/form/CronInput/context';
 import { intlLocales } from './locales';
 import { useFieldStyle } from './styles';
@@ -57,13 +56,6 @@ export enum EntryChoiceType {
 
 
 export type IntlLocaleProps = {
-    /**
-     * @description Alias
-     * @description.zh-CN 别名
-     * @description.zh-TW 別名
-     */
-    semanticAlias?: string;
-
     /**
      * @description Every Month
      * @description.zh-CN 每月
@@ -146,19 +138,12 @@ export type MonthPanelProps = {
     containerStyle?: React.CSSProperties;
 
     /**
-     * @description Whether the alias is allowed or not
-     * @description.zh-CN 是否使用别名
-     * @description.zh-TW 是否使用別名
-     * @default true
+     * @description Whether to use the semantic alias (e.g. `JAN`) instead of the numeric value (e.g. `1`)
+     * @description.zh-CN 是否使用语义别名（如 `JAN`），否则使用数字（如 `1`）
+     * @description.zh-TW 是否使用語義別名（如 `JAN`），否則使用數字（如 `1`）
+     * @default false
      */
-    allowAlias?: boolean;
-
-    /**
-     * @description Whether the alias is default show or not
-     * @description.zh-CN 是否默认显示别名
-     * @description.zh-TW 是否默認顯示别名
-     */
-    defaultShowAlias?: boolean;
+    alias?: boolean;
 
     /**
      * @description The locale of the component, e.g. 'en_US'
@@ -198,12 +183,11 @@ export const MonthPanel: React.ForwardRefExoticComponent<MonthPanelProps & React
 
     // Initialize the default props
     const {
-        allowAlias = true,
+        alias = false,
         locale = intlType.locale,
     } = props ?? {};
 
     const compositionRef = React.useRef<boolean>(false);
-    const [showAlias, setShowAlias] = React.useState<boolean>(props?.defaultShowAlias ?? false);
     // noinspection DuplicatedCode
     const [entryChoice, setEntryChoice] = React.useState<EntryChoiceType>();
     const [fromToStart, setFromToStart] = React.useState<RcValueType | null>();
@@ -232,7 +216,7 @@ export const MonthPanel: React.ForwardRefExoticComponent<MonthPanelProps & React
                     break;
                 }
                 // @ts-ignore
-                setUnitExpress((allowAlias && showAlias) ? `${monthAliases.get(fromToStart.toString())}-${monthAliases.get(fromToEnd.toString())}` : `${fromToStart}-${fromToEnd}`);
+                setUnitExpress(alias ? `${monthAliases.get(fromToStart.toString())}-${monthAliases.get(fromToEnd.toString())}` : `${fromToStart}-${fromToEnd}`);
                 break;
             case EntryChoiceType.FROM_INTERVAL:
                 if (ObjectUtils.anyEmpty([fromIntervalStart, fromIntervalStep])) {
@@ -240,19 +224,19 @@ export const MonthPanel: React.ForwardRefExoticComponent<MonthPanelProps & React
                     break;
                 }
                 // @ts-ignore
-                setUnitExpress((allowAlias && showAlias) ? `${monthAliases.get(fromIntervalStart.toString())}/${fromIntervalStep}` : `${fromIntervalStart}/${fromIntervalStep}`);
+                setUnitExpress(alias ? `${monthAliases.get(fromIntervalStart.toString())}/${fromIntervalStep}` : `${fromIntervalStart}/${fromIntervalStep}`);
                 break;
             case EntryChoiceType.SPECIFY_MONTH:
                 if (!specificMonths || !specificMonths.length) {
                     setUnitExpress(undefined);
                     break;
                 }
-                setUnitExpress(StringUtils.join((!allowAlias || !showAlias) ? specificMonths : specificMonths.map(item => monthAliases.get(item.toString())), ','));
+                setUnitExpress(StringUtils.join(!alias ? specificMonths : specificMonths.map(item => monthAliases.get(item.toString())), ','));
                 break;
             default:
                 break;
         }
-    }, [entryChoice, fromToStart, fromToEnd, fromIntervalStart, fromIntervalStep, specificMonths, showAlias]);
+    }, [entryChoice, fromToStart, fromToEnd, fromIntervalStart, fromIntervalStep, specificMonths, alias]);
 
     // noinspection DuplicatedCode
     React.useEffect(() => {
@@ -302,170 +286,151 @@ export const MonthPanel: React.ForwardRefExoticComponent<MonthPanelProps & React
             className={classnames(clazzPrefix, fieldStyle.hashId, props?.containerClazz)}
             style={props?.containerStyle}
         >
-            <BadgeRibbon
-                text={!allowAlias ? undefined : (
-                    <Switch
-                        className={`${clazzPrefix}-switch-alias`}
-                        checked={showAlias}
-                        disabled={props?.disabled}
-                        size='small'
-                        checkedChildren={ObjectUtils.firstNotNil(props?.localeProps?.semanticAlias, intlLocales.get([locale, 'semanticAlias']), intlLocales.get(['en_US', 'semanticAlias']))}
-                        unCheckedChildren={ObjectUtils.firstNotNil(props?.localeProps?.semanticAlias, intlLocales.get([locale, 'semanticAlias']), intlLocales.get(['en_US', 'semanticAlias']))}
-                        onChange={setShowAlias}
-                    />
-                )}
-                transparent={true}
-                style={{
-                    marginTop: -20,
-                    paddingRight: 0,
-                }}
+            <Form
+                name={`${clazzPrefix}-${entryContext?.fieldId ?? NanoidUtils.getPopularId()}`}
+                disabled={props?.disabled}
+                onCompositionStart={() => compositionRef.current = true}
+                onCompositionEnd={() => compositionRef.current = false}
             >
-                <Form
-                    name={`${clazzPrefix}-${entryContext?.fieldId ?? NanoidUtils.getPopularId()}`}
-                    disabled={props?.disabled}
-                    onCompositionStart={() => compositionRef.current = true}
-                    onCompositionEnd={() => compositionRef.current = false}
-                >
-                    <Form.Item noStyle={true}>
-                        <Radio.Group
-                            name='entryChoice'
-                            value={entryChoice}
-                            onChange={(event: RadioChangeEvent) => setEntryChoice(event.target.value)}
-                        >
-                            <Space orientation='vertical'>
-                                <Radio value={EntryChoiceType.EVERY_MONTH}>
-                                    {ObjectUtils.firstNotNil(props?.localeProps?.everyMonth, intlLocales.get([locale, 'everyMonth']), intlLocales.get(['en_US', 'everyMonth']))}
-                                </Radio>
-                                <Radio
-                                    value={EntryChoiceType.FROM_TO}
-                                    onClick={() => {
-                                        window.setTimeout(() => setEntryChoice(EntryChoiceType.FROM_TO), 80);
-                                    }}
-                                >
-                                    <Space>
-                                        {ObjectUtils.firstNotNil(props?.localeProps?.fromToPrefix, intlLocales.get([locale, 'fromToPrefix']), intlLocales.get(['en_US', 'fromToPrefix']))}
-                                        <Form.Item noStyle={true} shouldUpdate={true}>
-                                            {() => {
-                                                return (
-                                                    <InputNumber
-                                                        name='fromToStart'
-                                                        autoComplete='off'
-                                                        disabled={entryChoice !== EntryChoiceType.FROM_TO}
-                                                        min={1}
-                                                        max={12}
-                                                        step={1}
-                                                        size='small'
-                                                        status={(entryChoice === EntryChoiceType.FROM_TO && (ObjectUtils.isEmpty(fromToStart) || NumberUtils.compare(fromToStart, fromToEnd, true) > 0)) ? 'error' : undefined}
-                                                        value={fromToStart}
-                                                        onChange={setFromToStart}
-                                                    />
-                                                );
-                                            }}
-                                        </Form.Item>
-                                        {ObjectUtils.firstNotNil(props?.localeProps?.fromToMiddle, intlLocales.get([locale, 'fromToMiddle']), intlLocales.get(['en_US', 'fromToMiddle']))}
-                                        <Form.Item noStyle={true} shouldUpdate={true}>
-                                            {() => {
-                                                return (
-                                                    <InputNumber
-                                                        name='fromToEnd'
-                                                        autoComplete='off'
-                                                        disabled={entryChoice !== EntryChoiceType.FROM_TO}
-                                                        min={fromToStart ?? 0}
-                                                        max={12}
-                                                        step={1}
-                                                        size='small'
-                                                        status={(entryChoice === EntryChoiceType.FROM_TO && (ObjectUtils.isEmpty(fromToEnd) || NumberUtils.compare(fromToStart, fromToEnd, true) > 0)) ? 'error' : undefined}
-                                                        value={fromToEnd}
-                                                        onChange={setFromToEnd}
-                                                    />
-                                                );
-                                            }}
-                                        </Form.Item>
-                                        {ObjectUtils.firstNotNil(props?.localeProps?.fromToSuffix, intlLocales.get([locale, 'fromToSuffix']), intlLocales.get(['en_US', 'fromToSuffix']))}
-                                    </Space>
-                                </Radio>
-                                <Radio
-                                    value={EntryChoiceType.FROM_INTERVAL}
-                                    onClick={() => {
-                                        window.setTimeout(() => setEntryChoice(EntryChoiceType.FROM_INTERVAL), 80);
-                                    }}
-                                >
-                                    <Space>
-                                        {ObjectUtils.firstNotNil(props?.localeProps?.fromIntervalPrefix, intlLocales.get([locale, 'fromIntervalPrefix']), intlLocales.get(['en_US', 'fromIntervalPrefix']))}
-                                        <Form.Item noStyle={true} shouldUpdate={true}>
-                                            {() => {
-                                                return (
-                                                    <InputNumber
-                                                        name='fromIntervalStart'
-                                                        autoComplete='off'
-                                                        disabled={entryChoice !== EntryChoiceType.FROM_INTERVAL}
-                                                        min={1}
-                                                        max={12}
-                                                        step={1}
-                                                        size='small'
-                                                        status={(entryChoice === EntryChoiceType.FROM_INTERVAL && ObjectUtils.isEmpty(fromIntervalStart)) ? 'error' : undefined}
-                                                        value={fromIntervalStart}
-                                                        onChange={setFromIntervalStart}
-                                                    />
-                                                );
-                                            }}
-                                        </Form.Item>
-                                        {ObjectUtils.firstNotNil(props?.localeProps?.fromIntervalMiddle, intlLocales.get([locale, 'fromIntervalMiddle']), intlLocales.get(['en_US', 'fromIntervalMiddle']))}
-                                        <Form.Item noStyle={true} shouldUpdate={true}>
-                                            {() => {
-                                                return (
-                                                    <InputNumber
-                                                        name='fromIntervalStep'
-                                                        autoComplete='off'
-                                                        disabled={entryChoice !== EntryChoiceType.FROM_INTERVAL}
-                                                        min={1}
-                                                        max={12}
-                                                        step={1}
-                                                        size='small'
-                                                        status={(entryChoice === EntryChoiceType.FROM_INTERVAL && ObjectUtils.isEmpty(fromIntervalStep)) ? 'error' : undefined}
-                                                        value={fromIntervalStep}
-                                                        onChange={setFromIntervalStep}
-                                                    />
-                                                );
-                                            }}
-                                        </Form.Item>
-                                        {ObjectUtils.firstNotNil(props?.localeProps?.fromIntervalSuffix, intlLocales.get([locale, 'fromIntervalSuffix']), intlLocales.get(['en_US', 'fromIntervalSuffix']))}
-                                    </Space>
-                                </Radio>
-                                <Radio
-                                    value={EntryChoiceType.SPECIFY_MONTH}
-                                    onClick={() => {
-                                        window.setTimeout(() => setEntryChoice(EntryChoiceType.SPECIFY_MONTH), 80);
-                                    }}
-                                >
-                                    <Space orientation='vertical'>
-                                        {ObjectUtils.firstNotNil(props?.localeProps?.specificMonth, intlLocales.get([locale, 'specificMonth']), intlLocales.get(['en_US', 'specificMonth']))}
-                                        <Form.Item noStyle={true} shouldUpdate={true}>
-                                            {() => {
-                                                return (
-                                                    <Checkbox.Group
-                                                        name='specificMonths'
-                                                        className={`${clazzPrefix}-specific`}
-                                                        disabled={entryChoice !== EntryChoiceType.SPECIFY_MONTH}
-                                                        options={buildSpecificOptions()}
-                                                        value={specificMonths}
-                                                        onChange={(checks: any[]) => {
-                                                            setSpecificMonths(checks);
-                                                            if (!checks || !checks.length) {
-                                                                window.setTimeout(() => setEntryChoice(EntryChoiceType.SPECIFY_MONTH), 80);
-                                                            }
-                                                        }}
-                                                    />
-                                                );
-                                            }}
-                                        </Form.Item>
-                                    </Space>
-                                </Radio>
-                            </Space>
-                        </Radio.Group>
-                    </Form.Item>
-                </Form>
-            </BadgeRibbon>
+                <Form.Item noStyle={true}>
+                    <Radio.Group
+                        name='entryChoice'
+                        value={entryChoice}
+                        onChange={(event: RadioChangeEvent) => setEntryChoice(event.target.value)}
+                    >
+                        <Space orientation='vertical'>
+                            <Radio value={EntryChoiceType.EVERY_MONTH}>
+                                {ObjectUtils.firstNotNil(props?.localeProps?.everyMonth, intlLocales.get([locale, 'everyMonth']), intlLocales.get(['en_US', 'everyMonth']))}
+                            </Radio>
+                            <Radio
+                                value={EntryChoiceType.FROM_TO}
+                                onClick={() => {
+                                    window.setTimeout(() => setEntryChoice(EntryChoiceType.FROM_TO), 80);
+                                }}
+                            >
+                                <Space>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.fromToPrefix, intlLocales.get([locale, 'fromToPrefix']), intlLocales.get(['en_US', 'fromToPrefix']))}
+                                    <Form.Item noStyle={true} shouldUpdate={true}>
+                                        {() => {
+                                            return (
+                                                <InputNumber
+                                                    name='fromToStart'
+                                                    autoComplete='off'
+                                                    disabled={entryChoice !== EntryChoiceType.FROM_TO}
+                                                    min={1}
+                                                    max={12}
+                                                    step={1}
+                                                    size='small'
+                                                    status={(entryChoice === EntryChoiceType.FROM_TO && (ObjectUtils.isEmpty(fromToStart) || NumberUtils.compare(fromToStart, fromToEnd, true) > 0)) ? 'error' : undefined}
+                                                    value={fromToStart}
+                                                    onChange={setFromToStart}
+                                                />
+                                            );
+                                        }}
+                                    </Form.Item>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.fromToMiddle, intlLocales.get([locale, 'fromToMiddle']), intlLocales.get(['en_US', 'fromToMiddle']))}
+                                    <Form.Item noStyle={true} shouldUpdate={true}>
+                                        {() => {
+                                            return (
+                                                <InputNumber
+                                                    name='fromToEnd'
+                                                    autoComplete='off'
+                                                    disabled={entryChoice !== EntryChoiceType.FROM_TO}
+                                                    min={fromToStart ?? 0}
+                                                    max={12}
+                                                    step={1}
+                                                    size='small'
+                                                    status={(entryChoice === EntryChoiceType.FROM_TO && (ObjectUtils.isEmpty(fromToEnd) || NumberUtils.compare(fromToStart, fromToEnd, true) > 0)) ? 'error' : undefined}
+                                                    value={fromToEnd}
+                                                    onChange={setFromToEnd}
+                                                />
+                                            );
+                                        }}
+                                    </Form.Item>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.fromToSuffix, intlLocales.get([locale, 'fromToSuffix']), intlLocales.get(['en_US', 'fromToSuffix']))}
+                                </Space>
+                            </Radio>
+                            <Radio
+                                value={EntryChoiceType.FROM_INTERVAL}
+                                onClick={() => {
+                                    window.setTimeout(() => setEntryChoice(EntryChoiceType.FROM_INTERVAL), 80);
+                                }}
+                            >
+                                <Space>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.fromIntervalPrefix, intlLocales.get([locale, 'fromIntervalPrefix']), intlLocales.get(['en_US', 'fromIntervalPrefix']))}
+                                    <Form.Item noStyle={true} shouldUpdate={true}>
+                                        {() => {
+                                            return (
+                                                <InputNumber
+                                                    name='fromIntervalStart'
+                                                    autoComplete='off'
+                                                    disabled={entryChoice !== EntryChoiceType.FROM_INTERVAL}
+                                                    min={1}
+                                                    max={12}
+                                                    step={1}
+                                                    size='small'
+                                                    status={(entryChoice === EntryChoiceType.FROM_INTERVAL && ObjectUtils.isEmpty(fromIntervalStart)) ? 'error' : undefined}
+                                                    value={fromIntervalStart}
+                                                    onChange={setFromIntervalStart}
+                                                />
+                                            );
+                                        }}
+                                    </Form.Item>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.fromIntervalMiddle, intlLocales.get([locale, 'fromIntervalMiddle']), intlLocales.get(['en_US', 'fromIntervalMiddle']))}
+                                    <Form.Item noStyle={true} shouldUpdate={true}>
+                                        {() => {
+                                            return (
+                                                <InputNumber
+                                                    name='fromIntervalStep'
+                                                    autoComplete='off'
+                                                    disabled={entryChoice !== EntryChoiceType.FROM_INTERVAL}
+                                                    min={1}
+                                                    max={12}
+                                                    step={1}
+                                                    size='small'
+                                                    status={(entryChoice === EntryChoiceType.FROM_INTERVAL && ObjectUtils.isEmpty(fromIntervalStep)) ? 'error' : undefined}
+                                                    value={fromIntervalStep}
+                                                    onChange={setFromIntervalStep}
+                                                />
+                                            );
+                                        }}
+                                    </Form.Item>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.fromIntervalSuffix, intlLocales.get([locale, 'fromIntervalSuffix']), intlLocales.get(['en_US', 'fromIntervalSuffix']))}
+                                </Space>
+                            </Radio>
+                            <Radio
+                                value={EntryChoiceType.SPECIFY_MONTH}
+                                onClick={() => {
+                                    window.setTimeout(() => setEntryChoice(EntryChoiceType.SPECIFY_MONTH), 80);
+                                }}
+                            >
+                                <Space orientation='vertical'>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.specificMonth, intlLocales.get([locale, 'specificMonth']), intlLocales.get(['en_US', 'specificMonth']))}
+                                    <Form.Item noStyle={true} shouldUpdate={true}>
+                                        {() => {
+                                            return (
+                                                <Checkbox.Group
+                                                    name='specificMonths'
+                                                    className={`${clazzPrefix}-specific`}
+                                                    disabled={entryChoice !== EntryChoiceType.SPECIFY_MONTH}
+                                                    options={buildSpecificOptions()}
+                                                    value={specificMonths}
+                                                    onChange={(checks: any[]) => {
+                                                        setSpecificMonths(checks);
+                                                        if (!checks || !checks.length) {
+                                                            window.setTimeout(() => setEntryChoice(EntryChoiceType.SPECIFY_MONTH), 80);
+                                                        }
+                                                    }}
+                                                />
+                                            );
+                                        }}
+                                    </Form.Item>
+                                </Space>
+                            </Radio>
+                        </Space>
+                    </Radio.Group>
+                </Form.Item>
+            </Form>
         </div>
     );
 });

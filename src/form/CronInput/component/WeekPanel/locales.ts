@@ -19,7 +19,6 @@ import { ReadonlyMultiKeyMap } from '@jiovan-labs/ts-multi-map';
 
 
 export const intlLocales = ReadonlyMultiKeyMap.of([
-    [['en_US', 'semanticAlias'], 'Alias'],
     [['en_US', 'monday'], 'Monday'],
     [['en_US', 'tuesday'], 'Tuesday'],
     [['en_US', 'wednesday'], 'Wednesday'],
@@ -41,7 +40,6 @@ export const intlLocales = ReadonlyMultiKeyMap.of([
     [['en_US', 'monthOrderWeekMiddle'], ''],
     [['en_US', 'monthOrderWeekSuffix'], 'of the month'],
 
-    [['zh_CN', 'semanticAlias'], '别名'],
     [['zh_CN', 'monday'], '周一'],
     [['zh_CN', 'tuesday'], '周二'],
     [['zh_CN', 'wednesday'], '周三'],
@@ -63,7 +61,6 @@ export const intlLocales = ReadonlyMultiKeyMap.of([
     [['zh_CN', 'monthOrderWeekMiddle'], '个'],
     [['zh_CN', 'monthOrderWeekSuffix'], ''],
 
-    [['zh_TW', 'semanticAlias'], '别名'],
     [['zh_TW', 'monday'], '周一'],
     [['zh_TW', 'tuesday'], '周二'],
     [['zh_TW', 'wednesday'], '周三'],

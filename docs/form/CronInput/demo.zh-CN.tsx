@@ -22,10 +22,13 @@ import { CronInput, ConsoleUtils } from '@jiovan-labs/ant-buddy-pro';
 
 
 export default () => {
+    // noinspection DuplicatedCode
     const [messageInvoker, messageContext] = messageApi.useMessage();
     const [tabPos, setTabPos] = React.useState<'top' | 'bottom'>('top');
-    const [allowSecond, setAllowSecond] = React.useState(true);
-    const [allowYear, setAllowYear] = React.useState(true);
+    const [showSecond, setShowSecond] = React.useState(false);
+    const [showYear, setShowYear] = React.useState(false);
+    const [monthAlias, setMonthAlias] = React.useState(false);
+    const [weekAlias, setWeekAlias] = React.useState(true);
     const [allowOkEcho, setAllowOkEcho] = React.useState(true);
     const [proField, setProField] = React.useState<boolean>(true);
 
@@ -55,21 +58,39 @@ export default () => {
                 />
                 <ProForm.Group>
                     <ProFormSwitch
-                        label='允许秒'
+                        label='显示秒'
                         checkedChildren='是'
                         unCheckedChildren='否'
                         fieldProps={{
-                            checked: allowSecond,
-                            onChange: setAllowSecond,
+                            checked: showSecond,
+                            onChange: setShowSecond,
                         }}
                     />
                     <ProFormSwitch
-                        label='允许年'
+                        label='显示年'
                         checkedChildren='是'
                         unCheckedChildren='否'
                         fieldProps={{
-                            checked: allowYear,
-                            onChange: setAllowYear,
+                            checked: showYear,
+                            onChange: setShowYear,
+                        }}
+                    />
+                    <ProFormSwitch
+                        label='月别名'
+                        checkedChildren='是'
+                        unCheckedChildren='否'
+                        fieldProps={{
+                            checked: monthAlias,
+                            onChange: setMonthAlias,
+                        }}
+                    />
+                    <ProFormSwitch
+                        label='周别名'
+                        checkedChildren='是'
+                        unCheckedChildren='否'
+                        fieldProps={{
+                            checked: weekAlias,
+                            onChange: setWeekAlias,
                         }}
                     />
                     <ProFormSwitch
@@ -112,8 +133,10 @@ export default () => {
                     name='foobar'
                     label='示例字段'
                     placeholder='请输入此项'
-                    allowSecond={allowSecond}
-                    allowYear={allowYear}
+                    showSecond={showSecond}
+                    showYear={showYear}
+                    monthAlias={monthAlias}
+                    weekAlias={weekAlias}
                     allowOkEcho={allowOkEcho}
                     tabsProps={{
                         tabPlacement: tabPos,

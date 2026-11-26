@@ -16,18 +16,18 @@
 
 
 import React from 'react';
-import { ConfigProvider, Form, Button, Switch, Space, Input, message as messageApi } from 'antd';
+import { ConfigProvider, Form, Button, Space, Input, message as messageApi } from 'antd';
 import { type TabPosition } from 'antd/es/tabs';
 import { FieldTimeOutlined } from '@ant-design/icons';
 import { useIntl } from '@ant-design/pro-components';
 import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext.js';
-import { ElementUtils, NanoidUtils, ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
+import { NanoidUtils, ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import Trigger, { type TriggerProps } from '@rc-component/trigger';
 import '@rc-component/trigger/assets/index.less';
 import { omit } from '@rc-component/util';
 import { useEventListener, useMutationObserver } from 'ahooks';
 import classnames from 'classnames';
-import cronValidate from 'cron-validate';
+import cronValidate, { type CronData } from 'cron-validate';
 import { type WithFalse, type BeforeAfterType } from '@/type/declaration';
 import { CardTabs, type CardTabsProps } from '@/layout/CardTabs';
 import { AddonInput, type AddonInputProps } from '@/form/AddonInput';
@@ -50,8 +50,6 @@ import { useFieldStyle } from './styles';
 export type CronInputRef = {
     isShowSecond: () => boolean;
     isShowYear: () => boolean;
-    setShowSecond: () => void;
-    setShowYear: () => void;
 };
 
 
@@ -159,20 +157,20 @@ export type CronInputProps = Omit<AddonInputProps, 'clazzPrefix' | 'addonBefore'
     addonPos?: WithFalse<BeforeAfterType>;
 
     /**
-     * @description Whether the second tab is allowed or not
-     * @description.zh-CN 是否允许秒标签页
-     * @description.zh-TW 是否允許秒標籤頁
-     * @default true
+     * @description Whether the second field takes part in the expression
+     * @description.zh-CN 秒字段是否参与表达式
+     * @description.zh-TW 秒字段是否參與表達式
+     * @default false
      */
-    allowSecond?: boolean;
+    showSecond?: boolean;
 
     /**
-     * @description Whether the year tab is allowed or not
-     * @description.zh-CN 是否允许年标签页
-     * @description.zh-TW 是否允許年標籤頁
-     * @default true
+     * @description Whether the year field takes part in the expression
+     * @description.zh-CN 年字段是否参与表达式
+     * @description.zh-TW 年字段是否參與表達式
+     * @default false
      */
-    allowYear?: boolean;
+    showYear?: boolean;
 
     /**
      * @description Whether the dropdown div is default open or not
@@ -180,20 +178,6 @@ export type CronInputProps = Omit<AddonInputProps, 'clazzPrefix' | 'addonBefore'
      * @description.zh-TW 是否默認展開彈出層
      */
     defaultOpen?: boolean;
-
-    /**
-     * @description Whether the second tab is default show or not
-     * @description.zh-CN 是否默认显示秒标签页
-     * @description.zh-TW 是否默認顯示秒標籤頁
-     */
-    defaultShowSecond?: boolean;
-
-    /**
-     * @description Whether the year tab is default show or not
-     * @description.zh-CN 是否默认显示年标签页
-     * @description.zh-TW 是否默認顯示年標籤頁
-     */
-    defaultShowYear?: boolean;
 
     /**
      * @description Whether to echo the validation error to console or not
@@ -245,11 +229,27 @@ export type CronInputProps = Omit<AddonInputProps, 'clazzPrefix' | 'addonBefore'
     dayPanelProps?: DayPanelProps;
 
     /**
+     * @description Whether to use the semantic alias (e.g. `JAN`) in the month field
+     * @description.zh-CN 月字段是否使用语义别名（如 `JAN`）
+     * @description.zh-TW 月字段是否使用語義別名（如 `JAN`）
+     * @default false
+     */
+    monthAlias?: boolean;
+
+    /**
      * @description The properties of the month panel
      * @description.zh-CN 月标签页的属性
      * @description.zh-TW 月標籤頁的屬性
      */
     monthPanelProps?: MonthPanelProps;
+
+    /**
+     * @description Whether to use the semantic alias (e.g. `MON`) in the week field
+     * @description.zh-CN 周字段是否使用语义别名（如 `MON`）
+     * @description.zh-TW 周字段是否使用語義別名（如 `MON`）
+     * @default true
+     */
+    weekAlias?: boolean;
 
     /**
      * @description The properties of the week panel
@@ -317,8 +317,10 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
     const {
         addon = <FieldTimeOutlined />,
         addonPos = 'after',
-        allowSecond = true,
-        allowYear = true,
+        showSecond = false,
+        showYear = false,
+        monthAlias = false,
+        weekAlias = true,
         allowOkEcho = true,
         validateRule = true,
         proField = true,
@@ -327,8 +329,6 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
 
     const [messageInvoker, messageContext] = messageApi.useMessage();
     const [fieldId] = React.useState<string>(NanoidUtils.getPopularId());
-    const [showSecond, setShowSecond] = React.useState<boolean>(props?.defaultShowSecond ?? false);
-    const [showYear, setShowYear] = React.useState<boolean>(props?.defaultShowYear ?? false);
     const [triggerOpen, setTriggerOpen] = React.useState<boolean>(props?.defaultOpen ?? false);
     const [triggerOffset, setTriggerOffset] = React.useState<number>(4);
     const closeTimerRef = React.useRef<NodeJS.Timeout | null>(null);
@@ -341,12 +341,6 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
         },
         isShowYear: (): boolean => {
             return showYear;
-        },
-        setShowSecond: (show: boolean): void => {
-            setShowSecond(show);
-        },
-        setShowYear: (show: boolean): void => {
-            setShowYear(show);
         }
     }));
 
@@ -366,7 +360,19 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
     const [weekExpress, setWeekExpress] = React.useState<string>();
     const [yearExpress, setYearExpress] = React.useState<string>();
 
-    const [incomeExpress, setIncomeExpress] = React.useState<string | undefined>(props?.initialValue ?? (props?.fieldProps?.value as string));
+    // 唯一数据源：绑定表单时以 Form store 为准，否则用内部 state
+    const rawName = props?.name ?? props?.fieldProps?.name;
+    const [fallbackForm] = Form.useForm();
+    const effectiveForm = form ?? fallbackForm;
+    const formValue = Form.useWatch(rawName ?? '__abp_cron_unbound__', effectiveForm) as string | undefined;
+    const [localValue, setLocalValue] = React.useState<string | undefined>(
+        props?.initialValue ?? (props?.fieldProps?.value as string)
+    );
+    const baseValue = rawName ? formValue : localValue;
+
+    // allowOkEcho 模式下暂存未提交的草稿；它只服务于「确定」按钮，不参与面板派生
+    const [draftExpress, setDraftExpress] = React.useState<string | undefined>();
+
     const outcomeExpresses = [secondExpress, minuteExpress, hourExpress, dayExpress, monthExpress, weekExpress, yearExpress];
 
     const clearSubExpresses = () => {
@@ -379,10 +385,20 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
         setYearExpress(undefined);
     };
 
+    const assignSubExpresses = (express: CronData) => {
+        setSecondExpress(express.seconds);
+        setMinuteExpress(express.minutes);
+        setHourExpress(express.hours);
+        setDayExpress(express.daysOfMonth);
+        setMonthExpress(express.months);
+        setWeekExpress(express.daysOfWeek);
+        setYearExpress(express.years);
+    };
+
     const validateOptions = {
         override: {
-            useSeconds: allowSecond && showSecond,
-            useYears: allowYear && showYear,
+            useSeconds: showSecond,
+            useYears: showYear,
             useAliases: true,
             useBlankDay: true,
             useLastDayOfMonth: true,
@@ -414,31 +430,51 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
         updateTriggerOffset();
     }, [clazzPrefix, fieldId]);
 
+    // 面板派生：始终由已提交的值（baseValue）驱动，草稿不参与
     React.useEffect(() => {
-        if (!incomeExpress) {
+        if (!baseValue) {
             clearSubExpresses();
             return;
         }
-        const validate = cronValidate(incomeExpress, validateOptions);
+        const validate = cronValidate(baseValue, validateOptions);
         if (validate.isError()) {
-            ConsoleUtils.warn(!props?.echoValidateError, false, 'CronInput', `Field '${props?.name ?? props?.fieldProps?.name}' validation error: ${validate.error.join('; ')}`);
+            ConsoleUtils.warn(!props?.echoValidateError, false, 'CronInput', `Field '${rawName}' validation error: ${validate.error.join('; ')}`);
             clearSubExpresses();
-            props?.onValidateError?.(incomeExpress, validate.error, true);
+            props?.onValidateError?.(baseValue, validate.error, true);
             return;
         }
-        const express = validate.getValue();
-        setSecondExpress(express.seconds);
-        setMinuteExpress(express.minutes);
-        setHourExpress(express.hours);
-        setDayExpress(express.daysOfMonth);
-        setMonthExpress(express.months);
-        setWeekExpress(express.daysOfWeek);
-        setYearExpress(express.years);
-    }, [incomeExpress]);
+        assignSubExpresses(validate.getValue() as CronData);
+        setDraftExpress(undefined);
+    }, [baseValue]);
 
     const entryImmutable = editContext.mode === 'read' || props?.proFieldProps?.mode === 'read' || props?.fieldProps?.readOnly || props?.proFieldProps?.readonly || props?.disabled || props?.fieldProps?.disabled;
 
-    const echoToEntry = () => {
+    // 统一写回：绑定表单走 setFieldValue，否则写内部 state
+    const writeValue = (value?: string) => {
+        if (rawName && form) {
+            form.setFieldValue(rawName, value);
+        } else {
+            setLocalValue(value);
+        }
+        setDraftExpress(undefined);
+    };
+
+    // 根据完整表达式重建各子面板值
+    const applyValueToSubExpresses = (value?: string) => {
+        if (!value) {
+            clearSubExpresses();
+            return;
+        }
+        const validate = cronValidate(value, validateOptions);
+        if (validate.isError()) {
+            clearSubExpresses();
+            return;
+        }
+        assignSubExpresses(validate.getValue() as CronData);
+    };
+
+    // 提交子表达式：拼装 → 校验 → 写回
+    const commitSubExpresses = () => {
         if (entryImmutable) {
             return;
         }
@@ -448,20 +484,44 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
         }
         const validate = cronValidate(outcome, validateOptions);
         if (validate.isError()) {
-            ConsoleUtils.warn(!props?.echoValidateError, false, 'CronInput', `Field '${props?.name ?? props?.fieldProps?.name}' validation error: ${validate.error.join('; ')}`);
+            ConsoleUtils.warn(!props?.echoValidateError, false, 'CronInput', `Field '${rawName}' validation error: ${validate.error.join('; ')}`);
             props?.onValidateError?.(outcome, validate.error, false);
             return;
         }
-        const inspect = document.querySelector<HTMLInputElement>(`[data-cron-input-id='${fieldId}']`);
-        ElementUtils.setElementValue(inspect, outcome);
+        writeValue(outcome);
     };
 
-    React.useEffect(() => {
+    // 丢弃未提交的草稿，从已提交值重建面板
+    const discardDraft = () => {
+        setDraftExpress(undefined);
+        applyValueToSubExpresses(baseValue);
+    };
+
+    // 面板变更：更新子表达式；非确认回显模式下立即提交，确认回显模式下标记草稿待「确定」提交
+    const handleSubChange = (setter: React.Dispatch<React.SetStateAction<string | undefined>>, value?: string, callback?: (value?: string) => void) => {
+        setter(value);
+        callback?.(value);
         if (allowOkEcho) {
+            setDraftExpress(value ?? '__dirty__');
             return;
         }
-        echoToEntry();
-    }, [outcomeExpresses, showSecond, showYear]);
+        // 用最新值替换对应位再提交，避免依赖 state 异步更新
+        const nextExpresses = [...outcomeExpresses];
+        const setterIndex = [setSecondExpress, setMinuteExpress, setHourExpress, setDayExpress, setMonthExpress, setWeekExpress, setYearExpress].indexOf(setter);
+        if (setterIndex >= 0) {
+            nextExpresses[setterIndex] = value;
+        }
+        const outcome = StringUtils.join(nextExpresses, ' ', (item: any) => !!item);
+        if (outcome) {
+            const validate = cronValidate(outcome, validateOptions);
+            if (!validate.isError()) {
+                writeValue(outcome);
+            } else {
+                ConsoleUtils.warn(!props?.echoValidateError, false, 'CronInput', `Field '${rawName}' validation error: ${validate.error.join('; ')}`);
+                props?.onValidateError?.(outcome, validate.error, false);
+            }
+        }
+    };
 
     const addonEntryDom = (typeof addon === 'function') ? addon() : addon;
     const buildEntryAddonDom = (before: boolean) => {
@@ -474,8 +534,9 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
             const restProps = !props ? {} : omit(props, [
                 'fieldProps', 'proFieldProps', 'rules',
                 'clazzPrefix', 'addon', 'addonPos',
-                'allowSecond', 'allowYear', 'allowOkEcho',
-                'defaultOpen', 'defaultShowSecond', 'defaultShowYear',
+                'showSecond', 'showYear', 'monthAlias', 'weekAlias',
+                'allowOkEcho',
+                'defaultOpen',
                 'echoValidateError',
                 'triggerProps', 'tabsProps',
                 'secondPanelProps', 'minutePanelProps', 'hourPanelProps',
@@ -495,8 +556,8 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                             ...omitFieldProps,
                             onChange: (event: any) => {
                                 props?.fieldProps?.onChange?.(event);
-                                if (!event.isDefaultPrevented()) {
-                                    setIncomeExpress(event.target.value);
+                                if (!event.isDefaultPrevented() && !rawName) {
+                                    setLocalValue(event.target.value);
                                 }
                             },
                             'data-cron-input-id': fieldId,
@@ -522,7 +583,7 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                 </div>
             )
         } else {
-            const restProps = omit(omitFieldProps, ['placeholder']);
+            const restProps = omit(omitFieldProps, ['placeholder', 'value', 'onChange']);
             return (
                 <div className={clazzPrefix}>
                     <Space.Compact className={`${clazzPrefix}-space`} style={{ width: '100%' }}>
@@ -535,6 +596,7 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                             className={classnames(`${clazzPrefix}-entry-${fieldId}`, props?.className ?? props?.fieldProps?.className)}
                             placeholder={StringUtils.join(props?.placeholder) ?? props?.fieldProps?.placeholder}
                             data-cron-input-id={fieldId}
+                            value={baseValue ?? ''}
                             {...restProps}
                             onChange={(event: any) => {
                                 props?.fieldProps?.onChange?.(event);
@@ -547,9 +609,13 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                                         messageInvoker.warning(ObjectUtils.firstNotNil(props?.localeProps?.invalidExpress, intlLocales.get([locale, 'invalidExpress']), intlLocales.get(['en_US', 'invalidExpress']))).then(() => {});
                                     }
                                 }
-                                setIncomeExpress(event.target.value);
+                                if (rawName && form) {
+                                    form.setFieldValue(rawName, event.target.value);
+                                } else {
+                                    setLocalValue(event.target.value);
+                                }
+                                setDraftExpress(undefined);
                             }}
-                            {...omitFieldProps}
                         />
                         {addonPos === 'after' && (
                             <Space.Addon className={`${clazzPrefix}-compact-after`} style={{ cursor: 'pointer' }}>
@@ -588,10 +654,7 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                         ref={minutePanelRef}
                         disabled={entryImmutable}
                         value={minuteExpress}
-                        onChange={(value?: string) => {
-                            setMinuteExpress(value);
-                            props?.minutePanelProps?.onChange?.(value);
-                        }}
+                        onChange={(value?: string) => handleSubChange(setMinuteExpress, value, props?.minutePanelProps?.onChange)}
                         locale={props?.minutePanelProps?.locale ?? props?.locale}
                         {...(!props?.minutePanelProps ? {} : omit(props.minutePanelProps, ['value', 'onChange', 'locale']))}
                     />
@@ -605,10 +668,7 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                         ref={hourPanelRef}
                         disabled={entryImmutable}
                         value={hourExpress}
-                        onChange={(value?: string) => {
-                            setHourExpress(value);
-                            props?.hourPanelProps?.onChange?.(value);
-                        }}
+                        onChange={(value?: string) => handleSubChange(setHourExpress, value, props?.hourPanelProps?.onChange)}
                         locale={props?.hourPanelProps?.locale ?? props?.locale}
                         {...(!props?.hourPanelProps ? {} : omit(props.hourPanelProps, ['value', 'onChange', 'locale']))}
                     />
@@ -622,10 +682,7 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                         ref={dayPanelRef}
                         disabled={entryImmutable}
                         value={dayExpress}
-                        onChange={(value?: string) => {
-                            setDayExpress(value);
-                            props?.dayPanelProps?.onChange?.(value);
-                        }}
+                        onChange={(value?: string) => handleSubChange(setDayExpress, value, props?.dayPanelProps?.onChange)}
                         locale={props?.dayPanelProps?.locale ?? props?.locale}
                         {...(!props?.dayPanelProps ? {} : omit(props.dayPanelProps, ['value', 'onChange', 'locale']))}
                     />
@@ -639,12 +696,10 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                         ref={monthPanelRef}
                         disabled={entryImmutable}
                         value={monthExpress}
-                        onChange={(value?: string) => {
-                            setMonthExpress(value);
-                            props?.monthPanelProps?.onChange?.(value);
-                        }}
+                        onChange={(value?: string) => handleSubChange(setMonthExpress, value, props?.monthPanelProps?.onChange)}
                         locale={props?.monthPanelProps?.locale ?? props?.locale}
-                        {...(!props?.monthPanelProps ? {} : omit(props.monthPanelProps, ['value', 'onChange', 'locale']))}
+                        alias={monthAlias}
+                        {...(!props?.monthPanelProps ? {} : omit(props.monthPanelProps, ['value', 'onChange', 'locale', 'alias']))}
                     />
                 )
             },
@@ -656,17 +711,15 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                         ref={weekPanelRef}
                         disabled={entryImmutable}
                         value={weekExpress}
-                        onChange={(value?: string) => {
-                            setWeekExpress(value);
-                            props?.weekPanelProps?.onChange?.(value);
-                        }}
+                        onChange={(value?: string) => handleSubChange(setWeekExpress, value, props?.weekPanelProps?.onChange)}
                         locale={props?.weekPanelProps?.locale ?? props?.locale}
-                        {...(!props?.weekPanelProps ? {} : omit(props.weekPanelProps, ['value', 'onChange', 'locale']))}
+                        alias={weekAlias}
+                        {...(!props?.weekPanelProps ? {} : omit(props.weekPanelProps, ['value', 'onChange', 'locale', 'alias']))}
                     />
                 )
             }
         ];
-        if (allowSecond && showSecond) {
+        if (showSecond) {
             tabItems.unshift({
                 key: 'second',
                 label: ObjectUtils.firstNotNil(props?.localeProps?.second, intlLocales.get([locale, 'second']), intlLocales.get(['en_US', 'second'])),
@@ -675,17 +728,14 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                         ref={secondPanelRef}
                         disabled={entryImmutable}
                         value={secondExpress}
-                        onChange={(value?: string) => {
-                            setSecondExpress(value);
-                            props?.secondPanelProps?.onChange?.(value);
-                        }}
+                        onChange={(value?: string) => handleSubChange(setSecondExpress, value, props?.secondPanelProps?.onChange)}
                         locale={props?.secondPanelProps?.locale ?? props?.locale}
                         {...(!props?.secondPanelProps ? {} : omit(props.secondPanelProps, ['value', 'onChange', 'locale']))}
                     />
                 ),
             });
         }
-        if (allowYear && showYear) {
+        if (showYear) {
             tabItems.push({
                 key: 'year',
                 label: ObjectUtils.firstNotNil(props?.localeProps?.year, intlLocales.get([locale, 'year']), intlLocales.get(['en_US', 'year'])),
@@ -694,10 +744,7 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                         ref={yearPanelRef}
                         disabled={entryImmutable}
                         value={yearExpress}
-                        onChange={(value?: string) => {
-                            setYearExpress(value);
-                            props?.yearPanelProps?.onChange?.(value);
-                        }}
+                        onChange={(value?: string) => handleSubChange(setYearExpress, value, props?.yearPanelProps?.onChange)}
                         locale={props?.yearPanelProps?.locale ?? props?.locale}
                         {...(!props?.yearPanelProps ? {} : omit(props.yearPanelProps, ['value', 'onChange', 'locale']))}
                     />
@@ -739,46 +786,16 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                         tabBarExtraContent={(
                             <>
                                 {props?.tabsProps?.tabBarExtraContent}
-                                {(allowSecond || allowYear || allowOkEcho) && (
+                                {(allowOkEcho && !entryImmutable) && (
                                     <div className={`${clazzPrefix}-tabs-extra`}>
                                         <Space size={'middle'}>
-                                            {allowSecond && !entryImmutable && (
-                                                <Switch
-                                                    checked={showSecond}
-                                                    size='small'
-                                                    checkedChildren={ObjectUtils.firstNotNil(props?.localeProps?.second, intlLocales.get([locale, 'second']), intlLocales.get(['en_US', 'second']))}
-                                                    unCheckedChildren={ObjectUtils.firstNotNil(props?.localeProps?.second, intlLocales.get([locale, 'second']), intlLocales.get(['en_US', 'second']))}
-                                                    onChange={(checked: boolean) => {
-                                                        setShowSecond(checked);
-                                                        const rawName = props?.name ?? props?.fieldProps?.name;
-                                                        if (validateRule && rawName && form && form.getFieldValue(rawName)) {
-                                                            form.validateFields([rawName]).then(() => {});
-                                                        }
-                                                    }}
-                                                />
-                                            )}
-                                            {allowYear && !entryImmutable && (
-                                                <Switch
-                                                    checked={showYear}
-                                                    size='small'
-                                                    checkedChildren={ObjectUtils.firstNotNil(props?.localeProps?.year, intlLocales.get([locale, 'year']), intlLocales.get(['en_US', 'year']))}
-                                                    unCheckedChildren={ObjectUtils.firstNotNil(props?.localeProps?.year, intlLocales.get([locale, 'year']), intlLocales.get(['en_US', 'year']))}
-                                                    onChange={(checked: boolean) => {
-                                                        setShowYear(checked);
-                                                        const rawName = props?.name ?? props?.fieldProps?.name;
-                                                        if (validateRule && rawName && form && form.getFieldValue(rawName)) {
-                                                            form.validateFields([rawName]).then(() => {});
-                                                        }
-                                                    }}
-                                                />
-                                            )}
                                             {allowOkEcho && !entryImmutable && (
                                                 <Button
                                                     className={`${clazzPrefix}-ok-echo`}
                                                     size='small'
                                                     type='primary'
                                                     onClick={() => {
-                                                        echoToEntry();
+                                                        commitSubExpresses();
                                                         setTriggerOpen(false);
                                                     }}
                                                 >
@@ -819,6 +836,9 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                 onOpenChange={(open: boolean) => {
                     if (!open && (secondPanelRef.current?.isCompositing() || minutePanelRef.current?.isCompositing() || hourPanelRef.current?.isCompositing() || dayPanelRef.current?.isCompositing() || monthPanelRef.current?.isCompositing() || weekPanelRef.current?.isCompositing() || yearPanelRef.current?.isCompositing())) {
                         return;
+                    }
+                    if (!open && allowOkEcho && draftExpress) {
+                        discardDraft();
                     }
                     setTriggerOpen(open);
                     props?.triggerProps?.onOpenChange?.(open);
