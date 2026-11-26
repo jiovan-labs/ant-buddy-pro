@@ -1,0 +1,1039 @@
+((typeof globalThis !== 'undefined' ? globalThis : self)["makoChunk_@jiovan-labs/ant-buddy-pro"] = (typeof globalThis !== 'undefined' ? globalThis : self)["makoChunk_@jiovan-labs/ant-buddy-pro"] || []).push([
+        ['docs/form/SegmentRadio/index.en-US.md'],
+{ "docs/form/SegmentRadio/index.en-US.md": function (module, exports, __mako_require__){
+"use strict";
+__mako_require__.d(exports, "__esModule", {
+    value: true
+});
+__mako_require__.d(exports, "default", {
+    enumerable: true,
+    get: function() {
+        return _default;
+    }
+});
+var _interop_require_default = __mako_require__("@swc/helpers/_/_interop_require_default");
+var _interop_require_wildcard = __mako_require__("@swc/helpers/_/_interop_require_wildcard");
+var _reactrefresh = /*#__PURE__*/ _interop_require_wildcard._(__mako_require__("node_modules/react-refresh/runtime.js"));
+var _jsxdevruntime = __mako_require__("node_modules/react/jsx-dev-runtime.js");
+var _index = /*#__PURE__*/ _interop_require_default._(__mako_require__("node_modules/dumi/theme-default/builtins/API/index.js"));
+var _index1 = /*#__PURE__*/ _interop_require_default._(__mako_require__("node_modules/dumi/theme-default/builtins/Badge/index.js"));
+var _index2 = /*#__PURE__*/ _interop_require_default._(__mako_require__("node_modules/dumi/theme-default/builtins/CodeGroup/index.js"));
+var _index3 = /*#__PURE__*/ _interop_require_default._(__mako_require__("node_modules/dumi/theme-default/builtins/Container/index.js"));
+var _index4 = /*#__PURE__*/ _interop_require_default._(__mako_require__("node_modules/dumi/theme-default/builtins/Previewer/index.js"));
+var _index5 = /*#__PURE__*/ _interop_require_default._(__mako_require__("node_modules/dumi/theme-default/builtins/SourceCode/index.js"));
+var _index6 = /*#__PURE__*/ _interop_require_default._(__mako_require__("node_modules/dumi/theme-default/builtins/Table/index.js"));
+var _index7 = /*#__PURE__*/ _interop_require_default._(__mako_require__("node_modules/dumi/theme-default/builtins/Tree/index.js"));
+var _index8 = /*#__PURE__*/ _interop_require_default._(__mako_require__("node_modules/@ahooks.js/dumi-theme-antd/dist/builtins/Alert/index.js"));
+var _index9 = /*#__PURE__*/ _interop_require_default._(__mako_require__("node_modules/@ahooks.js/dumi-theme-antd/dist/builtins/BashOSPlatform/index.js"));
+var _index10 = /*#__PURE__*/ _interop_require_default._(__mako_require__("node_modules/@ahooks.js/dumi-theme-antd/dist/builtins/HomeBaseLayout/index.js"));
+var _index11 = /*#__PURE__*/ _interop_require_default._(__mako_require__("node_modules/@ahooks.js/dumi-theme-antd/dist/builtins/ImagePreview/index.js"));
+var _index12 = /*#__PURE__*/ _interop_require_default._(__mako_require__("node_modules/@ahooks.js/dumi-theme-antd/dist/builtins/InstallDependencies/index.js"));
+var _dumi = __mako_require__(".dumi/tmp/dumi/exports.ts");
+var _loading = /*#__PURE__*/ _interop_require_default._(__mako_require__(".dumi/tmp/dumi/theme/loading.tsx"));
+var _react = /*#__PURE__*/ _interop_require_wildcard._(__mako_require__("node_modules/react/index.js"));
+var _indexenUSmdtypetext = __mako_require__("docs/form/SegmentRadio/index.en-US.md?type=text");
+var prevRefreshReg;
+var prevRefreshSig;
+prevRefreshReg = self.$RefreshReg$;
+prevRefreshSig = self.$RefreshSig$;
+self.$RefreshReg$ = (type, id)=>{
+    _reactrefresh.register(type, module.id + id);
+};
+self.$RefreshSig$ = _reactrefresh.createSignatureFunctionForTransform;
+// export named function for fastRefresh
+// ref: https://github.com/pmmmwh/react-refresh-webpack-plugin/blob/main/docs/TROUBLESHOOTING.md#edits-always-lead-to-full-reload
+function DumiMarkdownContent() {
+    return /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)(_dumi.DumiPage, {
+        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)(_react.Suspense, {
+            fallback: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)(_loading.default, {}, void 0, false, {
+                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                lineNumber: 29,
+                columnNumber: 27
+            }, void 0),
+            children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)(_jsxdevruntime.Fragment, {
+                children: [
+                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("div", {
+                        className: "markdown",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("h2", {
+                                id: "description",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("a", {
+                                        "aria-hidden": "true",
+                                        tabIndex: "-1",
+                                        href: "#description",
+                                        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("span", {
+                                            className: "icon icon-link"
+                                        }, void 0, false, {
+                                            fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                            lineNumber: 30,
+                                            columnNumber: 114
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                        lineNumber: 30,
+                                        columnNumber: 58
+                                    }, this),
+                                    "Description"
+                                ]
+                            }, void 0, true, {
+                                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                lineNumber: 30,
+                                columnNumber: 37
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("p", {
+                                children: [
+                                    _indexenUSmdtypetext.texts[0].value,
+                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("a", {
+                                        href: "https://ant.design/components/segmented",
+                                        children: _indexenUSmdtypetext.texts[1].value
+                                    }, void 0, false, {
+                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                        lineNumber: 30,
+                                        columnNumber: 201
+                                    }, this),
+                                    _indexenUSmdtypetext.texts[2].value,
+                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("a", {
+                                        href: "https://ant.design",
+                                        children: _indexenUSmdtypetext.texts[3].value
+                                    }, void 0, false, {
+                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                        lineNumber: 30,
+                                        columnNumber: 305
+                                    }, this),
+                                    _indexenUSmdtypetext.texts[4].value,
+                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("a", {
+                                        href: "https://github.com/ant-design/pro-components/tree/master/packages/form",
+                                        children: _indexenUSmdtypetext.texts[5].value
+                                    }, void 0, false, {
+                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                        lineNumber: 30,
+                                        columnNumber: 388
+                                    }, this),
+                                    _indexenUSmdtypetext.texts[6].value
+                                ]
+                            }, void 0, true, {
+                                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                lineNumber: 30,
+                                columnNumber: 173
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("h2", {
+                                id: "import",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("a", {
+                                        "aria-hidden": "true",
+                                        tabIndex: "-1",
+                                        href: "#import",
+                                        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("span", {
+                                            className: "icon icon-link"
+                                        }, void 0, false, {
+                                            fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                            lineNumber: 30,
+                                            columnNumber: 594
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                        lineNumber: 30,
+                                        columnNumber: 543
+                                    }, this),
+                                    "Import"
+                                ]
+                            }, void 0, true, {
+                                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                lineNumber: 30,
+                                columnNumber: 527
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)(_index5.default, {
+                                lang: "tsx",
+                                children: _indexenUSmdtypetext.texts[7].value
+                            }, void 0, false, {
+                                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                lineNumber: 30,
+                                columnNumber: 648
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("h2", {
+                                id: "example",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("a", {
+                                        "aria-hidden": "true",
+                                        tabIndex: "-1",
+                                        href: "#example",
+                                        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("span", {
+                                            className: "icon icon-link"
+                                        }, void 0, false, {
+                                            fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                            lineNumber: 30,
+                                            columnNumber: 778
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                        lineNumber: 30,
+                                        columnNumber: 726
+                                    }, this),
+                                    "Example"
+                                ]
+                            }, void 0, true, {
+                                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                lineNumber: 30,
+                                columnNumber: 709
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("h3", {
+                                id: "with-options",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("a", {
+                                        "aria-hidden": "true",
+                                        tabIndex: "-1",
+                                        href: "#with-options",
+                                        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("span", {
+                                            className: "icon icon-link"
+                                        }, void 0, false, {
+                                            fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                            lineNumber: 30,
+                                            columnNumber: 912
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                        lineNumber: 30,
+                                        columnNumber: 855
+                                    }, this),
+                                    "With options"
+                                ]
+                            }, void 0, true, {
+                                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                lineNumber: 30,
+                                columnNumber: 833
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                        lineNumber: 30,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)(_dumi.DumiDemo, {
+                        "demo": {
+                            "id": "docs-form-segment-radio-demo-demo-1.en-us"
+                        },
+                        "previewerProps": {
+                            "filename": "docs/form/SegmentRadio/demo-1.en-US.tsx"
+                        }
+                    }, void 0, false, {
+                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                        lineNumber: 30,
+                        columnNumber: 978
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("div", {
+                        className: "markdown",
+                        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("h3", {
+                            id: "with-request",
+                            children: [
+                                /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("a", {
+                                    "aria-hidden": "true",
+                                    tabIndex: "-1",
+                                    href: "#with-request",
+                                    children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("span", {
+                                        className: "icon icon-link"
+                                    }, void 0, false, {
+                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                        lineNumber: 37,
+                                        columnNumber: 111
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                    lineNumber: 37,
+                                    columnNumber: 54
+                                }, this),
+                                "With request"
+                            ]
+                        }, void 0, true, {
+                            fileName: "docs/form/SegmentRadio/index.en-US.md",
+                            lineNumber: 37,
+                            columnNumber: 32
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                        lineNumber: 37,
+                        columnNumber: 6
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)(_dumi.DumiDemo, {
+                        "demo": {
+                            "id": "docs-form-segment-radio-demo-demo-2.en-us"
+                        },
+                        "previewerProps": {
+                            "filename": "docs/form/SegmentRadio/demo-2.en-US.tsx"
+                        }
+                    }, void 0, false, {
+                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                        lineNumber: 37,
+                        columnNumber: 177
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("div", {
+                        className: "markdown",
+                        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("h3", {
+                            id: "with-valueenum",
+                            children: [
+                                /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("a", {
+                                    "aria-hidden": "true",
+                                    tabIndex: "-1",
+                                    href: "#with-valueenum",
+                                    children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("span", {
+                                        className: "icon icon-link"
+                                    }, void 0, false, {
+                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                        lineNumber: 44,
+                                        columnNumber: 115
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                    lineNumber: 44,
+                                    columnNumber: 56
+                                }, this),
+                                "With valueEnum"
+                            ]
+                        }, void 0, true, {
+                            fileName: "docs/form/SegmentRadio/index.en-US.md",
+                            lineNumber: 44,
+                            columnNumber: 32
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                        lineNumber: 44,
+                        columnNumber: 6
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)(_dumi.DumiDemo, {
+                        "demo": {
+                            "id": "docs-form-segment-radio-demo-demo-3.en-us"
+                        },
+                        "previewerProps": {
+                            "filename": "docs/form/SegmentRadio/demo-3.en-US.tsx"
+                        }
+                    }, void 0, false, {
+                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                        lineNumber: 44,
+                        columnNumber: 183
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("div", {
+                        className: "markdown",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("h2", {
+                                id: "properties",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("a", {
+                                        "aria-hidden": "true",
+                                        tabIndex: "-1",
+                                        href: "#properties",
+                                        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("span", {
+                                            className: "icon icon-link"
+                                        }, void 0, false, {
+                                            fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                            lineNumber: 51,
+                                            columnNumber: 107
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                        lineNumber: 51,
+                                        columnNumber: 52
+                                    }, this),
+                                    "Properties"
+                                ]
+                            }, void 0, true, {
+                                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                lineNumber: 51,
+                                columnNumber: 32
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)(_index6.default, {
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("thead", {
+                                        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("tr", {
+                                            children: [
+                                                /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("th", {
+                                                    children: _indexenUSmdtypetext.texts[8].value
+                                                }, void 0, false, {
+                                                    fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                    lineNumber: 51,
+                                                    columnNumber: 183
+                                                }, this),
+                                                /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("th", {
+                                                    children: _indexenUSmdtypetext.texts[9].value
+                                                }, void 0, false, {
+                                                    fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                    lineNumber: 51,
+                                                    columnNumber: 217
+                                                }, this),
+                                                /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("th", {
+                                                    children: _indexenUSmdtypetext.texts[10].value
+                                                }, void 0, false, {
+                                                    fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                    lineNumber: 51,
+                                                    columnNumber: 251
+                                                }, this),
+                                                /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("th", {
+                                                    children: _indexenUSmdtypetext.texts[11].value
+                                                }, void 0, false, {
+                                                    fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                    lineNumber: 51,
+                                                    columnNumber: 286
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                            lineNumber: 51,
+                                            columnNumber: 179
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                        lineNumber: 51,
+                                        columnNumber: 172
+                                    }, this),
+                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("tbody", {
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("tr", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[12].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 345
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[13].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 380
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("code", {
+                                                            children: _indexenUSmdtypetext.texts[14].value
+                                                        }, void 0, false, {
+                                                            fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                            lineNumber: 51,
+                                                            columnNumber: 419
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 415
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("code", {
+                                                            children: _indexenUSmdtypetext.texts[15].value
+                                                        }, void 0, false, {
+                                                            fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                            lineNumber: 51,
+                                                            columnNumber: 467
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 463
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                lineNumber: 51,
+                                                columnNumber: 341
+                                            }, this),
+                                            /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("tr", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[16].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 520
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[17].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 555
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("code", {
+                                                            children: _indexenUSmdtypetext.texts[18].value
+                                                        }, void 0, false, {
+                                                            fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                            lineNumber: 51,
+                                                            columnNumber: 594
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 590
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[19].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 638
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                lineNumber: 51,
+                                                columnNumber: 516
+                                            }, this),
+                                            /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("tr", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[20].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 682
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[21].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 717
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("code", {
+                                                            children: _indexenUSmdtypetext.texts[22].value
+                                                        }, void 0, false, {
+                                                            fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                            lineNumber: 51,
+                                                            columnNumber: 756
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 752
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[23].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 800
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                lineNumber: 51,
+                                                columnNumber: 678
+                                            }, this),
+                                            /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("tr", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[24].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 844
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[25].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 879
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("code", {
+                                                            children: _indexenUSmdtypetext.texts[26].value
+                                                        }, void 0, false, {
+                                                            fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                            lineNumber: 51,
+                                                            columnNumber: 918
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 914
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[27].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 962
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                lineNumber: 51,
+                                                columnNumber: 840
+                                            }, this),
+                                            /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("tr", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[28].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 1006
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: [
+                                                            _indexenUSmdtypetext.texts[29].value,
+                                                            /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("code", {
+                                                                children: _indexenUSmdtypetext.texts[30].value
+                                                            }, void 0, false, {
+                                                                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                                lineNumber: 51,
+                                                                columnNumber: 1071
+                                                            }, this),
+                                                            _indexenUSmdtypetext.texts[31].value,
+                                                            /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("code", {
+                                                                children: _indexenUSmdtypetext.texts[32].value
+                                                            }, void 0, false, {
+                                                                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                                lineNumber: 51,
+                                                                columnNumber: 1136
+                                                            }, this),
+                                                            _indexenUSmdtypetext.texts[33].value
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 1041
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("code", {
+                                                            children: _indexenUSmdtypetext.texts[34].value
+                                                        }, void 0, false, {
+                                                            fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                            lineNumber: 51,
+                                                            columnNumber: 1210
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 1206
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[35].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 1254
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                lineNumber: 51,
+                                                columnNumber: 1002
+                                            }, this),
+                                            /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("tr", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[36].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 1298
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[37].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 1333
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("code", {
+                                                            children: _indexenUSmdtypetext.texts[38].value
+                                                        }, void 0, false, {
+                                                            fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                            lineNumber: 51,
+                                                            columnNumber: 1372
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 1368
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("code", {
+                                                            children: _indexenUSmdtypetext.texts[39].value
+                                                        }, void 0, false, {
+                                                            fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                            lineNumber: 51,
+                                                            columnNumber: 1420
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 1416
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                lineNumber: 51,
+                                                columnNumber: 1294
+                                            }, this),
+                                            /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("tr", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[40].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 1473
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[41].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 1508
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("code", {
+                                                            children: _indexenUSmdtypetext.texts[42].value
+                                                        }, void 0, false, {
+                                                            fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                            lineNumber: 51,
+                                                            columnNumber: 1547
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 1543
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, _jsxdevruntime.jsxDEV)("td", {
+                                                        children: _indexenUSmdtypetext.texts[43].value
+                                                    }, void 0, false, {
+                                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                        lineNumber: 51,
+                                                        columnNumber: 1591
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                                lineNumber: 51,
+                                                columnNumber: 1469
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                        lineNumber: 51,
+                                        columnNumber: 334
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "docs/form/SegmentRadio/index.en-US.md",
+                                lineNumber: 51,
+                                columnNumber: 165
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "docs/form/SegmentRadio/index.en-US.md",
+                        lineNumber: 51,
+                        columnNumber: 6
+                    }, this)
+                ]
+            }, void 0, true)
+        }, void 0, false, {
+            fileName: "docs/form/SegmentRadio/index.en-US.md",
+            lineNumber: 29,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "docs/form/SegmentRadio/index.en-US.md",
+        lineNumber: 28,
+        columnNumber: 5
+    }, this);
+}
+_c = DumiMarkdownContent;
+var _default = DumiMarkdownContent;
+var _c;
+$RefreshReg$(_c, "DumiMarkdownContent");
+if (prevRefreshReg) self.$RefreshReg$ = prevRefreshReg;
+if (prevRefreshSig) self.$RefreshSig$ = prevRefreshSig;
+function registerClassComponent(filename, moduleExports) {
+    for(const key in moduleExports)try {
+        if (key === "__esModule") continue;
+        const exportValue = moduleExports[key];
+        if (_reactrefresh.isLikelyComponentType(exportValue) && exportValue.prototype && exportValue.prototype.isReactComponent) _reactrefresh.register(exportValue, filename + " " + key);
+    } catch (e) {}
+}
+function $RefreshIsReactComponentLike$(moduleExports) {
+    if (_reactrefresh.isLikelyComponentType(moduleExports || moduleExports.default)) return true;
+    for(var key in moduleExports)try {
+        if (_reactrefresh.isLikelyComponentType(moduleExports[key])) return true;
+    } catch (e) {}
+    return false;
+}
+registerClassComponent(module.id, module.exports);
+if ($RefreshIsReactComponentLike$(module.exports)) {
+    module.meta.hot.accept();
+    _reactrefresh.performReactRefresh();
+}
+
+},
+"docs/form/SegmentRadio/index.en-US.md?type=text": function (module, exports, __mako_require__){
+"use strict";
+__mako_require__.d(exports, "__esModule", {
+    value: true
+});
+__mako_require__.d(exports, "texts", {
+    enumerable: true,
+    get: function() {
+        return texts;
+    }
+});
+var _interop_require_wildcard = __mako_require__("@swc/helpers/_/_interop_require_wildcard");
+var _reactrefresh = /*#__PURE__*/ _interop_require_wildcard._(__mako_require__("node_modules/react-refresh/runtime.js"));
+__mako_require__("docs/form/SegmentRadio/index.en-US.md?watch=parent");
+var prevRefreshReg;
+var prevRefreshSig;
+prevRefreshReg = self.$RefreshReg$;
+prevRefreshSig = self.$RefreshSig$;
+self.$RefreshReg$ = (type, id)=>{
+    _reactrefresh.register(type, module.id + id);
+};
+self.$RefreshSig$ = _reactrefresh.createSignatureFunctionForTransform;
+const texts = [
+    {
+        "value": "SegmentRadio, Similar to ",
+        "paraId": 0,
+        "tocIndex": 0
+    },
+    {
+        "value": "Segmented",
+        "paraId": 0,
+        "tocIndex": 0
+    },
+    {
+        "value": " of ",
+        "paraId": 0,
+        "tocIndex": 0
+    },
+    {
+        "value": "Ant Design",
+        "paraId": 0,
+        "tocIndex": 0
+    },
+    {
+        "value": ", but wraps it with ",
+        "paraId": 0,
+        "tocIndex": 0
+    },
+    {
+        "value": "ProForm",
+        "paraId": 0,
+        "tocIndex": 0
+    },
+    {
+        "value": " features.",
+        "paraId": 0,
+        "tocIndex": 0
+    },
+    {
+        "value": "import { SegmentRadio } from '@jiovan-labs/ant-buddy-pro';\n",
+        "paraId": 1,
+        "tocIndex": 1
+    },
+    {
+        "value": "Property",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "Description",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "Type",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "Default",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "clazzPrefix",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "The CSS class prefix of the component",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "string",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "'abp-segment-radio'",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "containerClazz",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "The CSS class name of the container div",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "string",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "containerStyle",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "The CSS style of the container div",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "React.CSSProperties",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "request",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "The remote request",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "(params?: Record<string, any>, props?: Record<string, any>) => Promise<(SegmentedRawOption | SegmentedLabeledOption)[]>",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "requestOptionPlace",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "Whether to keep the ",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "options",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": " data when using the ",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "request",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": " data",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "'before' | 'after' | 'override' | false",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "proField",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "Whether to use ProFormField instead of Antd",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "boolean",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "true",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "onOptionItemsChange",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "The callback function when the option items changed",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "(options?: (SegmentedRawOption | SegmentedLabeledOption)[]) => void",
+        "paraId": 2,
+        "tocIndex": 6
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 6
+    }
+];
+if (prevRefreshReg) self.$RefreshReg$ = prevRefreshReg;
+if (prevRefreshSig) self.$RefreshSig$ = prevRefreshSig;
+function registerClassComponent(filename, moduleExports) {
+    for(const key in moduleExports)try {
+        if (key === "__esModule") continue;
+        const exportValue = moduleExports[key];
+        if (_reactrefresh.isLikelyComponentType(exportValue) && exportValue.prototype && exportValue.prototype.isReactComponent) _reactrefresh.register(exportValue, filename + " " + key);
+    } catch (e) {}
+}
+function $RefreshIsReactComponentLike$(moduleExports) {
+    if (_reactrefresh.isLikelyComponentType(moduleExports || moduleExports.default)) return true;
+    for(var key in moduleExports)try {
+        if (_reactrefresh.isLikelyComponentType(moduleExports[key])) return true;
+    } catch (e) {}
+    return false;
+}
+registerClassComponent(module.id, module.exports);
+if ($RefreshIsReactComponentLike$(module.exports)) {
+    module.meta.hot.accept();
+    _reactrefresh.performReactRefresh();
+}
+
+},
+ }]);
+//# sourceMappingURL=docs_form_SegmentRadio_index_en-US_md-async.js.map

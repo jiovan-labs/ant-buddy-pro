@@ -1,0 +1,511 @@
+((typeof globalThis !== 'undefined' ? globalThis : self)["makoChunk_@jiovan-labs/ant-buddy-pro"] = (typeof globalThis !== 'undefined' ? globalThis : self)["makoChunk_@jiovan-labs/ant-buddy-pro"] || []).push([
+        ['docs/form/TagInput/index.en-US.md?type=text'],
+{ "docs/form/TagInput/index.en-US.md?type=text": function (module, exports, __mako_require__){
+"use strict";
+__mako_require__.d(exports, "__esModule", {
+    value: true
+});
+__mako_require__.d(exports, "texts", {
+    enumerable: true,
+    get: function() {
+        return texts;
+    }
+});
+var _interop_require_wildcard = __mako_require__("@swc/helpers/_/_interop_require_wildcard");
+var _reactrefresh = /*#__PURE__*/ _interop_require_wildcard._(__mako_require__("node_modules/react-refresh/runtime.js"));
+__mako_require__("docs/form/TagInput/index.en-US.md?watch=parent");
+var prevRefreshReg;
+var prevRefreshSig;
+prevRefreshReg = self.$RefreshReg$;
+prevRefreshSig = self.$RefreshSig$;
+self.$RefreshReg$ = (type, id)=>{
+    _reactrefresh.register(type, module.id + id);
+};
+self.$RefreshSig$ = _reactrefresh.createSignatureFunctionForTransform;
+const texts = [
+    {
+        "value": "TagInput, provides some tags with a text input box with addable capability.",
+        "paraId": 0,
+        "tocIndex": 0
+    },
+    {
+        "value": "import { TagInput } from '@jiovan-labs/ant-buddy-pro';\n",
+        "paraId": 1,
+        "tocIndex": 1
+    },
+    {
+        "value": "Property",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "Description",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "Type",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "Default",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "clazzPrefix",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "The CSS class prefix of the component",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "string",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "'abp-tag-input'",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "containerClazz",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "The CSS class name of the container div",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "string",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "containerStyle",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "The CSS style of the container div",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "React.CSSProperties",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "fieldRef",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "The ref of the component",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "React.Ref<TagInputRef | null | undefined>",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "request",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "The remote request",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "(params?: Record<string, any>, props?: Record<string, any>) => Promise<(string | number | TextTagProps)[]>",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "requestOptionPlace",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "Whether to keep the data when using request",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "'before' | 'after' | 'override' | false",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "fulfilTagItems",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "The props or content of the fulfil tags",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "(string | number | TextTagProps)[]",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "fulfilTagProps",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "The shared props of the fulfil tags",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "Omit<TagProps, 'children'>",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "addable",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "Whether the tag is addable",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "boolean",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "false",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "addingInputProps",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "The props of the adding input",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "AddingInputProps",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "addingTagProps",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "The props of the adding tag",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "TagProps",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "compactMargin",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "Whether to use compact margin",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "boolean",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "warnExists",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "Whether to warn if the tag already exists",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "boolean",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "true",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "proField",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "Whether to use ProFormField instead of Antd",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "boolean",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "true",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "onTagContentsChange",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "The callback function when tag contents changed",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "(contents?: (string | number)[]) => void",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "locale",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "The locale of the component",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "string",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "localeProps",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "The props of locale",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "IntlLocaleProps",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "-",
+        "paraId": 2,
+        "tocIndex": 5
+    },
+    {
+        "value": "The following methods can be accessed via ",
+        "paraId": 3,
+        "tocIndex": 6
+    },
+    {
+        "value": "ref",
+        "paraId": 3,
+        "tocIndex": 6
+    },
+    {
+        "value": ":",
+        "paraId": 3,
+        "tocIndex": 6
+    },
+    {
+        "value": "Method",
+        "paraId": 4,
+        "tocIndex": 6
+    },
+    {
+        "value": "Parameters",
+        "paraId": 4,
+        "tocIndex": 6
+    },
+    {
+        "value": "Description",
+        "paraId": 4,
+        "tocIndex": 6
+    },
+    {
+        "value": "getTagContents",
+        "paraId": 4,
+        "tocIndex": 6
+    },
+    {
+        "value": "None",
+        "paraId": 4,
+        "tocIndex": 6
+    },
+    {
+        "value": "Get tag contents list",
+        "paraId": 4,
+        "tocIndex": 6
+    },
+    {
+        "value": "setTagContents",
+        "paraId": 4,
+        "tocIndex": 6
+    },
+    {
+        "value": "contents?: (string | number)[] | null",
+        "paraId": 4,
+        "tocIndex": 6
+    },
+    {
+        "value": "Set tag contents list",
+        "paraId": 4,
+        "tocIndex": 6
+    },
+    {
+        "value": "addTagContent",
+        "paraId": 4,
+        "tocIndex": 6
+    },
+    {
+        "value": "content?: string | number | null",
+        "paraId": 4,
+        "tocIndex": 6
+    },
+    {
+        "value": "Add a single tag content",
+        "paraId": 4,
+        "tocIndex": 6
+    },
+    {
+        "value": "removeTagContent",
+        "paraId": 4,
+        "tocIndex": 6
+    },
+    {
+        "value": "content?: string | number | null",
+        "paraId": 4,
+        "tocIndex": 6
+    },
+    {
+        "value": "Remove a single tag",
+        "paraId": 4,
+        "tocIndex": 6
+    }
+];
+if (prevRefreshReg) self.$RefreshReg$ = prevRefreshReg;
+if (prevRefreshSig) self.$RefreshSig$ = prevRefreshSig;
+function registerClassComponent(filename, moduleExports) {
+    for(const key in moduleExports)try {
+        if (key === "__esModule") continue;
+        const exportValue = moduleExports[key];
+        if (_reactrefresh.isLikelyComponentType(exportValue) && exportValue.prototype && exportValue.prototype.isReactComponent) _reactrefresh.register(exportValue, filename + " " + key);
+    } catch (e) {}
+}
+function $RefreshIsReactComponentLike$(moduleExports) {
+    if (_reactrefresh.isLikelyComponentType(moduleExports || moduleExports.default)) return true;
+    for(var key in moduleExports)try {
+        if (_reactrefresh.isLikelyComponentType(moduleExports[key])) return true;
+    } catch (e) {}
+    return false;
+}
+registerClassComponent(module.id, module.exports);
+if ($RefreshIsReactComponentLike$(module.exports)) {
+    module.meta.hot.accept();
+    _reactrefresh.performReactRefresh();
+}
+
+},
+ }]);
+//# sourceMappingURL=docs_form_TagInput_index_en-US_md_q_hK4X-async.js.map
