@@ -23,8 +23,7 @@ import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseFo
 import Trigger, { type TriggerProps } from '@rc-component/trigger';
 import '@rc-component/trigger/assets/index.less';
 import { omit } from '@rc-component/util';
-import { If } from '@jiovan-labs/react-condition';
-import { BooleanUtils, ElementUtils, NanoidUtils, ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
+import { ElementUtils, NanoidUtils, ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import { useEventListener, useMutationObserver } from 'ahooks';
 import classnames from 'classnames';
 import { type WithFalse, type BeforeAfterType, type RuleValidateScope } from '@/type/declaration';
@@ -361,19 +360,19 @@ export const LocaleInput: React.FC<LocaleInputProps> = (props?: LocaleInputProps
     // noinspection DuplicatedCode
     const renderEntryReadonly = (dom: React.ReactNode) => (
         <div className={classnames(clazzPrefix, fieldStyle.hashId, `${clazzPrefix}-entry-readonly`, (addonPos ? `${clazzPrefix}-entry-readonly-${addonPos}` : undefined))}>
-            <If condition={addonPos === 'before'} validation={false}>
+            {addonPos === 'before' && (
                 <span className={`${clazzPrefix}-entry-readonly-addon`}>
                     {addonEntryDom}
                 </span>
-            </If>
+            )}
             <div className={`${clazzPrefix}-entry-readonly-content`}>
                 {dom || props?.proFieldProps?.emptyText || '-'}
             </div>
-            <If condition={addonPos === 'after'} validation={false}>
+            {addonPos === 'after' && (
                 <span className={`${clazzPrefix}-entry-readonly-addon`}>
                     {addonEntryDom}
                 </span>
-            </If>
+            )}
         </div>
     );
 
@@ -464,38 +463,35 @@ export const LocaleInput: React.FC<LocaleInputProps> = (props?: LocaleInputProps
         ) : undefined;
 
         const addon = (!!itemAddonDom && ((before && popupAddonPos === 'before') || (!before && popupAddonPos === 'after'))) ? (
-            <If condition={BooleanUtils.isNotFalse(popupConfirmProps?.enabled)} validation={false}>
-                <If.Then>
-                    <Popconfirm
-                        title={ObjectUtils.firstNotNil(popupConfirmProps?.sureSetAsDefault, intlLocales.get([locale, 'sureSetAsDefault']), intlLocales.get(['en_US', 'sureSetAsDefault']))}
-                        okText={popupConfirmProps?.ok ?? intlLocales.get([locale, 'ok'])}
-                        cancelText={popupConfirmProps?.cancel ?? intlLocales.get([locale, 'cancel'])}
-                        disabled={entryImmutable}
-                        onConfirm={() => handleSetAsDefault(elementId)}
-                        onOpenChange={setConfirmOpen}
-                    >
-                        <span
-                            className={classnames(`${clazzPrefix}-locale-action`, `${clazzPrefix}-locale-action-${popupAddonPos}`)}
-                            style={{
-                                cursor: entryImmutable ? 'default' : 'pointer',
-                            }}
-                        >
-                            {itemAddonDom}
-                        </span>
-                    </Popconfirm>
-                </If.Then>
-                <If.Else>
+            (popupConfirmProps?.enabled !== false) ? (
+                <Popconfirm
+                    title={ObjectUtils.firstNotNil(popupConfirmProps?.sureSetAsDefault, intlLocales.get([locale, 'sureSetAsDefault']), intlLocales.get(['en_US', 'sureSetAsDefault']))}
+                    okText={popupConfirmProps?.ok ?? intlLocales.get([locale, 'ok'])}
+                    cancelText={popupConfirmProps?.cancel ?? intlLocales.get([locale, 'cancel'])}
+                    disabled={entryImmutable}
+                    onConfirm={() => handleSetAsDefault(elementId)}
+                    onOpenChange={setConfirmOpen}
+                >
                     <span
                         className={classnames(`${clazzPrefix}-locale-action`, `${clazzPrefix}-locale-action-${popupAddonPos}`)}
                         style={{
                             cursor: entryImmutable ? 'default' : 'pointer',
                         }}
-                        onClick={() => handleSetAsDefault(elementId)}
                     >
                         {itemAddonDom}
                     </span>
-                </If.Else>
-            </If>
+                </Popconfirm>
+            ) : (
+                <span
+                    className={classnames(`${clazzPrefix}-locale-action`, `${clazzPrefix}-locale-action-${popupAddonPos}`)}
+                    style={{
+                        cursor: entryImmutable ? 'default' : 'pointer',
+                    }}
+                    onClick={() => handleSetAsDefault(elementId)}
+                >
+                    {itemAddonDom}
+                </span>
+            )
         ) : undefined;
 
         const nodeCount = [tagDom, addon].filter(object => !!object).length;

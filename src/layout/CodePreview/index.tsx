@@ -19,7 +19,6 @@ import React from 'react';
 import { Typography } from 'antd';
 import { type TitleProps } from 'antd/es/typography/Title';
 import { type TextProps } from 'antd/es/typography/Text';
-import { If } from '@jiovan-labs/react-condition';
 import classnames from 'classnames';
 import { type WithFalse, type PaddingSpaceType } from '@/type/declaration';
 import { useFieldStyle } from './styles';
@@ -180,7 +179,7 @@ export const CodePreview: React.FC<CodePreviewProps> = (props?: CodePreviewProps
         >
             <pre className={classnames(`${clazzPrefix}-pre`, props?.preClazz)} style={props?.preStyle}>
                 <code className={classnames(`${clazzPrefix}-code`, props?.codeClazz)} style={props?.codeStyle}>
-                    <If condition={props?.titleContent} validation={false}>
+                    {!!props?.titleContent && (
                         <Typography.Title
                             className={classnames(`${clazzPrefix}-title`, props?.titleClazz)}
                             style={props?.titleStyle}
@@ -188,8 +187,8 @@ export const CodePreview: React.FC<CodePreviewProps> = (props?: CodePreviewProps
                         >
                             {props?.titleContent}
                         </Typography.Title>
-                    </If>
-                    <If condition={props?.textContent} validation={false}>
+                    )}
+                    {!!props?.textContent && (
                         <Typography.Text
                             className={classnames(`${clazzPrefix}-text`, props?.textClazz)}
                             style={props?.textStyle}
@@ -197,7 +196,7 @@ export const CodePreview: React.FC<CodePreviewProps> = (props?: CodePreviewProps
                         >
                             {props?.textContent}
                         </Typography.Text>
-                    </If>
+                    )}
                     {props?.children}
                 </code>
             </pre>

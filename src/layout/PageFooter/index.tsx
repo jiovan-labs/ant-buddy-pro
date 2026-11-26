@@ -18,7 +18,7 @@
 import React from 'react';
 import { Layout } from 'antd';
 import { CopyrightOutlined } from '@ant-design/icons';
-import { If, For } from '@jiovan-labs/react-condition';
+import { For } from '@jiovan-labs/react-condition';
 import classnames from 'classnames';
 import { type WithFalse } from '@/type/declaration';
 import { useFieldStyle } from './styles';
@@ -233,7 +233,7 @@ export const PageFooter: React.FC<PageFooterProps> = (props?: PageFooterProps) =
             style={props?.containerStyle}
         >
             <div className={classnames(`${clazzPrefix}-vessel`, props?.vesselClazz)} style={props?.vesselStyle}>
-                <If condition={props?.links} validation={false}>
+                {!!props?.links && (
                     <div className={classnames(`${clazzPrefix}-links`, props?.linksClazz)} style={props?.linksStyle}>
                         <For
                             of={props?.links}
@@ -257,21 +257,16 @@ export const PageFooter: React.FC<PageFooterProps> = (props?: PageFooterProps) =
                             }}
                         />
                     </div>
-                </If>
-                <If condition={props?.copyright} validation={false}>
+                )}
+                {!!props?.copyright && (
                     <div className={classnames(`${clazzPrefix}-copyright`, props?.copyrightClazz)} style={props?.copyrightStyle}>
-                        <If condition={copyrightIcon} validation={false}>
-                            <If.Then>
-                                <>
-                                    <CopyrightOutlined /> {props?.copyright}
-                                </>
-                            </If.Then>
-                            <If.Else>
-                                {props?.copyright}
-                            </If.Else>
-                        </If>
+                        {copyrightIcon ? (
+                            <>
+                                <CopyrightOutlined /> {props?.copyright}
+                            </>
+                        ) : props?.copyright}
                     </div>
-                </If>
+                )}
             </div>
         </Layout.Footer>
     );

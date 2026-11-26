@@ -21,7 +21,6 @@ import { type TabPosition } from 'antd/es/tabs';
 import { FieldTimeOutlined } from '@ant-design/icons';
 import { useIntl } from '@ant-design/pro-components';
 import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext.js';
-import { If } from '@jiovan-labs/react-condition';
 import { ElementUtils, NanoidUtils, ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import Trigger, { type TriggerProps } from '@rc-component/trigger';
 import '@rc-component/trigger/assets/index.less';
@@ -740,10 +739,10 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                         tabBarExtraContent={(
                             <>
                                 {props?.tabsProps?.tabBarExtraContent}
-                                <If condition={allowSecond || allowYear || allowOkEcho} validation={false}>
+                                {(allowSecond || allowYear || allowOkEcho) && (
                                     <div className={`${clazzPrefix}-tabs-extra`}>
                                         <Space size={'middle'}>
-                                            <If condition={allowSecond && !entryImmutable} validation={false}>
+                                            {allowSecond && !entryImmutable && (
                                                 <Switch
                                                     checked={showSecond}
                                                     size='small'
@@ -757,8 +756,8 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                                                         }
                                                     }}
                                                 />
-                                            </If>
-                                            <If condition={allowYear && !entryImmutable} validation={false}>
+                                            )}
+                                            {allowYear && !entryImmutable && (
                                                 <Switch
                                                     checked={showYear}
                                                     size='small'
@@ -772,8 +771,8 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                                                         }
                                                     }}
                                                 />
-                                            </If>
-                                            <If condition={allowOkEcho && !entryImmutable} validation={false}>
+                                            )}
+                                            {allowOkEcho && !entryImmutable && (
                                                 <Button
                                                     className={`${clazzPrefix}-ok-echo`}
                                                     size='small'
@@ -785,10 +784,10 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                                                 >
                                                     {ObjectUtils.firstNotNil(props?.localeProps?.ok, intlLocales.get([locale, 'ok']), intlLocales.get(['en_US', 'ok']))}
                                                 </Button>
-                                            </If>
+                                            )}
                                         </Space>
                                     </div>
-                                </If>
+                                )}
                             </>
                         )}
                         {...omitTabsProps}

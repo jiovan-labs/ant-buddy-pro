@@ -19,7 +19,6 @@ import React from 'react';
 import { Form, Select } from 'antd';
 import { ProFormSelect, type ProFormSelectProps, type RequestOptionsType, useDebounceFn } from '@ant-design/pro-components';
 import { omit } from '@rc-component/util';
-import { If } from '@jiovan-labs/react-condition';
 import { ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import classnames from 'classnames';
 import { type WithFalse, type LabelMixinType, type RequestOptionPlace } from '@/type/declaration';
@@ -249,16 +248,16 @@ export const DivideSelect: React.FC<DivideSelectProps> = (props?: DivideSelectPr
     const renderOption = (item: any, key?: string) => {
         return !item ? undefined : (
             <div key={key ?? item?.data?.value} className={classnames(`${clazzPrefix}-option`, props?.optionClazz, (presetStyle ? `${clazzPrefix}-${presetStyle}` : undefined))} style={props?.optionStyle}>
-                <If condition={optionBeforeContent} validation={false}>
+                {!!optionBeforeContent && (
                     <span key={`${key ?? item?.data?.value}-before`} className={classnames(`${clazzPrefix}-option-before`, props?.optionBeforeClazz)} style={props?.optionBeforeStyle}>
                         {renderContent(item, true)}
                     </span>
-                </If>
-                <If condition={optionAfterContent} validation={false}>
+                )}
+                {!!optionAfterContent && (
                     <span key={`${key ?? item?.data?.value}-after`} className={classnames(`${clazzPrefix}-option-after`, props?.optionAfterClazz)} style={props?.optionAfterStyle}>
                         {renderContent(item, false)}
                     </span>
-                </If>
+                )}
             </div>
         )
     };

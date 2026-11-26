@@ -21,7 +21,6 @@ import { type TextAreaProps, type TextAreaRef } from 'antd/es/input/TextArea';
 import { ProFormTextArea, type ProFormFieldItemProps, useIntl } from '@ant-design/pro-components';
 import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext.js';
 import { type TabPaneProps as RcTabPaneProps } from '@rc-component/tabs/es/TabPanelList/TabPane';
-import { If } from '@jiovan-labs/react-condition';
 import { NanoidUtils, ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import { omit } from '@rc-component/util';
 import classnames from 'classnames';
@@ -333,54 +332,49 @@ export const LocaleTextarea: React.FC<LocaleTextareaProps> = (props?: LocaleText
                 const restProps = omit(itemProp, ['tag', 'name', 'fieldProps', 'rules']);
                 const omitFieldProps = !fieldProps ? {} : omit(fieldProps, ['className', 'name', 'id', 'placeholder', 'allowClear', 'autoSize', 'variant', 'maxLength', 'showCount', 'disabled', 'readOnly']);
                 const pureRestFieldProps = omit(omitFieldProps, ['onChange']);
-                const itemDom = (
-                    <If condition={switchProField} validation={false}>
-                        <If.Then>
-                            <ProFormTextArea
-                                name={rawName ? `${rawName}[${tag}]` : undefined}
-                                {...restProps}
-                                fieldProps={{
-                                    className: classnames(`${clazzPrefix}-item`, `${clazzPrefix}-item-pro-field`, fieldProps?.className),
-                                    placeholder: StringUtils.join(itemProp?.placeholder) || fieldProps?.placeholder || props?.switchShareProps?.placeholder || (switchCloneProps.placeholder ? (StringUtils.join(props?.placeholder) ?? props?.fieldProps?.placeholder) : undefined),
-                                    rows: fieldProps?.rows || props?.switchShareProps?.rows || (switchCloneProps.rows ? props?.fieldProps?.rows : undefined),
-                                    allowClear: fieldProps?.allowClear || props?.switchShareProps?.allowClear || (switchCloneProps.allowClear ? props?.fieldProps?.allowClear : undefined),
-                                    autoSize: fieldProps?.autoSize || props?.switchShareProps?.autoSize || (switchCloneProps.autoSize ? props?.fieldProps?.autoSize : undefined),
-                                    maxLength: fieldProps?.maxLength || props?.switchShareProps?.maxLength || (switchCloneProps.maxLength ? props?.fieldProps?.maxLength : undefined),
-                                    showCount: fieldProps?.showCount || props?.switchShareProps?.showCount || (switchCloneProps.showCount ? props?.fieldProps?.showCount : undefined),
-                                    disabled: props.disabled || props?.fieldProps?.disabled || fieldProps?.disabled,
-                                    readOnly: props.readonly || props?.fieldProps?.readOnly || fieldProps?.readOnly,
-                                    variant: fieldProps?.variant || props?.switchShareProps?.variant || (switchCloneProps.variant ? props?.fieldProps?.variant : undefined),
-                                    ...omitFieldProps,
-                                }}
-                                rules={[
-                                    ...(props?.switchShareProps?.rules ?? []),
-                                    ...clonedRules,
-                                    ...(rules ?? []),
-                                ]}
-                            />
-                        </If.Then>
-                        <If.Else>
-                            <Input.TextArea
-                                className={classnames(`${clazzPrefix}-item`, fieldProps?.className)}
-                                placeholder={StringUtils.join(itemProp?.placeholder) || fieldProps?.placeholder || props?.switchShareProps?.placeholder || (switchCloneProps.placeholder ? (StringUtils.join(props?.placeholder) ?? props?.fieldProps?.placeholder) : undefined)}
-                                rows={fieldProps?.rows || props?.switchShareProps?.rows || (switchCloneProps.rows ? props?.fieldProps?.rows : undefined)}
-                                allowClear={fieldProps?.allowClear || props?.switchShareProps?.allowClear || (switchCloneProps.allowClear ? props?.fieldProps?.allowClear : undefined)}
-                                autoSize={fieldProps?.autoSize || props?.switchShareProps?.autoSize || (switchCloneProps.autoSize ? props?.fieldProps?.autoSize : undefined)}
-                                maxLength={fieldProps?.maxLength || props?.switchShareProps?.maxLength || (switchCloneProps.maxLength ? props?.fieldProps?.maxLength : undefined)}
-                                showCount={fieldProps?.showCount || props?.switchShareProps?.showCount || (switchCloneProps.showCount ? props?.fieldProps?.showCount : undefined)}
-                                disabled={props.disabled || props?.fieldProps?.disabled || fieldProps?.disabled}
-                                readOnly={props.readonly || props?.fieldProps?.readOnly || fieldProps?.readOnly}
-                                variant={fieldProps?.variant || props?.switchShareProps?.variant || (switchCloneProps.variant ? props?.fieldProps?.variant : undefined)}
-                                onChange={(event: any) => {
-                                    if (rawName) {
-                                        form?.setFieldValue(`${rawName}[${tag}]`, event.target.value);
-                                    }
-                                    omitFieldProps.onChange?.(event);
-                                }}
-                                {...pureRestFieldProps}
-                            />
-                        </If.Else>
-                    </If>
+                const itemDom = switchProField ? (
+                    <ProFormTextArea
+                        name={rawName ? `${rawName}[${tag}]` : undefined}
+                        {...restProps}
+                        fieldProps={{
+                            className: classnames(`${clazzPrefix}-item`, `${clazzPrefix}-item-pro-field`, fieldProps?.className),
+                            placeholder: StringUtils.join(itemProp?.placeholder) || fieldProps?.placeholder || props?.switchShareProps?.placeholder || (switchCloneProps.placeholder ? (StringUtils.join(props?.placeholder) ?? props?.fieldProps?.placeholder) : undefined),
+                            rows: fieldProps?.rows || props?.switchShareProps?.rows || (switchCloneProps.rows ? props?.fieldProps?.rows : undefined),
+                            allowClear: fieldProps?.allowClear || props?.switchShareProps?.allowClear || (switchCloneProps.allowClear ? props?.fieldProps?.allowClear : undefined),
+                            autoSize: fieldProps?.autoSize || props?.switchShareProps?.autoSize || (switchCloneProps.autoSize ? props?.fieldProps?.autoSize : undefined),
+                            maxLength: fieldProps?.maxLength || props?.switchShareProps?.maxLength || (switchCloneProps.maxLength ? props?.fieldProps?.maxLength : undefined),
+                            showCount: fieldProps?.showCount || props?.switchShareProps?.showCount || (switchCloneProps.showCount ? props?.fieldProps?.showCount : undefined),
+                            disabled: props.disabled || props?.fieldProps?.disabled || fieldProps?.disabled,
+                            readOnly: props.readonly || props?.fieldProps?.readOnly || fieldProps?.readOnly,
+                            variant: fieldProps?.variant || props?.switchShareProps?.variant || (switchCloneProps.variant ? props?.fieldProps?.variant : undefined),
+                            ...omitFieldProps,
+                        }}
+                        rules={[
+                            ...(props?.switchShareProps?.rules ?? []),
+                            ...clonedRules,
+                            ...(rules ?? []),
+                        ]}
+                    />
+                ) : (
+                    <Input.TextArea
+                        className={classnames(`${clazzPrefix}-item`, fieldProps?.className)}
+                        placeholder={StringUtils.join(itemProp?.placeholder) || fieldProps?.placeholder || props?.switchShareProps?.placeholder || (switchCloneProps.placeholder ? (StringUtils.join(props?.placeholder) ?? props?.fieldProps?.placeholder) : undefined)}
+                        rows={fieldProps?.rows || props?.switchShareProps?.rows || (switchCloneProps.rows ? props?.fieldProps?.rows : undefined)}
+                        allowClear={fieldProps?.allowClear || props?.switchShareProps?.allowClear || (switchCloneProps.allowClear ? props?.fieldProps?.allowClear : undefined)}
+                        autoSize={fieldProps?.autoSize || props?.switchShareProps?.autoSize || (switchCloneProps.autoSize ? props?.fieldProps?.autoSize : undefined)}
+                        maxLength={fieldProps?.maxLength || props?.switchShareProps?.maxLength || (switchCloneProps.maxLength ? props?.fieldProps?.maxLength : undefined)}
+                        showCount={fieldProps?.showCount || props?.switchShareProps?.showCount || (switchCloneProps.showCount ? props?.fieldProps?.showCount : undefined)}
+                        disabled={props.disabled || props?.fieldProps?.disabled || fieldProps?.disabled}
+                        readOnly={props.readonly || props?.fieldProps?.readOnly || fieldProps?.readOnly}
+                        variant={fieldProps?.variant || props?.switchShareProps?.variant || (switchCloneProps.variant ? props?.fieldProps?.variant : undefined)}
+                        onChange={(event: any) => {
+                            if (rawName) {
+                                form?.setFieldValue(`${rawName}[${tag}]`, event.target.value);
+                            }
+                            omitFieldProps.onChange?.(event);
+                        }}
+                        {...pureRestFieldProps}
+                    />
                 );
                 result.push({
                     key: itemProp.tag,
@@ -394,49 +388,44 @@ export const LocaleTextarea: React.FC<LocaleTextareaProps> = (props?: LocaleText
                 if (!tag) {
                     continue;
                 }
-                const itemDom = (
-                    <If condition={switchProField} validation={false}>
-                        <If.Then>
-                            <ProFormTextArea
-                                name={rawName ? `${rawName}[${tag}]` : undefined}
-                                fieldProps={{
-                                    className: classnames(`${clazzPrefix}-item`, `${clazzPrefix}-item-pro-field`),
-                                    placeholder: props?.switchShareProps?.placeholder || (switchCloneProps.placeholder ? (StringUtils.join(props?.placeholder) ?? props?.fieldProps?.placeholder) : undefined),
-                                    rows: props?.switchShareProps?.rows || (switchCloneProps.rows ? props?.fieldProps?.rows : undefined),
-                                    allowClear: props?.switchShareProps?.allowClear || (switchCloneProps.allowClear ? props?.fieldProps?.allowClear : undefined),
-                                    autoSize: props?.switchShareProps?.autoSize || (switchCloneProps.autoSize ? props?.fieldProps?.autoSize : undefined),
-                                    maxLength: props?.switchShareProps?.maxLength || (switchCloneProps.maxLength ? props?.fieldProps?.maxLength : undefined),
-                                    showCount: props?.switchShareProps?.showCount || (switchCloneProps.showCount ? props?.fieldProps?.showCount : undefined),
-                                    disabled: props.disabled || props?.fieldProps?.disabled,
-                                    readOnly: props.readonly || props?.fieldProps?.readOnly,
-                                    variant: props?.switchShareProps?.variant || (switchCloneProps.variant ? props?.fieldProps?.variant : undefined),
-                                }}
-                                rules={[
-                                    ...(props?.switchShareProps?.rules || []),
-                                    ...clonedRules,
-                                ]}
-                            />
-                        </If.Then>
-                        <If.Else>
-                            <Input.TextArea
-                                className={`${clazzPrefix}-item`}
-                                placeholder={props?.switchShareProps?.placeholder || (switchCloneProps.placeholder ? (StringUtils.join(props?.placeholder) ?? props?.fieldProps?.placeholder) : undefined)}
-                                rows={props?.switchShareProps?.rows || (switchCloneProps.rows ? props?.fieldProps?.rows : undefined)}
-                                allowClear={props?.switchShareProps?.allowClear || (switchCloneProps.allowClear ? props?.fieldProps?.allowClear : undefined)}
-                                autoSize={props?.switchShareProps?.autoSize || (switchCloneProps.autoSize ? props?.fieldProps?.autoSize : undefined)}
-                                maxLength={props?.switchShareProps?.maxLength || (switchCloneProps.maxLength ? props?.fieldProps?.maxLength : undefined)}
-                                showCount={props?.switchShareProps?.showCount || (switchCloneProps.showCount ? props?.fieldProps?.showCount : undefined)}
-                                disabled={props.disabled || props?.fieldProps?.disabled}
-                                readOnly={props.readonly || props?.fieldProps?.readOnly}
-                                variant={props?.switchShareProps?.variant || (switchCloneProps.variant ? props?.fieldProps?.variant : undefined)}
-                                onChange={(event: any) => {
-                                    if (rawName) {
-                                        form?.setFieldValue(`${rawName}[${tag}]`, event.target.value);
-                                    }
-                                }}
-                            />
-                        </If.Else>
-                    </If>
+                const itemDom = switchProField ? (
+                    <ProFormTextArea
+                        name={rawName ? `${rawName}[${tag}]` : undefined}
+                        fieldProps={{
+                            className: classnames(`${clazzPrefix}-item`, `${clazzPrefix}-item-pro-field`),
+                            placeholder: props?.switchShareProps?.placeholder || (switchCloneProps.placeholder ? (StringUtils.join(props?.placeholder) ?? props?.fieldProps?.placeholder) : undefined),
+                            rows: props?.switchShareProps?.rows || (switchCloneProps.rows ? props?.fieldProps?.rows : undefined),
+                            allowClear: props?.switchShareProps?.allowClear || (switchCloneProps.allowClear ? props?.fieldProps?.allowClear : undefined),
+                            autoSize: props?.switchShareProps?.autoSize || (switchCloneProps.autoSize ? props?.fieldProps?.autoSize : undefined),
+                            maxLength: props?.switchShareProps?.maxLength || (switchCloneProps.maxLength ? props?.fieldProps?.maxLength : undefined),
+                            showCount: props?.switchShareProps?.showCount || (switchCloneProps.showCount ? props?.fieldProps?.showCount : undefined),
+                            disabled: props.disabled || props?.fieldProps?.disabled,
+                            readOnly: props.readonly || props?.fieldProps?.readOnly,
+                            variant: props?.switchShareProps?.variant || (switchCloneProps.variant ? props?.fieldProps?.variant : undefined),
+                        }}
+                        rules={[
+                            ...(props?.switchShareProps?.rules || []),
+                            ...clonedRules,
+                        ]}
+                    />
+                ) : (
+                    <Input.TextArea
+                        className={`${clazzPrefix}-item`}
+                        placeholder={props?.switchShareProps?.placeholder || (switchCloneProps.placeholder ? (StringUtils.join(props?.placeholder) ?? props?.fieldProps?.placeholder) : undefined)}
+                        rows={props?.switchShareProps?.rows || (switchCloneProps.rows ? props?.fieldProps?.rows : undefined)}
+                        allowClear={props?.switchShareProps?.allowClear || (switchCloneProps.allowClear ? props?.fieldProps?.allowClear : undefined)}
+                        autoSize={props?.switchShareProps?.autoSize || (switchCloneProps.autoSize ? props?.fieldProps?.autoSize : undefined)}
+                        maxLength={props?.switchShareProps?.maxLength || (switchCloneProps.maxLength ? props?.fieldProps?.maxLength : undefined)}
+                        showCount={props?.switchShareProps?.showCount || (switchCloneProps.showCount ? props?.fieldProps?.showCount : undefined)}
+                        disabled={props.disabled || props?.fieldProps?.disabled}
+                        readOnly={props.readonly || props?.fieldProps?.readOnly}
+                        variant={props?.switchShareProps?.variant || (switchCloneProps.variant ? props?.fieldProps?.variant : undefined)}
+                        onChange={(event: any) => {
+                            if (rawName) {
+                                form?.setFieldValue(`${rawName}[${tag}]`, event.target.value);
+                            }
+                        }}
+                    />
                 );
                 result.push({
                     key: tag,

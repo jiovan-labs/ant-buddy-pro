@@ -24,7 +24,7 @@ import { type ThemeType as IconThemeType } from '@ant-design/icons-svg/es/types'
 import { ProFormSelect, type FieldProps, type ProFormFieldItemProps, useIntl } from '@ant-design/pro-components';
 import { EditOrReadOnlyContext } from '@ant-design/pro-components/es/form/BaseForm/EditOrReadOnlyContext.js';
 import { omit } from '@rc-component/util';
-import { If, For, MapIterator } from '@jiovan-labs/react-condition';
+import { For, MapIterator } from '@jiovan-labs/react-condition';
 import { NanoidUtils, ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
 import { useEventListener } from 'ahooks';
 import classnames from 'classnames';
@@ -723,7 +723,7 @@ export const IconSelect: React.FC<IconSelectProps> = (props?: IconSelectProps) =
                     inkBar={themeInkBar}
                     tabBarExtraContent={(
                         <>
-                            <If condition={searchBox} validation={false}>
+                            {searchBox && (
                                 <Input.Search
                                     ref={searchRef}
                                     placeholder={ObjectUtils.firstNotNil(props?.localeProps?.search, intlLocales.get([locale, 'searchBox']), intlLocales.get(['en_US', 'searchBox']))}
@@ -737,7 +737,7 @@ export const IconSelect: React.FC<IconSelectProps> = (props?: IconSelectProps) =
                                     onSearch={setSearchWord}
                                     data-icon-select-search={fieldId}
                                 />
-                            </If>
+                            )}
                             {props?.tabsProps?.tabBarExtraContent}
                         </>
                     )}

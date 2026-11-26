@@ -1,6 +1,6 @@
 {
     "name": "@jiovan-labs/ant-buddy-pro",
-    "version": "2.0.5",
+    "version": "2.0.6",
     "title": "Ant Buddy Pro",
     "description": "Awesome components based on Ant Design & Ant ProComponents",
     "homepage": "https://jiovan-labs.github.io/ant-buddy-pro",
@@ -57,7 +57,7 @@
         "antd-img-crop": "^4.30.0",
         "antd-style": "^4.1.0",
         "cron-validate": "^1.5.3",
-        "mathlive": "^0.109.2",
+        "mathlive": "^0.111.4",
         "object-hash": "^3.0.0",
         "react-custom-scrollbars-4": "^4.5.1",
         "zxcvbn": "^4.4.2"
@@ -67,7 +67,7 @@
         "@eslint/eslintrc": "^3.3.7",
         "@eslint/js": "^10.0.1",
         "@types/object-hash": "^3.0.6",
-        "@types/react": "^19.3.2",
+        "@types/react": "^19.3.3",
         "@types/react-dom": "^19.3.0",
         "@types/zxcvbn": "^4.4.5",
         "@jiovan-labs/babel-plugin-remove-comment": "^2.0.0",
