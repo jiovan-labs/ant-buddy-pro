@@ -1,9 +1,8 @@
 ---
-nav:
-  title: Guide
-  order: 1
-title: Guidelines
+title: Getting Started
 toc: menu
+group: Guide
+order: 1
 ---
 
 ## What's `ant-buddy-pro`?

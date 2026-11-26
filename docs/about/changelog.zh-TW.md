@@ -1,9 +1,8 @@
 ---
-nav:
-  title: 更新日誌
-  order: 10
 title: 更新日誌
 toc: false
+group: 關於
+order: 2
 ---
 
 ## 歷史版本

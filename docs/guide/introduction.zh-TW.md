@@ -1,9 +1,8 @@
 ---
-nav:
-  title: 指南
-  order: 1
 title: 上手指南
 toc: menu
+group: 指南
+order: 1
 ---
 
 ## 什麽是 `ant-buddy-pro`？

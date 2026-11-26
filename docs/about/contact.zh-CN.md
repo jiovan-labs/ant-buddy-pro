@@ -1,9 +1,8 @@
 ---
-nav:
-  title: 关于
-  order: 9
 title: 关于我们
 toc: false
+group: 关于
+order: 1
 ---
 
 ## 版权所有

@@ -36,7 +36,7 @@ export default defineThemeConfig({
         'en-US': [
             {
                 title: 'Guide',
-                link: '/guide',
+                link: '/guide/introduction',
             },
             {
                 title: 'Field',
@@ -58,7 +58,7 @@ export default defineThemeConfig({
         'zh-CN': [
             {
                 title: '指南',
-                link: '/guide-cn',
+                link: '/guide/introduction-cn',
             },
             {
                 title: '控件',
@@ -80,7 +80,7 @@ export default defineThemeConfig({
         'zh-TW': [
             {
                 title: '指南',
-                link: '/guide-tw',
+                link: '/guide/introduction-tw',
             },
             {
                 title: '控件',
@@ -128,7 +128,7 @@ export default defineThemeConfig({
             {
                 type: 'primary',
                 text: 'Getting Started',
-                link: '/guide'
+                link: '/guide/introduction'
             },
             {
                 text: 'About Us',
@@ -139,7 +139,7 @@ export default defineThemeConfig({
             {
                 type: 'primary',
                 text: '开始使用',
-                link: '/guide-cn'
+                link: '/guide/introduction-cn'
             },
             {
                 text: '关于我们',
@@ -150,7 +150,7 @@ export default defineThemeConfig({
             {
                 type: 'primary',
                 text: '開始使用',
-                link: '/guide-tw'
+                link: '/guide/introduction-tw'
             },
             {
                 text: '關于我們',

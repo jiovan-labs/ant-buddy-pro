@@ -1,9 +1,8 @@
 ---
-nav:
-  title: Changelog
-  order: 10
 title: Changelog
 toc: false
+group: About
+order: 2
 ---
 
 ## Version History

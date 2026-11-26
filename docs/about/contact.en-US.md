@@ -1,9 +1,8 @@
 ---
-nav:
-  title: About
-  order: 9
 title: About Us
 toc: false
+group: About
+order: 1
 ---
 
 ## Copyright

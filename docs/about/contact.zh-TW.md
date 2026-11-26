@@ -1,9 +1,8 @@
 ---
-nav:
-  title: 關於
-  order: 9
 title: 關於我們
 toc: false
+group: 關於
+order: 1
 ---
 
 ## 版權所有
