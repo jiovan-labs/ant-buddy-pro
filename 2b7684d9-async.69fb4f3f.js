@@ -1,0 +1,2 @@
+(("undefined"!=typeof globalThis?globalThis:self)["makoChunk_@jiovan-labs/ant-buddy-pro"]=("undefined"!=typeof globalThis?globalThis:self)["makoChunk_@jiovan-labs/ant-buddy-pro"]||[]).push([["2b7684d9"],{"2b7684d9":function(e,a,r){"use strict";var n,o;n=r("da502f38"),o=r("4a949bfa"),a.version=n.version,a.renderToString=n.renderToString,a.renderToStaticMarkup=n.renderToStaticMarkup,a.renderToReadableStream=o.renderToReadableStream,a.resume=o.resume;}}]);
+//# sourceMappingURL=2b7684d9-async.69fb4f3f.js.map

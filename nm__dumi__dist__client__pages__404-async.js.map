@@ -1,1 +1,0 @@
-{"version":3,"sources":["node_modules/dumi/dist/client/pages/404.js"],"sourcesContent":["// allow customize 404 via theme slots\nexport { default } from 'dumi/theme/slots/NotFound';"],"names":[],"mappings":";;;AAAA,sCAAsC;;;;;4BAC7B;;;eAAA,iBAAO;;;;0EAAQ"}
