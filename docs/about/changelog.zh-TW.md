@@ -10,6 +10,9 @@ toc: false
 
 以下是一些裏程碑版本的更新軌跡：
 
+  - **v2.0.7** (2026-11-26)
+    - 增加 `util/LocaleUtils`
+
   - **v2.0.3** (2026-11-24)
     - 增加 `layout/EvenDescriptions`
 

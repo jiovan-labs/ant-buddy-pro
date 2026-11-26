@@ -24,9 +24,37 @@ import { omit } from '@rc-component/util';
 import classnames from 'classnames';
 import 'mathlive';
 import 'mathlive/fonts.css';
+import { LocaleUtils } from '@/util/LocaleUtils';
 import { PropUtils } from '@/util/PropUtils';
-import { intlLocales } from './locales';
+import { intlLocales, extraLocales } from './locales';
 import { useFieldStyle } from './styles';
+
+
+// MathLive 的语言包使用小写连字符形式（zh-cn / zh-tw / en），且只能静态全局设置
+const MATH_LIVE_LOCALES: Record<string, string> = {
+    en_US: 'en',
+    zh_CN: 'zh-cn',
+    zh_TW: 'zh-tw',
+};
+
+const buildMathLiveStrings = (projectLocale: string): Record<string, string> => {
+    const result: Record<string, string> = {};
+    extraLocales.forEach((value, keys) => {
+        if (keys && keys[0] === projectLocale && value !== undefined) {
+            result[keys[1]] = value;
+        }
+    });
+    return result;
+};
+
+const MATH_LIVE_STRINGS: Record<string, Record<string, string>> = {
+    'zh-cn': buildMathLiveStrings('zh_CN'),
+    'zh-tw': buildMathLiveStrings('zh_TW'),
+};
+
+if (typeof window !== 'undefined' && (window as any).MathfieldElement) {
+    (window as any).MathfieldElement.strings = MATH_LIVE_STRINGS;
+}
 
 
 type MathfieldOptions = {
@@ -137,6 +165,7 @@ export const MathInput: React.FC<MathInputProps> = (props?: MathInputProps) => {
         proField = true,
         locale = intlType.locale,
     } = props ?? {};
+    const languageTag = LocaleUtils.toLanguageTag(locale);
 
     const [fieldId] = React.useState<string>(NanoidUtils.getPopularId());
     const fieldName = !props?.name ? undefined : [...(formListContext?.listName ?? []), props.name];
@@ -161,9 +190,55 @@ export const MathInput: React.FC<MathInputProps> = (props?: MathInputProps) => {
         props?.onChange?.(value);
     }, [fieldName, form]);
 
+    // MathLive 的文案语言由静态属性控制，需在 mathfield 创建前设置；locale 变化时已挂载的控件会自动刷新提示文案
+    React.useEffect(() => {
+        if (typeof window === 'undefined') {
+            return;
+        }
+        const mathFieldElement = (window as any).MathfieldElement;
+        if (mathFieldElement) {
+            mathFieldElement.locale = MATH_LIVE_LOCALES[languageTag] ?? 'en';
+        }
+    }, [languageTag]);
+
     React.useEffect(() => {
         if (containerRef.current && !fieldRef.current && (window as any).MathfieldElement) {
             const mathField = new (window as any).MathfieldElement();
+            // 中文语言包会把 --ui-font-size 设为 1rem，导致菜单字体偏大；在 host 上覆盖回常规字号
+            mathField.style.setProperty('--ui-font-size', '14px');
+            mathField.style.setProperty('--ui-line-height', '1.2');
+            // 菜单挂在 mathfield 的 shadow DOM 中，且 :lang(zh) 会在菜单项上重新声明上述变量，
+            // 因此需要在 shadowRoot 内直接覆盖菜单项的字号与纵向间距
+            if (mathField.shadowRoot) {
+                const menuStyle = document.createElement('style');
+                menuStyle.textContent = `
+                    .ui-menu-container {
+                        padding-top: 5px;
+                        padding-bottom: 5px;
+                    }
+                    .ui-menu-container > li {
+                        font-size: 14px;
+                        line-height: 1.3;
+                        padding-top: 1px;
+                        padding-bottom: 1px;
+                    }
+                    .ui-menu-container > li + li {
+                        margin-top: 2px;
+                    }
+                    .ui-menu-container > li > .label {
+                        padding-top: 0;
+                        padding-bottom: 0;
+                    }
+                    .ui-menu-container > li:has(.heading) {
+                        margin-top: 0.35em;
+                    }
+                    .ui-menu-container > li[role='divider'] {
+                        padding-top: 1px;
+                        margin-bottom: 1px;
+                    }
+                `;
+                mathField.shadowRoot.appendChild(menuStyle);
+            }
             if (mathOptions) {
                 Object.entries(mathOptions).forEach(([key, value]) => {
                     if (value !== undefined) {
@@ -239,7 +314,7 @@ export const MathInput: React.FC<MathInputProps> = (props?: MathInputProps) => {
                 } catch {
                 }
                 if (!result) {
-                    return Promise.reject(ObjectUtils.firstNotNil(props?.localeProps?.invalidFormula, intlLocales.get([locale, 'invalidFormula']), intlLocales.get(['en_US', 'invalidFormula'])));
+                    return Promise.reject(ObjectUtils.firstNotNil(props?.localeProps?.invalidFormula, intlLocales.get([languageTag, 'invalidFormula']), intlLocales.get(['en_US', 'invalidFormula'])));
                 }
             }
         }

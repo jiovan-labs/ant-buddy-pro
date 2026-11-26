@@ -78,6 +78,7 @@ export { FieldUtils } from './util/FieldUtils';
 export { FileUtils } from './util/FileUtils';
 export { IconUtils } from './util/IconUtils';
 export { ImageUtils } from './util/ImageUtils';
+export { LocaleUtils } from './util/LocaleUtils';
 export { ModalUtils } from './util/ModalUtils';
 export { NodeUtils } from './util/NodeUtils';
 export { PaginationUtils } from './util/PaginationUtils';
