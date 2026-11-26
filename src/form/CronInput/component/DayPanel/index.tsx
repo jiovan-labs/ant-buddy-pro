@@ -216,6 +216,7 @@ export const DayPanel: React.ForwardRefExoticComponent<DayPanelProps & React.Ref
         locale = intlType.locale,
     } = props ?? {};
 
+    // noinspection DuplicatedCode
     const compositionRef = React.useRef<boolean>(false);
     const [entryChoice, setEntryChoice] = React.useState<EntryChoiceType>();
     const [fromToStart, setFromToStart] = React.useState<RcValueType | null>();

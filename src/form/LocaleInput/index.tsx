@@ -24,7 +24,7 @@ import Trigger, { type TriggerProps } from '@rc-component/trigger';
 import '@rc-component/trigger/assets/index.less';
 import { omit } from '@rc-component/util';
 import { ElementUtils, NanoidUtils, ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-utils';
-import { useEventListener, useMutationObserver } from 'ahooks';
+import { useEventListener } from 'ahooks';
 import classnames from 'classnames';
 import { type WithFalse, type BeforeAfterType, type RuleValidateScope } from '@/type/declaration';
 import { AddonInput, type AddonInputProps } from '@/form/AddonInput';
@@ -314,28 +314,6 @@ export const LocaleInput: React.FC<LocaleInputProps> = (props?: LocaleInputProps
     // noinspection DuplicatedCode
     const fieldStyle = useFieldStyle(clazzPrefix);
 
-    // Monitor ant-form-item-additional changes and update offset
-    // noinspection DuplicatedCode
-    const entryElementRef = React.useRef<HTMLDivElement>(null);
-    const updateTriggerOffset = React.useCallback(() => {
-        if (!entryElementRef.current) {
-            return;
-        }
-        const prefixCls = configContext?.getPrefixCls('') ?? 'ant';
-        const additionalHeight = DesignUtils.getFormAdditionalHeight(entryElementRef.current, prefixCls);
-        setTriggerOffset(4 - additionalHeight);
-    }, []);
-    useMutationObserver(updateTriggerOffset, entryElementRef, { childList: true, subtree: true });
-
-    React.useEffect(() => {
-        const element = document.querySelector<HTMLDivElement>(`.${clazzPrefix}-entry-${fieldId}`);
-        if (!element) {
-            return;
-        }
-        entryElementRef.current = element;
-        updateTriggerOffset();
-    }, [clazzPrefix, fieldId]);
-
     // noinspection DuplicatedCode
     const handleWindowResize = () => {
         const inspect = document.querySelector<HTMLDivElement>(`.${clazzPrefix}-entry-${fieldId}`);
@@ -433,7 +411,37 @@ export const LocaleInput: React.FC<LocaleInputProps> = (props?: LocaleInputProps
         return buildEntryDom();
     }
 
+    // noinspection DuplicatedCode
     const entryImmutable = editContext.mode === 'read' || props?.proFieldProps?.mode === 'read' || props?.fieldProps?.readOnly || props?.proFieldProps?.readonly || props?.disabled || props?.fieldProps?.disabled;
+
+    // 触发器容器（rc-trigger 用于定位的元素）在 proField 模式下包含了 ProForm 的校验反馈行，
+    // 反馈行出现时容器底部会下移，导致弹层被顶开一段高度。这里按反馈行高度反向补偿偏移量。
+    const entryElementRef = React.useRef<HTMLDivElement>(null);
+    const updateTriggerOffset = React.useCallback(() => {
+        const element = entryElementRef.current;
+        if (!element) {
+            return;
+        }
+        const prefixCls = configContext?.getPrefixCls('') ?? 'ant';
+        const additionalHeight = DesignUtils.getFormAdditionalHeight(element, prefixCls);
+        setTriggerOffset(4 - additionalHeight);
+    }, []);
+
+    React.useEffect(() => {
+        const element = document.querySelector<HTMLDivElement>(`[data-locale-input-entry="${fieldId}"]`);
+        if (!element) {
+            return;
+        }
+        entryElementRef.current = element;
+        updateTriggerOffset();
+        // 反馈行的展开/收起会改变容器尺寸（含动画过程），尺寸变化时重新计算偏移
+        const observer = new ResizeObserver(updateTriggerOffset);
+        observer.observe(element);
+        return () => {
+            entryElementRef.current = null;
+            observer.disconnect();
+        };
+    }, [fieldId, entryImmutable]);
 
     const handleSetAsDefault = (tagId: string) => {
         const inspect = document.querySelector<HTMLInputElement>(`[data-locale-input-id='${fieldId}']`);

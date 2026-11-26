@@ -276,8 +276,8 @@ export const WeekPanel: React.ForwardRefExoticComponent<WeekPanelProps & React.R
         locale = intlType.locale,
     } = props ?? {};
 
-    const compositionRef = React.useRef<boolean>(false);
     // noinspection DuplicatedCode
+    const compositionRef = React.useRef<boolean>(false);
     const [entryChoice, setEntryChoice] = React.useState<EntryChoiceType>();
     const [fromToStart, setFromToStart] = React.useState<RcValueType | null>();
     const [fromToEnd, setFromToEnd] = React.useState<RcValueType | null>();

@@ -25,7 +25,7 @@ import { NanoidUtils, ObjectUtils, StringUtils } from '@jiovan-labs/ts-lang-util
 import Trigger, { type TriggerProps } from '@rc-component/trigger';
 import '@rc-component/trigger/assets/index.less';
 import { omit } from '@rc-component/util';
-import { useEventListener, useMutationObserver } from 'ahooks';
+import { useEventListener } from 'ahooks';
 import classnames from 'classnames';
 import cronValidate, { type CronData } from 'cron-validate';
 import { type WithFalse, type BeforeAfterType } from '@/type/declaration';
@@ -408,28 +408,6 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
         }
     };
 
-    // Monitor ant-form-item-additional changes and update offset
-    // noinspection DuplicatedCode
-    const entryElementRef = React.useRef<HTMLDivElement>(null);
-    const updateTriggerOffset = React.useCallback(() => {
-        if (!entryElementRef.current) {
-            return;
-        }
-        const prefixCls = configContext?.getPrefixCls('') ?? 'ant';
-        const additionalHeight = DesignUtils.getFormAdditionalHeight(entryElementRef.current, prefixCls);
-        setTriggerOffset(4 - additionalHeight);
-    }, []);
-    useMutationObserver(updateTriggerOffset, entryElementRef, { childList: true, subtree: true });
-
-    React.useEffect(() => {
-        const element = document.querySelector<HTMLDivElement>(`.${clazzPrefix}-entry-${fieldId}`);
-        if (!element) {
-            return;
-        }
-        entryElementRef.current = element;
-        updateTriggerOffset();
-    }, [clazzPrefix, fieldId]);
-
     // 面板派生：始终由已提交的值（baseValue）驱动，草稿不参与
     React.useEffect(() => {
         if (!baseValue) {
@@ -447,7 +425,37 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
         setDraftExpress(undefined);
     }, [baseValue]);
 
+    // noinspection DuplicatedCode
     const entryImmutable = editContext.mode === 'read' || props?.proFieldProps?.mode === 'read' || props?.fieldProps?.readOnly || props?.proFieldProps?.readonly || props?.disabled || props?.fieldProps?.disabled;
+
+    // 触发器容器（rc-trigger 用于定位的元素）在 proField 模式下包含了 ProForm 的校验反馈行，
+    // 反馈行出现时容器底部会下移，导致弹层被顶开一段高度。这里按反馈行高度反向补偿偏移量。
+    const entryElementRef = React.useRef<HTMLDivElement>(null);
+    const updateTriggerOffset = React.useCallback(() => {
+        const element = entryElementRef.current;
+        if (!element) {
+            return;
+        }
+        const prefixCls = configContext?.getPrefixCls('') ?? 'ant';
+        const additionalHeight = DesignUtils.getFormAdditionalHeight(element, prefixCls);
+        setTriggerOffset(4 - additionalHeight);
+    }, []);
+
+    React.useEffect(() => {
+        const element = document.querySelector<HTMLDivElement>(`[data-cron-input-entry="${fieldId}"]`);
+        if (!element) {
+            return;
+        }
+        entryElementRef.current = element;
+        updateTriggerOffset();
+        // 反馈行的展开/收起会改变容器尺寸（含动画过程），尺寸变化时重新计算偏移
+        const observer = new ResizeObserver(updateTriggerOffset);
+        observer.observe(element);
+        return () => {
+            entryElementRef.current = null;
+            observer.disconnect();
+        };
+    }, [fieldId, entryImmutable]);
 
     // 统一写回：绑定表单走 setFieldValue，否则写内部 state
     const writeValue = (value?: string) => {
