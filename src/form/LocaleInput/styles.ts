@@ -44,10 +44,6 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
                 },
 
                 [`${token.componentCls}-popup-list-item`]: {
-                    [`&:hover`]: {
-                        backgroundColor: token.controlItemBgHover,
-                    },
-
                     [`> ${token.antCls}-form-item`]: {
                         width: '100%',
                     },
