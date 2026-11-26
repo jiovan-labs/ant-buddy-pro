@@ -23,6 +23,11 @@ import { PackageConst } from '@/constant/PackageConst';
 const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
     return {
         [`${token.componentCls}`]: {
+            [`${token.antCls}-upload-select`]: {
+                width: 'var(--abp-avatar-upload-size) !important',
+                height: 'var(--abp-avatar-upload-size) !important',
+            },
+
             [`&-action-circle ${token.antCls}-upload-select`]: {
                 borderRadius: '50% !important',
                 overflow: 'hidden',

@@ -16,7 +16,7 @@
 
 
 import React from 'react';
-import { App, Avatar, Image, Space, Upload, type AvatarProps, type ImageProps, type TooltipProps, type UploadProps } from 'antd';
+import { Avatar, Grid, Image, Space, Upload, message as messageApi, theme, type AvatarProps, type ImageProps, type TooltipProps, type UploadProps } from 'antd';
 import { type RcFile } from 'antd/es/upload/interface';
 import { UserOutlined, LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { type ProFormFieldItemProps, createProFormField, useIntl } from '@ant-design/pro-components';
@@ -25,10 +25,14 @@ import { FileUtils, NumberUtils, ObjectUtils, StringUtils } from '@jiovan-labs/t
 import { omit } from '@rc-component/util';
 import ImgCrop, { type ImgCropProps } from 'antd-img-crop';
 import classnames from 'classnames';
-import { type CircleSquareShape, type FileSizeUint } from '@/type/declaration';
 import { TooltipRender } from '@/render/TooltipRender';
+import { type CircleSquareShape, type FileSizeUint } from '@/type/declaration';
+import { SizeUtils } from '@/util/SizeUtils';
 import { intlLocales } from './locales';
 import { useFieldStyle } from './styles';
+
+
+const DEFAULT_AVATAR_SIZES = { xs: 24, sm: 32, md: 48, lg: 64, xl: 104, xxl: 128 };
 
 
 export type AvatarUploadRef = {
@@ -276,11 +280,22 @@ const AvatarUploadField: React.ForwardRefExoticComponent<AvatarUploadProps & Rea
         locale = intlType.locale,
     } = props ?? {};
 
+    const [messageInvoker, messageContext] = messageApi.useMessage();
     const [loading, setLoading] = React.useState<boolean>(false);
     const [imageSrc, setImageSrc] = React.useState<string | undefined>(props?.imageSrc);
     const [fallbackSrc, setFallbackSrc] = React.useState<string | undefined>(props?.fallbackSrc);
     const fieldStyle = useFieldStyle(clazzPrefix);
-    const { message: messageApi } = App.useApp();
+    const screens = Grid.useBreakpoint();
+    const { token } = theme.useToken();
+    // 头像与上传按钮使用同一个尺寸，避免切换上传状态时因 104px / 102px 的差异产生闪烁
+    const avatarSize = SizeUtils.resolveResponsiveSize(props?.avatarProps?.size ?? DEFAULT_AVATAR_SIZES, screens, {
+        semantic: {
+            small: token.controlHeightSM,
+            large: token.controlHeightLG,
+            default: token.controlHeight,
+        },
+        fallback: token.controlHeight,
+    });
 
     // noinspection JSUnusedGlobalSymbols
     React.useImperativeHandle(ref, () => ({
@@ -312,11 +327,17 @@ const AvatarUploadField: React.ForwardRefExoticComponent<AvatarUploadProps & Rea
     const handleBeforeUpload = (file: RcFile, fileList: RcFile[]) => {
         if (props?.uploadProps?.allowedFileTypes && !props.uploadProps.allowedFileTypes.some(item => file.type === item)) {
             if (!props?.uploadProps?.warnWithTypes) {
-                messageApi.error(ObjectUtils.firstNotNil(props?.localeProps?.disallowType, intlLocales.get([locale, 'disallowType']), intlLocales.get(['en_US', 'disallowType']))).then(() => {});
+                messageInvoker.open({
+                    type: 'error',
+                    content: ObjectUtils.firstNotNil(props?.localeProps?.disallowType, intlLocales.get([locale, 'disallowType']), intlLocales.get(['en_US', 'disallowType'])),
+                }).then(() => {});
             } else {
                 const template = ObjectUtils.firstNotNil(props?.localeProps?.allowTypes, intlLocales.get([locale, 'allowTypes']), intlLocales.get(['en_US', 'allowTypes']));
                 const types = StringUtils.join(props.uploadProps.allowedFileTypes.map(item => (item === 'image/jpeg') ? 'jpg' : StringUtils.substringAfterLast(item, '/')) as string[], '/');
-                messageApi.error(StringUtils.formatBrace(template, types)).then(() => {});
+                messageInvoker.open({
+                    type: 'error',
+                    content: StringUtils.formatBrace(template, types),
+                }).then(() => {});
             }
             return false;
         }
@@ -341,7 +362,10 @@ const AvatarUploadField: React.ForwardRefExoticComponent<AvatarUploadProps & Rea
             // @ts-ignore
             if (fileSize > props.uploadProps.maxFileSize) {
                 const template = ObjectUtils.firstNotNil(props?.localeProps?.maxFileSize, intlLocales.get([locale, 'maxFileSize']), intlLocales.get(['en_US', 'maxFileSize']));
-                messageApi.error(StringUtils.formatBrace(template, props.uploadProps.maxFileSize, props.uploadProps.fileSizeUint)).then(() => {});
+                messageInvoker.open({
+                    type: 'error',
+                    content: StringUtils.formatBrace(template, props.uploadProps.maxFileSize, props.uploadProps.fileSizeUint),
+                }).then(() => {});
                 return false;
             }
         }
@@ -416,7 +440,7 @@ const AvatarUploadField: React.ForwardRefExoticComponent<AvatarUploadProps & Rea
                 <Avatar
                     className={classnames(`${clazzPrefix}-avatar`, props?.avatarProps?.className)}
                     shape={shape}
-                    size={props?.avatarProps?.size ?? { xs: 24, sm: 32, md: 48, lg: 64, xl: 104, xxl: 128 }}
+                    size={avatarSize}
                     icon={buildAvatarPlaceholder()}
                     src={buildImageDom()}
                     {...omitAvatarProps}
@@ -458,9 +482,13 @@ const AvatarUploadField: React.ForwardRefExoticComponent<AvatarUploadProps & Rea
     return (
         <div
             className={classnames(clazzPrefix, fieldStyle.hashId, props?.containerClazz)}
-            style={props?.containerStyle}
+            style={{
+                ...props?.containerStyle,
+                ['--abp-avatar-upload-size' as any]: `${avatarSize}px`,
+            }}
         >
             {buildAvatarDom()}
+            {messageContext}
         </div>
     );
 });

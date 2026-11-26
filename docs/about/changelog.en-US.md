@@ -10,8 +10,9 @@ toc: false
 
 Here are some milestone versions of the changelog:
 
-  - **v2.0.7** (2026-11-26)
+  - **v2.0.8** (2026-11-26)
     - Add `util/LocaleUtils`
+    - Add `util/SizeUtils`
 
   - **v2.0.3** (2026-11-24)
     - Add `layout/EvenDescriptions`

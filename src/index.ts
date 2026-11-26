@@ -85,6 +85,7 @@ export { PaginationUtils } from './util/PaginationUtils';
 export { ParticleUtils } from './util/ParticleUtils';
 export { PropUtils } from './util/PropUtils';
 export { ReactUtils } from './util/ReactUtils';
+export { SizeUtils } from './util/SizeUtils';
 export { StyleUtils } from './util/StyleUtils';
 export { TriggerUtils } from './util/TriggerUtils';
 export * from './type/declaration';
