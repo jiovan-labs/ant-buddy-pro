@@ -56,8 +56,14 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
             },
 
             // ProForm.Item 自带 feedback 区域，去掉 Listy item 的下 padding 让 feedback 充当下方留白，保持上下间距对称
-            [`&${token.componentCls}-popup-pro-field ${token.componentCls}-popup-listy-item`]: {
+            [`&${token.componentCls}-popup-pro-field:not(${token.componentCls}-popup-immutable) ${token.componentCls}-popup-listy-item`]: {
                 paddingBottom: 0,
+            },
+
+            // 只读态下没有 feedback 充当下方留白，上下留白改为等量的 6px
+            [`&${token.componentCls}-popup-pro-field${token.componentCls}-popup-immutable ${token.componentCls}-popup-listy-item`]: {
+                paddingTop: 6,
+                paddingBottom: 6,
             },
 
             [`&${token.componentCls}-popup-immutable ${token.componentCls}-popup-list ${token.componentCls}-popup-list-item ${token.antCls}-form-item`]: {

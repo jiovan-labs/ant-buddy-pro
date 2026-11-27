@@ -15,21 +15,41 @@
  */
 
 
-import { message as messageApi } from 'antd';
-import { ProForm } from '@ant-design/pro-components';
+import React from 'react';
+import { Divider, message as messageApi } from 'antd';
+import { ProForm, ProFormSwitch } from '@ant-design/pro-components';
 import { LocaleInput, ConsoleUtils } from '@jiovan-labs/ant-buddy-pro';
 
 
 export default () => {
     const [messageInvoker, messageContext] = messageApi.useMessage();
+    const [readonly, setReadonly] = React.useState<boolean>(false);
 
     return (
         <>
             {messageContext}
             <ProForm
+                name='LocaleInput_demo1.en-US.Setting'
+                layout='horizontal'
+                autoFocusFirstInput={false}
+                submitter={false}
+            >
+                <ProFormSwitch
+                    label='Read-only mode'
+                    checkedChildren='Yes'
+                    unCheckedChildren='No'
+                    fieldProps={{
+                        checked: readonly,
+                        onChange: setReadonly,
+                    }}
+                />
+            </ProForm>
+            <Divider />
+            <ProForm
                 name='LocaleInput_demo1.en-US'
                 layout='horizontal'
                 autoFocusFirstInput={false}
+                readonly={readonly}
                 submitter={{
                     searchConfig: {
                         submitText: 'Submit',

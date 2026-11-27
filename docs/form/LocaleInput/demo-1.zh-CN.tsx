@@ -15,21 +15,41 @@
  */
 
 
-import { message as messageApi } from 'antd';
-import { ProForm } from '@ant-design/pro-components';
+import React from 'react';
+import { Divider, message as messageApi } from 'antd';
+import { ProForm, ProFormSwitch } from '@ant-design/pro-components';
 import { LocaleInput, ConsoleUtils } from '@jiovan-labs/ant-buddy-pro';
 
 
 export default () => {
     const [messageInvoker, messageContext] = messageApi.useMessage();
+    const [readonly, setReadonly] = React.useState<boolean>(false);
 
     return (
         <>
             {messageContext}
             <ProForm
+                name='LocaleInput_demo1.zh-CN.Setting'
+                layout='horizontal'
+                autoFocusFirstInput={false}
+                submitter={false}
+            >
+                <ProFormSwitch
+                    label='只读模式'
+                    checkedChildren='是'
+                    unCheckedChildren='否'
+                    fieldProps={{
+                        checked: readonly,
+                        onChange: setReadonly,
+                    }}
+                />
+            </ProForm>
+            <Divider />
+            <ProForm
                 name='LocaleInput_demo1.zh-CN'
                 layout='horizontal'
                 autoFocusFirstInput={false}
+                readonly={readonly}
                 submitter={{
                     searchConfig: {
                         submitText: '提交',
