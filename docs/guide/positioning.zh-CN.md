@@ -5,7 +5,7 @@ group: 指南
 order: 2
 ---
 
-## 项目定位
+## 定位
 
 Ant Buddy Pro **不是**要替代 Ant Design 或 Pro-Components，而是在它们之上填补企业级开发中那些"不得不写一遍重复轮子"的细分场景。
 
@@ -15,7 +15,7 @@ Ant Buddy Pro **不是**要替代 Ant Design 或 Pro-Components，而是在它�
 | 页面层 | ProLayout / ProTable / ProForm | [Pro-Components](https://procomponents.ant.design) |
 | **场景层** | **细交互 + 开箱即用** | **Ant Buddy Pro** |
 
-### 核心场景组件一览
+## 核心场景组件
 
 | 组件 | 解决的问题 |
 |------|-----------|

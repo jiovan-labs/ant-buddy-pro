@@ -32,7 +32,7 @@ Ant Buddy Pro **不是**要替代 Ant Design 或 Pro-Components，而是在它�
 | 頁面層 | ProLayout / ProTable / ProForm | [Pro-Components](https://procomponents.ant.design) |
 | **場景層** | **細交互 + 開箱即用** | **Ant Buddy Pro** |
 
-### 核心場景組件一覽
+## 核心場景組件
 
 | 組件 | 解決的問題 |
 |------|-----------|

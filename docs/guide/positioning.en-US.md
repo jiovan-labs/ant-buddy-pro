@@ -5,7 +5,7 @@ group: Guide
 order: 2
 ---
 
-## Project Positioning
+## Positioning
 
 Ant Buddy Pro is **not** intended to replace Ant Design or Pro-Components, but rather to fill the gaps in enterprise-level development — those niche scenarios where developers keep rewriting the same wheel.
 
@@ -15,7 +15,7 @@ Ant Buddy Pro is **not** intended to replace Ant Design or Pro-Components, but r
 | Page Layer | ProLayout / ProTable / ProForm | [Pro-Components](https://procomponents.ant.design) |
 | **Scenario Layer** | **Fine-grained interactions + ready-to-use** | **Ant Buddy Pro** |
 
-### Core Scenario Components Overview
+## Core Scenario Components
 
 | Component | Problem Solved |
 |-----------|---------------|

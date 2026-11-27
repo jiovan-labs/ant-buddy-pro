@@ -32,7 +32,7 @@ Ant Buddy Pro is **not** intended to replace Ant Design or Pro-Components, but r
 | Page | ProLayout / ProTable / ProForm | [Pro-Components](https://procomponents.ant.design) |
 | **Scenario** | **Fine-grained interactions + Out-of-the-box** | **Ant Buddy Pro** |
 
-### Core Scenario Components
+## Core Scenario Components
 
 | Component | Problem Solved |
 |-----------|---------------|
