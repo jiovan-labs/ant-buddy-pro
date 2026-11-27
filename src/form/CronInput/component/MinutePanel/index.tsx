@@ -35,6 +35,9 @@ export enum EntryChoiceType {
     EVERY_MINUTE = 'every-minute',
     FROM_TO = 'from-to',
     FROM_INTERVAL = 'from-interval',
+    EVERY_INTERVAL = 'every-interval',
+    CUSTOM = 'custom',
+    FROM_TO_INTERVAL = 'from-to-interval',
     SPECIFY_MINUTE = 'specific-minute',
 }
 
@@ -95,6 +98,34 @@ export type IntlLocaleProps = {
      * @description.zh-TW 到
      */
     specificMinute?: string;
+
+    /**
+     * @description Every N minute
+     * @description.zh-CN 每
+     * @description.zh-TW 每
+     */
+    everyIntervalPrefix?: string;
+
+    /**
+     * @description minute
+     * @description.zh-CN 分
+     * @description.zh-TW 分
+     */
+    everyIntervalSuffix?: string;
+
+    /**
+     * @description Other expression(s) which cannot be visualized
+     * @description.zh-CN 其它表达式
+     * @description.zh-TW 其它表達式
+     */
+    customExpression?: string;
+
+    /**
+     * @description and every
+     * @description.zh-CN 分，每
+     * @description.zh-TW 分，每
+     */
+    fromToIntervalMiddle?: string;
 };
 
 
@@ -168,6 +199,10 @@ export const MinutePanel: React.ForwardRefExoticComponent<MinutePanelProps & Rea
     const [fromToEnd, setFromToEnd] = React.useState<RcValueType | null>();
     const [fromIntervalStart, setFromIntervalStart] = React.useState<RcValueType | null>();
     const [fromIntervalStep, setFromIntervalStep] = React.useState<RcValueType | null>();
+    const [fromToIntervalStart, setFromToIntervalStart] = React.useState<RcValueType | null>();
+    const [fromToIntervalEnd, setFromToIntervalEnd] = React.useState<RcValueType | null>();
+    const [fromToIntervalStep, setFromToIntervalStep] = React.useState<RcValueType | null>();
+    const [intervalStep, setIntervalStep] = React.useState<RcValueType | null>();
     const [specificMinutes, setSpecificMinutes] = React.useState<any[]>();
     const [unitExpress, setUnitExpress] = React.useState<string | undefined>(props?.value as string);
     const fieldStyle = useFieldStyle(clazzPrefix);
@@ -190,13 +225,21 @@ export const MinutePanel: React.ForwardRefExoticComponent<MinutePanelProps & Rea
             case EntryChoiceType.FROM_INTERVAL:
                 setUnitExpress(ObjectUtils.anyEmpty([fromIntervalStart, fromIntervalStep]) ? undefined : `${fromIntervalStart}/${fromIntervalStep}`);
                 break;
+            case EntryChoiceType.FROM_TO_INTERVAL:
+                setUnitExpress(ObjectUtils.anyEmpty([fromToIntervalStart, fromToIntervalEnd, fromToIntervalStep]) ? undefined : `${fromToIntervalStart}-${fromToIntervalEnd}/${fromToIntervalStep}`);
+                break;
             case EntryChoiceType.SPECIFY_MINUTE:
                 setUnitExpress(ObjectUtils.isEmpty(specificMinutes) ? undefined : StringUtils.join(specificMinutes, ','));
+                break;
+            case EntryChoiceType.EVERY_INTERVAL:
+                setUnitExpress(ObjectUtils.isEmpty(intervalStep) ? undefined : `*/${intervalStep}`);
+                break;
+            case EntryChoiceType.CUSTOM:
                 break;
             default:
                 break;
         }
-    }, [entryChoice, fromToStart, fromToEnd, fromIntervalStart, fromIntervalStep, specificMinutes]);
+    }, [entryChoice, fromToStart, fromToEnd, fromIntervalStart, fromIntervalStep, fromToIntervalStart, fromToIntervalEnd, fromToIntervalStep, specificMinutes, intervalStep]);
 
     // noinspection DuplicatedCode
     React.useEffect(() => {
@@ -205,7 +248,26 @@ export const MinutePanel: React.ForwardRefExoticComponent<MinutePanelProps & Rea
 
     React.useEffect(() => {
         const income = props?.value as string;
-        if (income === '*') {
+
+        if (income) {
+            // 切换表达式形态时清空其它形态的临时状态，避免旧选中残留
+            setFromToStart(undefined);
+            setFromToEnd(undefined);
+            setFromIntervalStart(undefined);
+            setFromIntervalStep(undefined);
+            setFromToIntervalStart(undefined);
+            setFromToIntervalEnd(undefined);
+            setFromToIntervalStep(undefined);
+            setIntervalStep(undefined);
+            setSpecificMinutes(undefined);
+        }
+        if (income && /^\d+-\d+\/\d+$/.test(income)) {
+            setEntryChoice(EntryChoiceType.FROM_TO_INTERVAL);
+            const range = StringUtils.substringBefore(income, '/');
+            setFromToIntervalStart(StringUtils.substringBefore(range, '-'));
+            setFromToIntervalEnd(StringUtils.substringAfter(range, '-'));
+            setFromToIntervalStep(StringUtils.substringAfter(income, '/'));
+        } else if (income === '*') {
             setEntryChoice(EntryChoiceType.EVERY_MINUTE);
         } else if (income && /^\d+-\d+$/g.test(income)) {
             setEntryChoice(EntryChoiceType.FROM_TO);
@@ -218,6 +280,13 @@ export const MinutePanel: React.ForwardRefExoticComponent<MinutePanelProps & Rea
         } else if (income && /^(\d{1,2})(,\d{1,2})*$/g.test(income)) {
             setEntryChoice(EntryChoiceType.SPECIFY_MINUTE);
             setSpecificMinutes(income.includes(',') ? income.split(',') : [income]);
+        } else if (income && /^\*\/\d+$/.test(income)) {
+            setEntryChoice(EntryChoiceType.EVERY_INTERVAL);
+            setIntervalStep(StringUtils.substringAfter(income, '/'));
+        } else if (income) {
+            // 无法可视化的表达式：保持原值不变，仅回显
+            setEntryChoice(EntryChoiceType.CUSTOM);
+            setUnitExpress(income);
         } else {
             setEntryChoice(undefined);
         }
@@ -257,6 +326,43 @@ export const MinutePanel: React.ForwardRefExoticComponent<MinutePanelProps & Rea
                                 {ObjectUtils.firstNotNil(props?.localeProps?.everyMinute, intlLocales.get([locale, 'everyMinute']), intlLocales.get(['en_US', 'everyMinute']))}
                             </Radio>
                             <Radio
+                                value={EntryChoiceType.EVERY_INTERVAL}
+                                onClick={() => {
+                                    window.setTimeout(() => setEntryChoice(EntryChoiceType.EVERY_INTERVAL), 80);
+                                }}
+                            >
+                                <Space>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.everyIntervalPrefix, intlLocales.get([locale, 'everyIntervalPrefix']), intlLocales.get(['en_US', 'everyIntervalPrefix']))}
+                                    <Form.Item noStyle={true} shouldUpdate={true}>
+                                        {() => {
+                                            return (
+                                                <InputNumber
+                                                    name='intervalStep'
+                                                    autoComplete='off'
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.EVERY_INTERVAL}
+                                                    min={1}
+                                                    max={60}
+                                                    step={1}
+                                                    size='small'
+                                                    status={(entryChoice === EntryChoiceType.EVERY_INTERVAL && ObjectUtils.isEmpty(intervalStep)) ? 'error' : undefined}
+                                                    value={intervalStep}
+                                                    onChange={setIntervalStep}
+                                                />
+                                            );
+                                        }}
+                                    </Form.Item>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.everyIntervalSuffix, intlLocales.get([locale, 'everyIntervalSuffix']), intlLocales.get(['en_US', 'everyIntervalSuffix']))}
+                                </Space>
+                            </Radio>
+                            {entryChoice === EntryChoiceType.CUSTOM && (
+                                <Radio value={EntryChoiceType.CUSTOM}>
+                                    <Space>
+                                        {ObjectUtils.firstNotNil(props?.localeProps?.customExpression, intlLocales.get([locale, 'customExpression']), intlLocales.get(['en_US', 'customExpression']))}
+                                        <code>{props?.value}</code>
+                                    </Space>
+                                </Radio>
+                            )}
+                            <Radio
                                 value={EntryChoiceType.FROM_TO}
                                 onClick={() => {
                                     window.setTimeout(() => setEntryChoice(EntryChoiceType.FROM_TO), 80);
@@ -270,7 +376,7 @@ export const MinutePanel: React.ForwardRefExoticComponent<MinutePanelProps & Rea
                                                 <InputNumber
                                                     name='fromToStart'
                                                     autoComplete='off'
-                                                    disabled={entryChoice !== EntryChoiceType.FROM_TO}
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_TO}
                                                     min={0}
                                                     max={59}
                                                     step={1}
@@ -289,7 +395,7 @@ export const MinutePanel: React.ForwardRefExoticComponent<MinutePanelProps & Rea
                                                 <InputNumber
                                                     name='fromToEnd'
                                                     autoComplete='off'
-                                                    disabled={entryChoice !== EntryChoiceType.FROM_TO}
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_TO}
                                                     min={fromToStart ?? 0}
                                                     max={59}
                                                     step={1}
@@ -318,7 +424,7 @@ export const MinutePanel: React.ForwardRefExoticComponent<MinutePanelProps & Rea
                                                 <InputNumber
                                                     name='fromIntervalStart'
                                                     autoComplete='off'
-                                                    disabled={entryChoice !== EntryChoiceType.FROM_INTERVAL}
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_INTERVAL}
                                                     min={0}
                                                     max={59}
                                                     step={1}
@@ -337,7 +443,7 @@ export const MinutePanel: React.ForwardRefExoticComponent<MinutePanelProps & Rea
                                                 <InputNumber
                                                     name='fromIntervalStep'
                                                     autoComplete='off'
-                                                    disabled={entryChoice !== EntryChoiceType.FROM_INTERVAL}
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_INTERVAL}
                                                     min={1}
                                                     max={60}
                                                     step={1}
@@ -350,6 +456,73 @@ export const MinutePanel: React.ForwardRefExoticComponent<MinutePanelProps & Rea
                                         }}
                                     </Form.Item>
                                     {ObjectUtils.firstNotNil(props?.localeProps?.fromIntervalSuffix, intlLocales.get([locale, 'fromIntervalSuffix']), intlLocales.get(['en_US', 'fromIntervalSuffix']))}
+                                </Space>
+                            </Radio>
+                            <Radio
+                                value={EntryChoiceType.FROM_TO_INTERVAL}
+                                onClick={() => {
+                                    window.setTimeout(() => setEntryChoice(EntryChoiceType.FROM_TO_INTERVAL), 80);
+                                }}
+                            >
+                                <Space>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.fromToPrefix, intlLocales.get([locale, 'fromToPrefix']), intlLocales.get(['en_US', 'fromToPrefix']))}
+                                    <Form.Item noStyle={true} shouldUpdate={true}>
+                                        {() => {
+                                            return (
+                                                <InputNumber
+                                                    name='fromToIntervalStart'
+                                                    autoComplete='off'
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_TO_INTERVAL}
+                                                    min={0}
+                                                    max={59}
+                                                    step={1}
+                                                    size='small'
+                                                    status={(entryChoice === EntryChoiceType.FROM_TO_INTERVAL && ObjectUtils.isEmpty(fromToIntervalStart)) ? 'error' : undefined}
+                                                    value={fromToIntervalStart}
+                                                    onChange={setFromToIntervalStart}
+                                                />
+                                            );
+                                        }}
+                                    </Form.Item>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.fromToMiddle, intlLocales.get([locale, 'fromToMiddle']), intlLocales.get(['en_US', 'fromToMiddle']))}
+                                    <Form.Item noStyle={true} shouldUpdate={true}>
+                                        {() => {
+                                            return (
+                                                <InputNumber
+                                                    name='fromToIntervalEnd'
+                                                    autoComplete='off'
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_TO_INTERVAL}
+                                                    min={fromToIntervalStart ?? 0}
+                                                    max={59}
+                                                    step={1}
+                                                    size='small'
+                                                    status={(entryChoice === EntryChoiceType.FROM_TO_INTERVAL && (ObjectUtils.isEmpty(fromToIntervalEnd) || NumberUtils.compare(fromToIntervalStart, fromToIntervalEnd, true) > 0)) ? 'error' : undefined}
+                                                    value={fromToIntervalEnd}
+                                                    onChange={setFromToIntervalEnd}
+                                                />
+                                            );
+                                        }}
+                                    </Form.Item>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.fromToIntervalMiddle, intlLocales.get([locale, 'fromToIntervalMiddle']), intlLocales.get(['en_US', 'fromToIntervalMiddle']))}
+                                    <Form.Item noStyle={true} shouldUpdate={true}>
+                                        {() => {
+                                            return (
+                                                <InputNumber
+                                                    name='fromToIntervalStep'
+                                                    autoComplete='off'
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_TO_INTERVAL}
+                                                    min={1}
+                                                    max={60}
+                                                    step={1}
+                                                    size='small'
+                                                    status={(entryChoice === EntryChoiceType.FROM_TO_INTERVAL && ObjectUtils.isEmpty(fromToIntervalStep)) ? 'error' : undefined}
+                                                    value={fromToIntervalStep}
+                                                    onChange={setFromToIntervalStep}
+                                                />
+                                            );
+                                        }}
+                                    </Form.Item>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.everyIntervalSuffix, intlLocales.get([locale, 'everyIntervalSuffix']), intlLocales.get(['en_US', 'everyIntervalSuffix']))}
                                 </Space>
                             </Radio>
                             <Radio
@@ -366,7 +539,7 @@ export const MinutePanel: React.ForwardRefExoticComponent<MinutePanelProps & Rea
                                                 <Checkbox.Group
                                                     name='specificMinutes'
                                                     className={`${clazzPrefix}-specific`}
-                                                    disabled={entryChoice !== EntryChoiceType.SPECIFY_MINUTE}
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.SPECIFY_MINUTE}
                                                     options={buildSpecificOptions()}
                                                     value={specificMinutes}
                                                     onChange={(checks: any[]) => {

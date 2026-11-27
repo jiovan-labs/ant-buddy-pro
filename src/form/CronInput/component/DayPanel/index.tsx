@@ -36,6 +36,9 @@ export enum EntryChoiceType {
     EVERY_DAY = 'every-day',
     FROM_TO = 'from-to',
     FROM_INTERVAL = 'from-interval',
+    EVERY_INTERVAL = 'every-interval',
+    CUSTOM = 'custom',
+    FROM_TO_INTERVAL = 'from-to-interval',
     SPECIFY_DAY = 'specific-day',
     LAST_DAY = 'last-day',
     LAST_BEFORE = 'last-before',
@@ -149,6 +152,34 @@ export type IntlLocaleProps = {
      * @description.zh-TW 最近的壹個工作日
      */
     nearestWorkdaySuffix?: string;
+
+    /**
+     * @description Every N day
+     * @description.zh-CN 每
+     * @description.zh-TW 每
+     */
+    everyIntervalPrefix?: string;
+
+    /**
+     * @description day
+     * @description.zh-CN 天
+     * @description.zh-TW 天
+     */
+    everyIntervalSuffix?: string;
+
+    /**
+     * @description Other expression(s) which cannot be visualized
+     * @description.zh-CN 其它表达式
+     * @description.zh-TW 其它表達式
+     */
+    customExpression?: string;
+
+    /**
+     * @description and every
+     * @description.zh-CN 天，每
+     * @description.zh-TW 天，每
+     */
+    fromToIntervalMiddle?: string;
 };
 
 
@@ -174,6 +205,14 @@ export type DayPanelProps = {
      * @description.zh-TW 容器 div 的 CSS 樣式
      */
     containerStyle?: React.CSSProperties;
+
+    /**
+     * @description Whether to show the blank option (i.e. `?`)
+     * @description.zh-CN 是否允许使用「不指定」（即 `?`）选项
+     * @description.zh-TW 是否允許使用「不指定」（即 `?`）選項
+     * @default true
+     */
+    showBlank?: boolean;
 
     /**
      * @description The locale of the component, e.g. 'en_US'
@@ -213,6 +252,7 @@ export const DayPanel: React.ForwardRefExoticComponent<DayPanelProps & React.Ref
 
     // Initialize the default props
     const {
+        showBlank = true,
         locale = intlType.locale,
     } = props ?? {};
 
@@ -223,6 +263,10 @@ export const DayPanel: React.ForwardRefExoticComponent<DayPanelProps & React.Ref
     const [fromToEnd, setFromToEnd] = React.useState<RcValueType | null>();
     const [fromIntervalStart, setFromIntervalStart] = React.useState<RcValueType | null>();
     const [fromIntervalStep, setFromIntervalStep] = React.useState<RcValueType | null>();
+    const [fromToIntervalStart, setFromToIntervalStart] = React.useState<RcValueType | null>();
+    const [fromToIntervalEnd, setFromToIntervalEnd] = React.useState<RcValueType | null>();
+    const [fromToIntervalStep, setFromToIntervalStep] = React.useState<RcValueType | null>();
+    const [intervalStep, setIntervalStep] = React.useState<RcValueType | null>();
     const [specificDays, setSpecificDays] = React.useState<any[]>();
     const [lastBeforeDay, setLastBeforeDay] = React.useState<RcValueType | null>();
     const [nearestWorkday, setNearestWorkday] = React.useState<RcValueType | null>();
@@ -250,6 +294,9 @@ export const DayPanel: React.ForwardRefExoticComponent<DayPanelProps & React.Ref
             case EntryChoiceType.FROM_INTERVAL:
                 setUnitExpress(ObjectUtils.anyEmpty([fromIntervalStart, fromIntervalStep]) ? undefined : `${fromIntervalStart}/${fromIntervalStep}`);
                 break;
+            case EntryChoiceType.FROM_TO_INTERVAL:
+                setUnitExpress(ObjectUtils.anyEmpty([fromToIntervalStart, fromToIntervalEnd, fromToIntervalStep]) ? undefined : `${fromToIntervalStart}-${fromToIntervalEnd}/${fromToIntervalStep}`);
+                break;
             case EntryChoiceType.SPECIFY_DAY:
                 setUnitExpress(ObjectUtils.isEmpty(specificDays) ? undefined : StringUtils.join(specificDays, ','));
                 break;
@@ -265,10 +312,15 @@ export const DayPanel: React.ForwardRefExoticComponent<DayPanelProps & React.Ref
             case EntryChoiceType.NEAREST_WORKDAY:
                 setUnitExpress(ObjectUtils.isEmpty(nearestWorkday) ? undefined : `${nearestWorkday}W`);
                 break;
+            case EntryChoiceType.EVERY_INTERVAL:
+                setUnitExpress(ObjectUtils.isEmpty(intervalStep) ? undefined : `*/${intervalStep}`);
+                break;
+            case EntryChoiceType.CUSTOM:
+                break;
             default:
                 break;
         }
-    }, [entryChoice, fromToStart, fromToEnd, fromIntervalStart, fromIntervalStep, specificDays, lastBeforeDay, nearestWorkday]);
+    }, [entryChoice, fromToStart, fromToEnd, fromIntervalStart, fromIntervalStep, fromToIntervalStart, fromToIntervalEnd, fromToIntervalStep, specificDays, lastBeforeDay, nearestWorkday, intervalStep]);
 
     // noinspection DuplicatedCode
     React.useEffect(() => {
@@ -277,7 +329,28 @@ export const DayPanel: React.ForwardRefExoticComponent<DayPanelProps & React.Ref
 
     React.useEffect(() => {
         const income = props?.value as string;
-        if (income === '?') {
+
+        if (income) {
+            // 切换表达式形态时清空其它形态的临时状态，避免旧选中残留
+            setFromToStart(undefined);
+            setFromToEnd(undefined);
+            setFromIntervalStart(undefined);
+            setFromIntervalStep(undefined);
+            setFromToIntervalStart(undefined);
+            setFromToIntervalEnd(undefined);
+            setFromToIntervalStep(undefined);
+            setIntervalStep(undefined);
+            setSpecificDays(undefined);
+            setLastBeforeDay(undefined);
+            setNearestWorkday(undefined);
+        }
+        if (income && /^\d+-\d+\/\d+$/.test(income)) {
+            setEntryChoice(EntryChoiceType.FROM_TO_INTERVAL);
+            const range = StringUtils.substringBefore(income, '/');
+            setFromToIntervalStart(StringUtils.substringBefore(range, '-'));
+            setFromToIntervalEnd(StringUtils.substringAfter(range, '-'));
+            setFromToIntervalStep(StringUtils.substringAfter(income, '/'));
+        } else if (income === '?') {
             setEntryChoice(EntryChoiceType.BLANK_DAY);
         } else if (income === '*') {
             setEntryChoice(EntryChoiceType.EVERY_DAY);
@@ -302,6 +375,13 @@ export const DayPanel: React.ForwardRefExoticComponent<DayPanelProps & React.Ref
         } else if (income && /^\d+W$/g.test(income)) {
             setEntryChoice(EntryChoiceType.NEAREST_WORKDAY);
             setNearestWorkday(StringUtils.left(income, income.length - 1));
+        } else if (income && /^\*\/\d+$/.test(income)) {
+            setEntryChoice(EntryChoiceType.EVERY_INTERVAL);
+            setIntervalStep(StringUtils.substringAfter(income, '/'));
+        } else if (income) {
+            // 无法可视化的表达式：保持原值不变，仅回显
+            setEntryChoice(EntryChoiceType.CUSTOM);
+            setUnitExpress(income);
         } else {
             setEntryChoice(undefined);
         }
@@ -337,9 +417,48 @@ export const DayPanel: React.ForwardRefExoticComponent<DayPanelProps & React.Ref
                         onChange={(event: RadioChangeEvent) => setEntryChoice(event.target.value)}
                     >
                         <Space orientation='vertical'>
-                            <Radio value={EntryChoiceType.BLANK_DAY}>
-                                {ObjectUtils.firstNotNil(props?.localeProps?.blankDay, intlLocales.get([locale, 'blankDay']), intlLocales.get(['en_US', 'blankDay']))}
+                            {showBlank && (
+                                <Radio value={EntryChoiceType.BLANK_DAY}>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.blankDay, intlLocales.get([locale, 'blankDay']), intlLocales.get(['en_US', 'blankDay']))}
+                                </Radio>
+                            )}
+                            <Radio
+                                value={EntryChoiceType.EVERY_INTERVAL}
+                                onClick={() => {
+                                    window.setTimeout(() => setEntryChoice(EntryChoiceType.EVERY_INTERVAL), 80);
+                                }}
+                            >
+                                <Space>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.everyIntervalPrefix, intlLocales.get([locale, 'everyIntervalPrefix']), intlLocales.get(['en_US', 'everyIntervalPrefix']))}
+                                    <Form.Item noStyle={true} shouldUpdate={true}>
+                                        {() => {
+                                            return (
+                                                <InputNumber
+                                                    name='intervalStep'
+                                                    autoComplete='off'
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.EVERY_INTERVAL}
+                                                    min={1}
+                                                    max={31}
+                                                    step={1}
+                                                    size='small'
+                                                    status={(entryChoice === EntryChoiceType.EVERY_INTERVAL && ObjectUtils.isEmpty(intervalStep)) ? 'error' : undefined}
+                                                    value={intervalStep}
+                                                    onChange={setIntervalStep}
+                                                />
+                                            );
+                                        }}
+                                    </Form.Item>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.everyIntervalSuffix, intlLocales.get([locale, 'everyIntervalSuffix']), intlLocales.get(['en_US', 'everyIntervalSuffix']))}
+                                </Space>
                             </Radio>
+                            {entryChoice === EntryChoiceType.CUSTOM && (
+                                <Radio value={EntryChoiceType.CUSTOM}>
+                                    <Space>
+                                        {ObjectUtils.firstNotNil(props?.localeProps?.customExpression, intlLocales.get([locale, 'customExpression']), intlLocales.get(['en_US', 'customExpression']))}
+                                        <code>{props?.value}</code>
+                                    </Space>
+                                </Radio>
+                            )}
                             <Radio value={EntryChoiceType.EVERY_DAY}>
                                 {ObjectUtils.firstNotNil(props?.localeProps?.everyDay, intlLocales.get([locale, 'everyDay']), intlLocales.get(['en_US', 'everyDay']))}
                             </Radio>
@@ -357,7 +476,7 @@ export const DayPanel: React.ForwardRefExoticComponent<DayPanelProps & React.Ref
                                                 <InputNumber
                                                     name='fromToStart'
                                                     autoComplete='off'
-                                                    disabled={entryChoice !== EntryChoiceType.FROM_TO}
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_TO}
                                                     min={1}
                                                     max={31}
                                                     step={1}
@@ -376,7 +495,7 @@ export const DayPanel: React.ForwardRefExoticComponent<DayPanelProps & React.Ref
                                                 <InputNumber
                                                     name='fromToEnd'
                                                     autoComplete='off'
-                                                    disabled={entryChoice !== EntryChoiceType.FROM_TO}
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_TO}
                                                     min={fromToStart ?? 0}
                                                     max={31}
                                                     step={1}
@@ -405,7 +524,7 @@ export const DayPanel: React.ForwardRefExoticComponent<DayPanelProps & React.Ref
                                                 <InputNumber
                                                     name='fromIntervalStart'
                                                     autoComplete='off'
-                                                    disabled={entryChoice !== EntryChoiceType.FROM_INTERVAL}
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_INTERVAL}
                                                     min={1}
                                                     max={30}
                                                     step={1}
@@ -424,7 +543,7 @@ export const DayPanel: React.ForwardRefExoticComponent<DayPanelProps & React.Ref
                                                 <InputNumber
                                                     name='fromIntervalStep'
                                                     autoComplete='off'
-                                                    disabled={entryChoice !== EntryChoiceType.FROM_INTERVAL}
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_INTERVAL}
                                                     min={1}
                                                     max={31}
                                                     step={1}
@@ -437,6 +556,73 @@ export const DayPanel: React.ForwardRefExoticComponent<DayPanelProps & React.Ref
                                         }}
                                     </Form.Item>
                                     {ObjectUtils.firstNotNil(props?.localeProps?.fromIntervalSuffix, intlLocales.get([locale, 'fromIntervalSuffix']), intlLocales.get(['en_US', 'fromIntervalSuffix']))}
+                                </Space>
+                            </Radio>
+                            <Radio
+                                value={EntryChoiceType.FROM_TO_INTERVAL}
+                                onClick={() => {
+                                    window.setTimeout(() => setEntryChoice(EntryChoiceType.FROM_TO_INTERVAL), 80);
+                                }}
+                            >
+                                <Space>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.fromToPrefix, intlLocales.get([locale, 'fromToPrefix']), intlLocales.get(['en_US', 'fromToPrefix']))}
+                                    <Form.Item noStyle={true} shouldUpdate={true}>
+                                        {() => {
+                                            return (
+                                                <InputNumber
+                                                    name='fromToIntervalStart'
+                                                    autoComplete='off'
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_TO_INTERVAL}
+                                                    min={1}
+                                                    max={31}
+                                                    step={1}
+                                                    size='small'
+                                                    status={(entryChoice === EntryChoiceType.FROM_TO_INTERVAL && ObjectUtils.isEmpty(fromToIntervalStart)) ? 'error' : undefined}
+                                                    value={fromToIntervalStart}
+                                                    onChange={setFromToIntervalStart}
+                                                />
+                                            );
+                                        }}
+                                    </Form.Item>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.fromToMiddle, intlLocales.get([locale, 'fromToMiddle']), intlLocales.get(['en_US', 'fromToMiddle']))}
+                                    <Form.Item noStyle={true} shouldUpdate={true}>
+                                        {() => {
+                                            return (
+                                                <InputNumber
+                                                    name='fromToIntervalEnd'
+                                                    autoComplete='off'
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_TO_INTERVAL}
+                                                    min={fromToIntervalStart ?? 0}
+                                                    max={31}
+                                                    step={1}
+                                                    size='small'
+                                                    status={(entryChoice === EntryChoiceType.FROM_TO_INTERVAL && (ObjectUtils.isEmpty(fromToIntervalEnd) || NumberUtils.compare(fromToIntervalStart, fromToIntervalEnd, true) > 0)) ? 'error' : undefined}
+                                                    value={fromToIntervalEnd}
+                                                    onChange={setFromToIntervalEnd}
+                                                />
+                                            );
+                                        }}
+                                    </Form.Item>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.fromToIntervalMiddle, intlLocales.get([locale, 'fromToIntervalMiddle']), intlLocales.get(['en_US', 'fromToIntervalMiddle']))}
+                                    <Form.Item noStyle={true} shouldUpdate={true}>
+                                        {() => {
+                                            return (
+                                                <InputNumber
+                                                    name='fromToIntervalStep'
+                                                    autoComplete='off'
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_TO_INTERVAL}
+                                                    min={1}
+                                                    max={31}
+                                                    step={1}
+                                                    size='small'
+                                                    status={(entryChoice === EntryChoiceType.FROM_TO_INTERVAL && ObjectUtils.isEmpty(fromToIntervalStep)) ? 'error' : undefined}
+                                                    value={fromToIntervalStep}
+                                                    onChange={setFromToIntervalStep}
+                                                />
+                                            );
+                                        }}
+                                    </Form.Item>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.everyIntervalSuffix, intlLocales.get([locale, 'everyIntervalSuffix']), intlLocales.get(['en_US', 'everyIntervalSuffix']))}
                                 </Space>
                             </Radio>
                             <Radio
@@ -453,7 +639,7 @@ export const DayPanel: React.ForwardRefExoticComponent<DayPanelProps & React.Ref
                                                 <Checkbox.Group
                                                     name='specificDays'
                                                     className={`${clazzPrefix}-specific`}
-                                                    disabled={entryChoice !== EntryChoiceType.SPECIFY_DAY}
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.SPECIFY_DAY}
                                                     options={buildSpecificOptions()}
                                                     value={specificDays}
                                                     onChange={(checks: any[]) => {
@@ -485,7 +671,7 @@ export const DayPanel: React.ForwardRefExoticComponent<DayPanelProps & React.Ref
                                                 <InputNumber
                                                     name='lastBeforeDay'
                                                     autoComplete='off'
-                                                    disabled={entryChoice !== EntryChoiceType.LAST_BEFORE}
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.LAST_BEFORE}
                                                     min={1}
                                                     max={31}
                                                     step={1}
@@ -517,7 +703,7 @@ export const DayPanel: React.ForwardRefExoticComponent<DayPanelProps & React.Ref
                                                 <InputNumber
                                                     name='nearestWorkday'
                                                     autoComplete='off'
-                                                    disabled={entryChoice !== EntryChoiceType.NEAREST_WORKDAY}
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.NEAREST_WORKDAY}
                                                     min={1}
                                                     max={31}
                                                     step={1}

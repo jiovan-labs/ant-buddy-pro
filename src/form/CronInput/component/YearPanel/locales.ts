@@ -26,7 +26,11 @@ export const intlLocales = ReadonlyMultiKeyMap.of([
     [['en_US', 'fromIntervalPrefix'], 'Starting at year'],
     [['en_US', 'fromIntervalMiddle'], 'and every'],
     [['en_US', 'fromIntervalSuffix'], 'year(s)'],
+    [['en_US', 'fromToIntervalMiddle'], 'every'],
     [['en_US', 'specificYear'], 'Specific year(s)'],
+    [['en_US', 'everyIntervalPrefix'], 'Every'],
+    [['en_US', 'everyIntervalSuffix'], 'year(s)'],
+    [['en_US', 'customExpression'], 'Other expression'],
 
     [['zh_CN', 'everyYear'], '每年'],
     [['zh_CN', 'fromToPrefix'], '每年，从第'],
@@ -35,7 +39,11 @@ export const intlLocales = ReadonlyMultiKeyMap.of([
     [['zh_CN', 'fromIntervalPrefix'], '从第'],
     [['zh_CN', 'fromIntervalMiddle'], '年开始，每'],
     [['zh_CN', 'fromIntervalSuffix'], '年'],
+    [['zh_CN', 'fromToIntervalMiddle'], '年，每'],
     [['zh_CN', 'specificYear'], '指定的年'],
+    [['zh_CN', 'everyIntervalPrefix'], '每'],
+    [['zh_CN', 'everyIntervalSuffix'], '年'],
+    [['zh_CN', 'customExpression'], '其它表达式'],
 
     [['zh_TW', 'everyYear'], '每年'],
     [['zh_TW', 'fromToPrefix'], '每年，從第'],
@@ -44,5 +52,9 @@ export const intlLocales = ReadonlyMultiKeyMap.of([
     [['zh_TW', 'fromIntervalPrefix'], '從第'],
     [['zh_TW', 'fromIntervalMiddle'], '年開始，每'],
     [['zh_TW', 'fromIntervalSuffix'], '年'],
+    [['zh_TW', 'fromToIntervalMiddle'], '年，每'],
     [['zh_TW', 'specificYear'], '指定的年'],
+    [['zh_TW', 'everyIntervalPrefix'], '每'],
+    [['zh_TW', 'everyIntervalSuffix'], '年'],
+    [['zh_TW', 'customExpression'], '其它表達式'],
 ]);

@@ -51,6 +51,9 @@ export enum EntryChoiceType {
     EVERY_MONTH = 'every-month',
     FROM_TO = 'from-to',
     FROM_INTERVAL = 'from-interval',
+    EVERY_INTERVAL = 'every-interval',
+    CUSTOM = 'custom',
+    FROM_TO_INTERVAL = 'from-to-interval',
     SPECIFY_MONTH = 'specific-month',
 }
 
@@ -111,6 +114,34 @@ export type IntlLocaleProps = {
      * @description.zh-TW 到
      */
     specificMonth?: string;
+
+    /**
+     * @description Every N month
+     * @description.zh-CN 每
+     * @description.zh-TW 每
+     */
+    everyIntervalPrefix?: string;
+
+    /**
+     * @description month
+     * @description.zh-CN 月
+     * @description.zh-TW 月
+     */
+    everyIntervalSuffix?: string;
+
+    /**
+     * @description Other expression(s) which cannot be visualized
+     * @description.zh-CN 其它表达式
+     * @description.zh-TW 其它表達式
+     */
+    customExpression?: string;
+
+    /**
+     * @description and every
+     * @description.zh-CN 月，每
+     * @description.zh-TW 月，每
+     */
+    fromToIntervalMiddle?: string;
 };
 
 
@@ -194,6 +225,10 @@ export const MonthPanel: React.ForwardRefExoticComponent<MonthPanelProps & React
     const [fromToEnd, setFromToEnd] = React.useState<RcValueType | null>();
     const [fromIntervalStart, setFromIntervalStart] = React.useState<RcValueType | null>();
     const [fromIntervalStep, setFromIntervalStep] = React.useState<RcValueType | null>();
+    const [fromToIntervalStart, setFromToIntervalStart] = React.useState<RcValueType | null>();
+    const [fromToIntervalEnd, setFromToIntervalEnd] = React.useState<RcValueType | null>();
+    const [fromToIntervalStep, setFromToIntervalStep] = React.useState<RcValueType | null>();
+    const [intervalStep, setIntervalStep] = React.useState<RcValueType | null>();
     const [specificMonths, setSpecificMonths] = React.useState<any[]>();
     const [unitExpress, setUnitExpress] = React.useState<string | undefined>(props?.value as string);
     const fieldStyle = useFieldStyle(clazzPrefix);
@@ -226,6 +261,14 @@ export const MonthPanel: React.ForwardRefExoticComponent<MonthPanelProps & React
                 // @ts-ignore
                 setUnitExpress(alias ? `${monthAliases.get(fromIntervalStart.toString())}/${fromIntervalStep}` : `${fromIntervalStart}/${fromIntervalStep}`);
                 break;
+            case EntryChoiceType.FROM_TO_INTERVAL:
+                if (ObjectUtils.anyEmpty([fromToIntervalStart, fromToIntervalEnd, fromToIntervalStep])) {
+                    setUnitExpress(undefined);
+                    break;
+                }
+                // @ts-ignore
+                setUnitExpress(alias ? `${monthAliases.get(fromToIntervalStart.toString())}-${monthAliases.get(fromToIntervalEnd.toString())}/${fromToIntervalStep}` : `${fromToIntervalStart}-${fromToIntervalEnd}/${fromToIntervalStep}`);
+                break;
             case EntryChoiceType.SPECIFY_MONTH:
                 if (!specificMonths || !specificMonths.length) {
                     setUnitExpress(undefined);
@@ -233,10 +276,15 @@ export const MonthPanel: React.ForwardRefExoticComponent<MonthPanelProps & React
                 }
                 setUnitExpress(StringUtils.join(!alias ? specificMonths : specificMonths.map(item => monthAliases.get(item.toString())), ','));
                 break;
+            case EntryChoiceType.EVERY_INTERVAL:
+                setUnitExpress(ObjectUtils.isEmpty(intervalStep) ? undefined : `*/${intervalStep}`);
+                break;
+            case EntryChoiceType.CUSTOM:
+                break;
             default:
                 break;
         }
-    }, [entryChoice, fromToStart, fromToEnd, fromIntervalStart, fromIntervalStep, specificMonths, alias]);
+    }, [entryChoice, fromToStart, fromToEnd, fromIntervalStart, fromIntervalStep, fromToIntervalStart, fromToIntervalEnd, fromToIntervalStep, specificMonths, alias, intervalStep]);
 
     // noinspection DuplicatedCode
     React.useEffect(() => {
@@ -245,7 +293,27 @@ export const MonthPanel: React.ForwardRefExoticComponent<MonthPanelProps & React
 
     React.useEffect(() => {
         const income = props?.value as string;
-        if (income === '*') {
+
+        if (income) {
+            // 切换表达式形态时清空其它形态的临时状态，避免旧选中残留
+            setFromToStart(undefined);
+            setFromToEnd(undefined);
+            setFromIntervalStart(undefined);
+            setFromIntervalStep(undefined);
+            setFromToIntervalStart(undefined);
+            setFromToIntervalEnd(undefined);
+            setFromToIntervalStep(undefined);
+            setIntervalStep(undefined);
+            setSpecificMonths(undefined);
+        }
+        if (income && (/^\d+-\d+\/\d+$/.test(income) || /^[A-Z]{3}-[A-Z]{3}\/\d+$/.test(income))) {
+            setEntryChoice(EntryChoiceType.FROM_TO_INTERVAL);
+            const range = StringUtils.substringBefore(income, '/');
+            const start = StringUtils.substringBefore(range, '-'), end = StringUtils.substringAfter(range, '-');
+            setFromToIntervalStart(RegexUtils.isNumeric(start) ? start : MapUtils.getKey(monthAliases, start));
+            setFromToIntervalEnd(RegexUtils.isNumeric(end) ? end : MapUtils.getKey(monthAliases, end));
+            setFromToIntervalStep(StringUtils.substringAfter(income, '/'));
+        } else if (income === '*') {
             setEntryChoice(EntryChoiceType.EVERY_MONTH);
         } else if (income && (/^\d+-\d+$/g.test(income) || /^[A-Z]{3}-[A-Z]{3}$/g.test(income))) {
             setEntryChoice(EntryChoiceType.FROM_TO);
@@ -264,6 +332,13 @@ export const MonthPanel: React.ForwardRefExoticComponent<MonthPanelProps & React
             } else {
                 setSpecificMonths(income.split(',').map(item => MapUtils.getKey(monthAliases, item) as string));
             }
+        } else if (income && /^\*\/\d+$/.test(income)) {
+            setEntryChoice(EntryChoiceType.EVERY_INTERVAL);
+            setIntervalStep(StringUtils.substringAfter(income, '/'));
+        } else if (income) {
+            // 无法可视化的表达式：保持原值不变，仅回显
+            setEntryChoice(EntryChoiceType.CUSTOM);
+            setUnitExpress(income);
         } else {
             setEntryChoice(undefined);
         }
@@ -303,6 +378,43 @@ export const MonthPanel: React.ForwardRefExoticComponent<MonthPanelProps & React
                                 {ObjectUtils.firstNotNil(props?.localeProps?.everyMonth, intlLocales.get([locale, 'everyMonth']), intlLocales.get(['en_US', 'everyMonth']))}
                             </Radio>
                             <Radio
+                                value={EntryChoiceType.EVERY_INTERVAL}
+                                onClick={() => {
+                                    window.setTimeout(() => setEntryChoice(EntryChoiceType.EVERY_INTERVAL), 80);
+                                }}
+                            >
+                                <Space>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.everyIntervalPrefix, intlLocales.get([locale, 'everyIntervalPrefix']), intlLocales.get(['en_US', 'everyIntervalPrefix']))}
+                                    <Form.Item noStyle={true} shouldUpdate={true}>
+                                        {() => {
+                                            return (
+                                                <InputNumber
+                                                    name='intervalStep'
+                                                    autoComplete='off'
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.EVERY_INTERVAL}
+                                                    min={1}
+                                                    max={12}
+                                                    step={1}
+                                                    size='small'
+                                                    status={(entryChoice === EntryChoiceType.EVERY_INTERVAL && ObjectUtils.isEmpty(intervalStep)) ? 'error' : undefined}
+                                                    value={intervalStep}
+                                                    onChange={setIntervalStep}
+                                                />
+                                            );
+                                        }}
+                                    </Form.Item>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.everyIntervalSuffix, intlLocales.get([locale, 'everyIntervalSuffix']), intlLocales.get(['en_US', 'everyIntervalSuffix']))}
+                                </Space>
+                            </Radio>
+                            {entryChoice === EntryChoiceType.CUSTOM && (
+                                <Radio value={EntryChoiceType.CUSTOM}>
+                                    <Space>
+                                        {ObjectUtils.firstNotNil(props?.localeProps?.customExpression, intlLocales.get([locale, 'customExpression']), intlLocales.get(['en_US', 'customExpression']))}
+                                        <code>{props?.value}</code>
+                                    </Space>
+                                </Radio>
+                            )}
+                            <Radio
                                 value={EntryChoiceType.FROM_TO}
                                 onClick={() => {
                                     window.setTimeout(() => setEntryChoice(EntryChoiceType.FROM_TO), 80);
@@ -316,7 +428,7 @@ export const MonthPanel: React.ForwardRefExoticComponent<MonthPanelProps & React
                                                 <InputNumber
                                                     name='fromToStart'
                                                     autoComplete='off'
-                                                    disabled={entryChoice !== EntryChoiceType.FROM_TO}
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_TO}
                                                     min={1}
                                                     max={12}
                                                     step={1}
@@ -335,7 +447,7 @@ export const MonthPanel: React.ForwardRefExoticComponent<MonthPanelProps & React
                                                 <InputNumber
                                                     name='fromToEnd'
                                                     autoComplete='off'
-                                                    disabled={entryChoice !== EntryChoiceType.FROM_TO}
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_TO}
                                                     min={fromToStart ?? 0}
                                                     max={12}
                                                     step={1}
@@ -364,7 +476,7 @@ export const MonthPanel: React.ForwardRefExoticComponent<MonthPanelProps & React
                                                 <InputNumber
                                                     name='fromIntervalStart'
                                                     autoComplete='off'
-                                                    disabled={entryChoice !== EntryChoiceType.FROM_INTERVAL}
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_INTERVAL}
                                                     min={1}
                                                     max={12}
                                                     step={1}
@@ -383,7 +495,7 @@ export const MonthPanel: React.ForwardRefExoticComponent<MonthPanelProps & React
                                                 <InputNumber
                                                     name='fromIntervalStep'
                                                     autoComplete='off'
-                                                    disabled={entryChoice !== EntryChoiceType.FROM_INTERVAL}
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_INTERVAL}
                                                     min={1}
                                                     max={12}
                                                     step={1}
@@ -396,6 +508,73 @@ export const MonthPanel: React.ForwardRefExoticComponent<MonthPanelProps & React
                                         }}
                                     </Form.Item>
                                     {ObjectUtils.firstNotNil(props?.localeProps?.fromIntervalSuffix, intlLocales.get([locale, 'fromIntervalSuffix']), intlLocales.get(['en_US', 'fromIntervalSuffix']))}
+                                </Space>
+                            </Radio>
+                            <Radio
+                                value={EntryChoiceType.FROM_TO_INTERVAL}
+                                onClick={() => {
+                                    window.setTimeout(() => setEntryChoice(EntryChoiceType.FROM_TO_INTERVAL), 80);
+                                }}
+                            >
+                                <Space>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.fromToPrefix, intlLocales.get([locale, 'fromToPrefix']), intlLocales.get(['en_US', 'fromToPrefix']))}
+                                    <Form.Item noStyle={true} shouldUpdate={true}>
+                                        {() => {
+                                            return (
+                                                <InputNumber
+                                                    name='fromToIntervalStart'
+                                                    autoComplete='off'
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_TO_INTERVAL}
+                                                    min={1}
+                                                    max={12}
+                                                    step={1}
+                                                    size='small'
+                                                    status={(entryChoice === EntryChoiceType.FROM_TO_INTERVAL && ObjectUtils.isEmpty(fromToIntervalStart)) ? 'error' : undefined}
+                                                    value={fromToIntervalStart}
+                                                    onChange={setFromToIntervalStart}
+                                                />
+                                            );
+                                        }}
+                                    </Form.Item>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.fromToMiddle, intlLocales.get([locale, 'fromToMiddle']), intlLocales.get(['en_US', 'fromToMiddle']))}
+                                    <Form.Item noStyle={true} shouldUpdate={true}>
+                                        {() => {
+                                            return (
+                                                <InputNumber
+                                                    name='fromToIntervalEnd'
+                                                    autoComplete='off'
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_TO_INTERVAL}
+                                                    min={fromToIntervalStart ?? 0}
+                                                    max={12}
+                                                    step={1}
+                                                    size='small'
+                                                    status={(entryChoice === EntryChoiceType.FROM_TO_INTERVAL && (ObjectUtils.isEmpty(fromToIntervalEnd) || NumberUtils.compare(fromToIntervalStart, fromToIntervalEnd, true) > 0)) ? 'error' : undefined}
+                                                    value={fromToIntervalEnd}
+                                                    onChange={setFromToIntervalEnd}
+                                                />
+                                            );
+                                        }}
+                                    </Form.Item>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.fromToIntervalMiddle, intlLocales.get([locale, 'fromToIntervalMiddle']), intlLocales.get(['en_US', 'fromToIntervalMiddle']))}
+                                    <Form.Item noStyle={true} shouldUpdate={true}>
+                                        {() => {
+                                            return (
+                                                <InputNumber
+                                                    name='fromToIntervalStep'
+                                                    autoComplete='off'
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.FROM_TO_INTERVAL}
+                                                    min={1}
+                                                    max={12}
+                                                    step={1}
+                                                    size='small'
+                                                    status={(entryChoice === EntryChoiceType.FROM_TO_INTERVAL && ObjectUtils.isEmpty(fromToIntervalStep)) ? 'error' : undefined}
+                                                    value={fromToIntervalStep}
+                                                    onChange={setFromToIntervalStep}
+                                                />
+                                            );
+                                        }}
+                                    </Form.Item>
+                                    {ObjectUtils.firstNotNil(props?.localeProps?.everyIntervalSuffix, intlLocales.get([locale, 'everyIntervalSuffix']), intlLocales.get(['en_US', 'everyIntervalSuffix']))}
                                 </Space>
                             </Radio>
                             <Radio
@@ -412,7 +591,7 @@ export const MonthPanel: React.ForwardRefExoticComponent<MonthPanelProps & React
                                                 <Checkbox.Group
                                                     name='specificMonths'
                                                     className={`${clazzPrefix}-specific`}
-                                                    disabled={entryChoice !== EntryChoiceType.SPECIFY_MONTH}
+                                                    disabled={props?.disabled || entryChoice !== EntryChoiceType.SPECIFY_MONTH}
                                                     options={buildSpecificOptions()}
                                                     value={specificMonths}
                                                     onChange={(checks: any[]) => {

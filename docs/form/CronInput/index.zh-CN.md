@@ -18,6 +18,22 @@ import { CronInput } from '@jiovan-labs/ant-buddy-pro';
 
 <code src="./demo.zh-CN.tsx"></code>
 
+## 关于「不指定」（`?`）
+
+天和周的「不指定」选项会写入 `?`。这**不是** POSIX/Vixie 标准语法，而是 Quartz / Spring `CronExpression` 的扩展：`?` 只允许出现在**天**和**周**两个字段，表示该字段「无具体值」。
+
+之所以需要它，是因为标准 cron 在这两个字段上取「或」：`* * 1 * 1` 表示「每月 1 号**或**每周一」；而 `* * 1 * *` 的周字段是 `*`、永远命中，等价于每天都执行。想只表达「只看天」或「只看周」，就必须把另一维写成 `?`，例如 `0 0 1 * ?`（每月 1 号）、`0 0 ? * 1`（每周一）。
+
+本组件默认开启该能力（`showBlank` 默认为 `true`），校验器按 `useBlankDay` 放行，且只在**天**/**周**字段放行——写在分、时、月字段会直接报错。两侧同时选「不指定」得到 `* * ? * ?`，校验能通过，但语义退化，建议只在一侧使用。
+
+如果表达式最终交给 Linux crontab / cronie 等不支持 `?` 的解析器执行，请关闭该选项：
+
+```tsx | pure
+<CronInput showBlank={false} />
+```
+
+关闭后：天/周面板不再渲染「不指定」，校验也会拒绝含 `?` 的表达式（历史数据里的 `?` 会表现为校验失败）。
+
 ## 组件属性
 
 | 属性                | 说明                               | 类型                                                                | 默认值                   |
@@ -27,6 +43,7 @@ import { CronInput } from '@jiovan-labs/ant-buddy-pro';
 | addonPos            | 默认文本框的附属节点位置           | `'before' \| 'after' \| false`                                      | `'after'`                |
 | showSecond          | 秒字段是否参与表达式               | `boolean`                                                           | `false`                  |
 | showYear            | 年字段是否参与表达式               | `boolean`                                                           | `false`                  |
+| showBlank           | 天/周字段是否允许使用「不指定」    | `boolean`                                                           | `true`                   |
 | defaultOpen         | 是否默认展开弹出层                 | `boolean`                                                           | -                        |
 | monthAlias          | 月字段是否使用语义别名（如 `JAN`） | `boolean`                                                           | `false`                  |
 | weekAlias           | 周字段是否使用语义别名（如 `MON`） | `boolean`                                                           | `true`                   |

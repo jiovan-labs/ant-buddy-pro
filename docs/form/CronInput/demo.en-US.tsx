@@ -16,8 +16,8 @@
 
 
 import React from 'react';
-import { Divider, message as messageApi } from 'antd';
-import { ProForm, ProFormRadio, ProFormSwitch } from '@ant-design/pro-components';
+import { Button, Divider, message as messageApi } from 'antd';
+import { ProForm, ProFormRadio, ProFormRef, ProFormSwitch } from '@ant-design/pro-components';
 import { CronInput, ConsoleUtils } from '@jiovan-labs/ant-buddy-pro';
 
 
@@ -27,10 +27,13 @@ export default () => {
     const [tabPos, setTabPos] = React.useState<'top' | 'bottom'>('top');
     const [showSecond, setShowSecond] = React.useState(false);
     const [showYear, setShowYear] = React.useState(false);
+    const [showBlank, setShowBlank] = React.useState(true);
     const [monthAlias, setMonthAlias] = React.useState(false);
     const [weekAlias, setWeekAlias] = React.useState(true);
     const [allowOkEcho, setAllowOkEcho] = React.useState(true);
     const [proField, setProField] = React.useState<boolean>(true);
+    const [readonly, setReadonly] = React.useState<boolean>(false);
+    const testFormRef = React.useRef<ProFormRef<any> | undefined>(undefined);
 
     return (
         <>
@@ -76,6 +79,18 @@ export default () => {
                         }}
                     />
                     <ProFormSwitch
+                        label='Allow Blank'
+                        checkedChildren='Yes'
+                        unCheckedChildren='No'
+                        fieldProps={{
+                            checked: showBlank,
+                            onChange: setShowBlank,
+                        }}
+                    />
+                </ProForm.Group>
+
+                <ProForm.Group>
+                    <ProFormSwitch
                         label='Month Alias'
                         checkedChildren='True'
                         unCheckedChildren='False'
@@ -93,6 +108,9 @@ export default () => {
                             onChange: setWeekAlias,
                         }}
                     />
+                </ProForm.Group>
+
+                <ProForm.Group>
                     <ProFormSwitch
                         label='Allow Ok Echo'
                         checkedChildren='True'
@@ -111,6 +129,27 @@ export default () => {
                             onChange: setProField,
                         }}
                     />
+                    <ProFormSwitch
+                        label='Read-only Mode'
+                        checkedChildren='True'
+                        unCheckedChildren='False'
+                        fieldProps={{
+                            checked: readonly,
+                            onChange: setReadonly,
+                        }}
+                    />
+                </ProForm.Group>
+                <ProForm.Group>
+                    <Button
+                        style={{ marginTop: 6 }}
+                        onClick={() => {
+                            testFormRef.current?.setFieldsValue({
+                                foobar: '10,20 2-4 8,20 3-5/2 1-5',
+                            });
+                        }}
+                    >
+                        Set Value
+                    </Button>
                 </ProForm.Group>
             </ProForm>
             <Divider />
@@ -118,6 +157,8 @@ export default () => {
                 name='CronInput_demo.en-US.Test'
                 layout='vertical'
                 autoFocusFirstInput={false}
+                readonly={readonly}
+                formRef={testFormRef}
                 submitter={{
                     searchConfig: {
                         submitText: 'Submit',
@@ -135,6 +176,7 @@ export default () => {
                     placeholder='Please input this field'
                     showSecond={showSecond}
                     showYear={showYear}
+                    showBlank={showBlank}
                     monthAlias={monthAlias}
                     weekAlias={weekAlias}
                     allowOkEcho={allowOkEcho}

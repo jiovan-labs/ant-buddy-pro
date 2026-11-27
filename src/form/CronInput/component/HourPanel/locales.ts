@@ -26,7 +26,11 @@ export const intlLocales = ReadonlyMultiKeyMap.of([
     [['en_US', 'fromIntervalPrefix'], 'Starting at hour'],
     [['en_US', 'fromIntervalMiddle'], 'and every'],
     [['en_US', 'fromIntervalSuffix'], 'hour(s)'],
+    [['en_US', 'fromToIntervalMiddle'], 'every'],
     [['en_US', 'specificHour'], 'Specific hour(s)'],
+    [['en_US', 'everyIntervalPrefix'], 'Every'],
+    [['en_US', 'everyIntervalSuffix'], 'hour(s)'],
+    [['en_US', 'customExpression'], 'Other expression'],
 
     [['zh_CN', 'everyHour'], '每时'],
     [['zh_CN', 'fromToPrefix'], '每时，从第'],
@@ -35,7 +39,11 @@ export const intlLocales = ReadonlyMultiKeyMap.of([
     [['zh_CN', 'fromIntervalPrefix'], '从第'],
     [['zh_CN', 'fromIntervalMiddle'], '时开始，每'],
     [['zh_CN', 'fromIntervalSuffix'], '时'],
+    [['zh_CN', 'fromToIntervalMiddle'], '时，每'],
     [['zh_CN', 'specificHour'], '指定的时'],
+    [['zh_CN', 'everyIntervalPrefix'], '每'],
+    [['zh_CN', 'everyIntervalSuffix'], '时'],
+    [['zh_CN', 'customExpression'], '其它表达式'],
 
     [['zh_TW', 'everyHour'], '每時'],
     [['zh_TW', 'fromToPrefix'], '每時，從第'],
@@ -44,5 +52,9 @@ export const intlLocales = ReadonlyMultiKeyMap.of([
     [['zh_TW', 'fromIntervalPrefix'], '從第'],
     [['zh_TW', 'fromIntervalMiddle'], '時開始，每'],
     [['zh_TW', 'fromIntervalSuffix'], '時'],
+    [['zh_TW', 'fromToIntervalMiddle'], '時，每'],
     [['zh_TW', 'specificHour'], '指定的時'],
+    [['zh_TW', 'everyIntervalPrefix'], '每'],
+    [['zh_TW', 'everyIntervalSuffix'], '時'],
+    [['zh_TW', 'customExpression'], '其它表達式'],
 ]);

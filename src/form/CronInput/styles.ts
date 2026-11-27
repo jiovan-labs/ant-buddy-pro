@@ -47,6 +47,14 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
                 }
             },
 
+            // 只读/禁用态：面板内容不可交互（tab 栏保留，便于查看各面板），
+            // 不作用在弹层容器上，否则会破坏 hover 保活所需的 mouseenter
+            [`&${token.componentCls}-popup-immutable`]: {
+                [`${token.antCls}-tabs-content`]: {
+                    pointerEvents: 'none',
+                }
+            },
+
             [`> ${token.subComponentCls}`]: {
                 [`&${token.subComponentCls}-top > ${token.subComponentCls}-content-border > ${token.antCls}-tabs-content-holder`]: {
                     borderTopColor: `${token.colorSplit} !important`,

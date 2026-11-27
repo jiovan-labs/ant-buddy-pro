@@ -173,6 +173,14 @@ export type CronInputProps = Omit<AddonInputProps, 'clazzPrefix' | 'addonBefore'
     showYear?: boolean;
 
     /**
+     * @description Whether the blank option (i.e. `?`) takes part in the day and week panels
+     * @description.zh-CN 天/周字段是否允许使用「不指定」（即 `?`）
+     * @description.zh-TW 天/周字段是否允許使用「不指定」（即 `?`）
+     * @default true
+     */
+    showBlank?: boolean;
+
+    /**
      * @description Whether the dropdown div is default open or not
      * @description.zh-CN 是否默认展开弹出层
      * @description.zh-TW 是否默認展開彈出層
@@ -319,6 +327,7 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
         addonPos = 'after',
         showSecond = false,
         showYear = false,
+        showBlank = true,
         monthAlias = false,
         weekAlias = true,
         allowOkEcho = true,
@@ -400,7 +409,7 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
             useSeconds: showSecond,
             useYears: showYear,
             useAliases: true,
-            useBlankDay: true,
+            useBlankDay: showBlank,
             useLastDayOfMonth: true,
             useNearestWeekday: true,
             useLastDayOfWeek: true,
@@ -507,6 +516,9 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
 
     // 面板变更：更新子表达式；非确认回显模式下立即提交，确认回显模式下标记草稿待「确定」提交
     const handleSubChange = (setter: React.Dispatch<React.SetStateAction<string | undefined>>, value?: string, callback?: (value?: string) => void) => {
+        if (entryImmutable) {
+            return;
+        }
         setter(value);
         callback?.(value);
         if (allowOkEcho) {
@@ -645,12 +657,7 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
             StyleUtils.addStyle(sponsor, 'min-width', `${inspect.offsetWidth}px`);
         }
     };
-    // 注意：hooks 必须位于任何提前返回之前，否则条件切换时会触发 "Rendered fewer hooks than expected"
     useEventListener('resize', handleWindowResize);
-
-    if (entryImmutable) {
-        return buildEntryDom();
-    }
 
     const buildPopupDom = () => {
         const tabItems: CardTabsProps['items'] = [
@@ -692,7 +699,8 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                         value={dayExpress}
                         onChange={(value?: string) => handleSubChange(setDayExpress, value, props?.dayPanelProps?.onChange)}
                         locale={props?.dayPanelProps?.locale ?? props?.locale}
-                        {...(!props?.dayPanelProps ? {} : omit(props.dayPanelProps, ['value', 'onChange', 'locale']))}
+                        showBlank={showBlank}
+                        {...(!props?.dayPanelProps ? {} : omit(props.dayPanelProps, ['value', 'onChange', 'locale', 'showBlank']))}
                     />
                 )
             },
@@ -722,7 +730,8 @@ export const CronInput: React.ForwardRefExoticComponent<CronInputProps & React.R
                         onChange={(value?: string) => handleSubChange(setWeekExpress, value, props?.weekPanelProps?.onChange)}
                         locale={props?.weekPanelProps?.locale ?? props?.locale}
                         alias={weekAlias}
-                        {...(!props?.weekPanelProps ? {} : omit(props.weekPanelProps, ['value', 'onChange', 'locale', 'alias']))}
+                        showBlank={showBlank}
+                        {...(!props?.weekPanelProps ? {} : omit(props.weekPanelProps, ['value', 'onChange', 'locale', 'alias', 'showBlank']))}
                     />
                 )
             }
