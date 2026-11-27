@@ -19,13 +19,28 @@ import React from 'react';
 import { Empty, type TooltipProps } from 'antd';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import { useIntl } from '@ant-design/pro-components';
-import CssMotion from '@rc-component/motion';
+import CssMotion, { type MotionEndEventHandler, type MotionEventHandler } from '@rc-component/motion';
 import { ObjectUtils } from '@jiovan-labs/ts-lang-utils';
 import classnames from 'classnames';
 import { type WithFalse, type BeforeAfterType } from '@/type/declaration';
 import { TooltipRender } from '@/render/TooltipRender';
 import { intlLocales } from './locales';
 import { useFieldStyle } from './styles';
+
+
+/**
+ * The motion of collapsing (the same approach as antd Collapse)
+ */
+const getCollapsedStyle = (): React.CSSProperties => ({ height: 0, opacity: 0 });
+const getContentStyle: MotionEventHandler = (element?: HTMLElement | null): React.CSSProperties => ({
+    height: element?.scrollHeight ?? 0,
+    opacity: element ? 1 : 0,
+});
+const getCurrentStyle: MotionEventHandler = (element?: HTMLElement | null): React.CSSProperties => ({
+    height: element?.offsetHeight ?? 0,
+});
+// 高度与透明度同时过渡时，只需等高度结束即可
+const skipOpacityTransition: MotionEndEventHandler = (_, event) => event?.deadline === true || (event as TransitionEvent)?.propertyName === 'height';
 
 
 export type SectionPresetStyle = WithFalse<'default' | 'success' | 'info' | 'warn' | 'error' | 'classic'>;
@@ -308,7 +323,9 @@ export const FoldSection: React.FC<FoldSectionProps> = (props?: FoldSectionProps
         }
     }, [panelForceRender]);
 
-    const panelVisible = (panelRendered || !!props?.panelContent || !!panelPlaceholder) && (panelOpen || (!panelOpen && !panelDestroyOnClose));
+    // 面板存在可渲染内容；是否为可见状态完全交给动画控制（收起动画结束后再隐藏/销毁）
+    const panelRenderable = panelRendered || !!props?.panelContent || !!props?.children || !!panelPlaceholder;
+    const panelVisible = panelOpen && panelRenderable;
 
     return (
         <section
@@ -324,10 +341,30 @@ export const FoldSection: React.FC<FoldSectionProps> = (props?: FoldSectionProps
                 {headerOrnamentPos === 'after' && buildOrnamentDom()}
                 {headerCollapsePos === 'after' && buildCollapseDom()}
             </div>
-            <CssMotion visible={panelVisible}>
-                {() => (
-                    <div className={classnames(`${clazzPrefix}-panel`, props?.panelClazz)} style={props?.panelStyle}>
-                        {props?.panelContent || props?.children || panelPlaceholder}
+            <CssMotion
+                visible={panelVisible}
+                motionName={`${clazzPrefix}-motion`}
+                motionAppear={false}
+                motionDeadline={500}
+                forceRender={panelForceRender}
+                removeOnLeave={panelDestroyOnClose}
+                leavedClassName={`${clazzPrefix}-panel-hidden`}
+                onAppearStart={getCollapsedStyle}
+                onEnterStart={getCollapsedStyle}
+                onAppearActive={getContentStyle}
+                onEnterActive={getContentStyle}
+                onLeaveStart={getCurrentStyle}
+                onLeaveActive={getCollapsedStyle}
+                onAppearEnd={skipOpacityTransition}
+                onEnterEnd={skipOpacityTransition}
+                onLeaveEnd={skipOpacityTransition}
+            >
+                {({ className: motionClazz, style: motionStyle }) => (
+                    // 外层只做高度动画（padding 在面板上，无法收到 0），内层保持原有结构与样式
+                    <div className={motionClazz} style={motionStyle}>
+                        <div className={classnames(`${clazzPrefix}-panel`, props?.panelClazz)} style={props?.panelStyle}>
+                            {props?.panelContent || props?.children || panelPlaceholder}
+                        </div>
                     </div>
                 )}
             </CssMotion>

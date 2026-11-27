@@ -64,12 +64,13 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
                     width: 28,
                     height: 28,
                     justifyContent: 'center',
+                    color: token.colorIcon,
+                    transition: 'all 0.3s',
 
                     [`&:hover`]: {
                         backgroundColor: token.controlItemBgHover,
                         cursor: 'pointer',
-                        color: token.colorTextSecondary,
-                        transition: 'all 0.3s',
+                        color: token.colorIconHover,
                     }
                 },
 
@@ -91,11 +92,14 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
                 padding: token.paddingMD,
             },
 
-            [`&-open &-panel`]: {
-                display: 'block',
+            // 折叠动画：高度 + 透明度过渡，仅在动画期间由 rc-motion 临时挂载
+            [`&-motion`]: {
+                overflow: 'hidden',
+                transition: `height ${token.motionDurationMid} ${token.motionEaseInOut}, opacity ${token.motionDurationMid} ${token.motionEaseInOut}`,
             },
 
-            [`&-close &-panel`]: {
+            // 收起动画结束后保留在 DOM 中的隐藏态（panelDestroyOnClose 为 false 时）
+            [`&-panel-hidden`]: {
                 display: 'none',
             },
 
