@@ -16,7 +16,7 @@
 
 
 import React from 'react';
-import { Tabs, type TabsProps } from 'antd';
+import { Tabs, theme, type TabsProps } from 'antd';
 import { type SizeType } from 'antd/es/config-provider/SizeContext';
 import { type TabPlacement as RcTabPlacement } from 'antd/es/tabs';
 import { omit } from '@rc-component/util';
@@ -87,6 +87,14 @@ export type CardTabsProps = Omit<TabsProps, 'size' | 'tabPlacement'> & {
     inkBar?: boolean;
 
     /**
+     * @description The inset(px) of both ends of the ink bar, capped at 20% of the tab length; one extra `lineWidth` is reserved for the tab border when `tabBorder` is enabled
+     * @description.zh-CN 活跃指示条两端的内缩量（px），上限为标签长度的 20%；`tabBorder` 开启时还会额外为标签边框让出 `lineWidth`
+     * @description.zh-TW 活躍指示條兩端的內縮量（px），上限為標籤長度的 20%；`tabBorder` 開啟時還會額外為標籤邊框讓出 `lineWidth`
+     * @default `0` when `tabBorder` or `contentBorder` is `true` (fused state), otherwise `12`
+     */
+    inkInset?: number;
+
+    /**
      * @description The size of the tabs
      * @description.zh-CN 标签的大小
      * @description.zh-TW 標簽的大小
@@ -118,10 +126,14 @@ export const CardTabs: React.FC<CardTabsProps> = (props?: CardTabsProps) => {
         tabPlacement = 'top',
         contentBorder = true,
         inkBar = true,
+        // 有边框时面板与标签共享边框，指示条要充当接缝，内缩后反而会露出断口；
+        // 边框全关时面板是独立圆角框，指示条内缩成标签下划线才不会压住圆角。
+        inkInset = (tabBorder || contentBorder) ? 0 : 12,
         size = 'middle',
         presetStyle = 'padding-md',
     } = props ?? {};
 
+    const { token } = theme.useToken();
     const fieldStyle = useFieldStyle(clazzPrefix);
 
     // 面板内边距通过 Tabs 的 classNames.content 语义插槽挂载，不再依赖 antd 内部 DOM 层级
@@ -154,18 +166,38 @@ export const CardTabs: React.FC<CardTabsProps> = (props?: CardTabsProps) => {
         }
     };
 
-    const restTabsProps = !props ? {} : omit(props, ['className', 'classNames', 'clazzPrefix', 'containerClazz', 'containerStyle', 'tabBorder', 'tabPlacement', 'contentBorder', 'inkBar', 'presetStyle', 'type', 'size']);
+    // tabBorder 开启时活跃标签自带 lineWidth 边框，指示条满宽时端头会压住这条边框的端部，
+    // 因此固定为边框让出 lineWidth，属于布局修正、不暴露为配置项。
+    const borderInset = tabBorder ? token.lineWidth : 0;
+
+    // 竖向布局的 tab 只有 30px 左右高，按 12px 内缩会太短，所以内缩量最多取标签长度的 20%：
+    // 无边框的水平布局（70px 左右的宽标签）仍按 12px 内缩，竖向布局（30px 高）则上下各缩 6px、保留 18px 的短线。
+    const inkBarSize = React.useCallback((origin: number) => {
+        const inset = Math.min(inkInset + borderInset, origin * 0.2);
+        return Math.max(0, origin - inset * 2);
+    }, [inkInset, borderInset]);
+
+    // antd 6 起 indicator.size 支持基于原始宽度回调，据此实现两端等距内缩；
+    // 调用方显式指定 size（或使用已废弃的 indicatorSize）时不做干预。
+    const customIndicator = props?.indicator;
+    const overrideInkBarSize = (inkInset > 0 || borderInset > 0)
+        && !(props && 'indicatorSize' in props)
+        && customIndicator?.size === undefined;
+    const mergedIndicator: TabsProps['indicator'] = overrideInkBarSize ? { ...customIndicator, size: inkBarSize } : customIndicator;
+
+    const restTabsProps = !props ? {} : omit(props, ['className', 'classNames', 'clazzPrefix', 'containerClazz', 'containerStyle', 'tabBorder', 'tabPlacement', 'contentBorder', 'inkBar', 'inkInset', 'presetStyle', 'type', 'size']);
 
     return (
         <div className={classnames(clazzPrefix, fieldStyle.hashId, `${clazzPrefix}-${size}`, `${clazzPrefix}-${tabPlacement}`, (!presetStyle ? undefined : `${clazzPrefix}-${presetStyle}`), props?.containerClazz)} style={props?.containerStyle}>
             <Tabs
                 className={classnames(props?.className, `${clazzPrefix}-tab-border${tabBorder ? '' : '-off'}`, (!contentBorder ? undefined : `${clazzPrefix}-content-border`), (!inkBar ? undefined : `${clazzPrefix}-ink-bar`))}
+                classNames={tabsClassNames}
+                indicator={mergedIndicator}
                 type={props?.type ?? 'card'}
                 size={detectTabSize()}
                 // @ts-ignore
                 tabPlacement={detectTabPlacement()}
                 {...restTabsProps}
-                classNames={tabsClassNames}
             />
         </div>
     );

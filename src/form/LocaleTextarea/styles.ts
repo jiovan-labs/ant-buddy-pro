@@ -31,42 +31,41 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
                     paddingRight: `${token.paddingSM}px !important`,
                 },
 
-                [`&${token.subComponentCls}-top ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
+                // v6 起 rc-tabs 移除了 -tabpane 层，面板元素本身就是 -content，且左右布局的类名是 start / end。
+                // 直角只在融合态（`tabBorder` 或 `contentBorder` 开启）下才需要：那时面板与标签共享边框，靠标签那侧必须无缝；
+                // 边框全关时面板是独立圆角框，保留圆角更好看（此时 CardTabs 的指示条默认内缩成标签下划线）。
+                [`&${token.subComponentCls}-top > ${token.antCls}-tabs:is(${token.subComponentCls}-tab-border, ${token.subComponentCls}-content-border) ${token.antCls}-tabs-content`]: {
                     [`${token.componentCls}, ${token.componentCls}-item`]: {
                         borderTopLeftRadius: 0,
                     }
                 },
 
-                [`&${token.subComponentCls}-top-end ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
+                [`&${token.subComponentCls}-top-end > ${token.antCls}-tabs:is(${token.subComponentCls}-tab-border, ${token.subComponentCls}-content-border) ${token.antCls}-tabs-content`]: {
                     [`${token.componentCls}, ${token.componentCls}-item`]: {
                         borderTopRightRadius: 0,
                     }
                 },
 
-                [`&${token.subComponentCls}-bottom ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
-                    [`${token.componentCls}:not(${token.componentCls}-pro-field), ${token.componentCls}-item:not(${token.componentCls}-item-pro-field)`]: {
+                [`&${token.subComponentCls}-bottom > ${token.antCls}-tabs:is(${token.subComponentCls}-tab-border, ${token.subComponentCls}-content-border) ${token.antCls}-tabs-content`]: {
+                    [`${token.componentCls}, ${token.componentCls}-item`]: {
                         borderBottomLeftRadius: 0,
                     }
                 },
 
-                [`&${token.subComponentCls}-bottom-end ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
-                    [`${token.componentCls}:not(${token.componentCls}-pro-field), ${token.componentCls}-item:not(${token.componentCls}-item-pro-field)`]: {
+                [`&${token.subComponentCls}-bottom-end > ${token.antCls}-tabs:is(${token.subComponentCls}-tab-border, ${token.subComponentCls}-content-border) ${token.antCls}-tabs-content`]: {
+                    [`${token.componentCls}, ${token.componentCls}-item`]: {
                         borderBottomRightRadius: 0,
                     }
                 },
 
-                [`&${token.subComponentCls}-left ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
-                    paddingLeft: 1,
-
+                [`&${token.subComponentCls}-start > ${token.antCls}-tabs:is(${token.subComponentCls}-tab-border, ${token.subComponentCls}-content-border) ${token.antCls}-tabs-content`]: {
                     [`${token.componentCls}, ${token.componentCls}-item`]: {
                         borderTopLeftRadius: 0,
                         borderBottomLeftRadius: 0,
                     }
                 },
 
-                [`&${token.subComponentCls}-right ${token.antCls}-tabs-content > ${token.antCls}-tabs-tabpane`]: {
-                    paddingRight: 1,
-
+                [`&${token.subComponentCls}-end > ${token.antCls}-tabs:is(${token.subComponentCls}-tab-border, ${token.subComponentCls}-content-border) ${token.antCls}-tabs-content`]: {
                     [`${token.componentCls}, ${token.componentCls}-item`]: {
                         borderTopRightRadius: 0,
                         borderBottomRightRadius: 0,

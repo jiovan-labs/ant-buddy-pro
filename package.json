@@ -1,6 +1,6 @@
 {
     "name": "@jiovan-labs/ant-buddy-pro",
-    "version": "2.0.10",
+    "version": "2.0.11",
     "title": "Ant Buddy Pro",
     "description": "Awesome components based on Ant Design & Ant ProComponents",
     "homepage": "https://jiovan-labs.github.io/ant-buddy-pro",
@@ -80,6 +80,7 @@
         "gh-pages": "^6.3.0",
         "globals": "^17.14.0",
         "less": "^4.9.1",
+        "less-loader": "^12.3.3",
         "less-plugin-no-comment": "^0.1.0",
         "react": "^19.3.1",
         "react-dom": "^19.3.1",
@@ -88,10 +89,10 @@
         "typescript-eslint": "^8.74.0"
     },
     "overrides": {
-        "antd": "^6.7.2",
-        "less-loader": "^12.0.0",
-        "react": "^19.3.1",
-        "react-dom": "^19.3.1"
+        "antd": "$antd",
+        "less-loader": "$less-loader",
+        "react": "$react",
+        "react-dom": "$react-dom"
     },
     "peerDependencies": {
         "typescript": ">=4.0.0"

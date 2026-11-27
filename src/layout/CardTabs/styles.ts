@@ -139,28 +139,40 @@ const buildFieldStyle: GenerateStyle<ExtraProAliasToken> = (token) => {
                 }
             },
 
-            [`${token.componentCls}-pane-padding-0`]: {
-                padding: 0,
+            // antd v6 对左右布局会在 body-holder 上硬编码 1px 边框并左移 1px，
+            // 与内容自身边框叠成双线；既然 contentBorder 已关闭，这里一并清掉。
+            [`> ${token.antCls}-tabs:not(${token.componentCls}-content-border) > ${token.antCls}-tabs-body-holder`]: {
+                border: 'none',
+                marginLeft: 0,
+                marginRight: 0,
             },
 
-            [`${token.componentCls}-pane-padding-xxs`]: {
-                padding: `${token.paddingXXS}px ${token.paddingXXS}px`,
-            },
+            // 面板内边距必须带上完整层级：antd v6 对左右布局额外给面板加了 padding，
+            // 层级不足会被它覆盖（表现为标签与内容之间多出一段间距）。
+            [`> ${token.antCls}-tabs > ${token.antCls}-tabs-body-holder > ${token.antCls}-tabs-body > ${token.antCls}-tabs-content`]: {
+                [`&${token.componentCls}-pane-padding-0`]: {
+                    padding: 0,
+                },
 
-            [`${token.componentCls}-pane-padding-xs`]: {
-                padding: `${token.paddingXS}px ${token.paddingXS}px`,
-            },
+                [`&${token.componentCls}-pane-padding-xxs`]: {
+                    padding: `${token.paddingXXS}px ${token.paddingXXS}px`,
+                },
 
-            [`${token.componentCls}-pane-padding-sm`]: {
-                padding: `${token.paddingSM}px ${token.paddingSM}px`,
-            },
+                [`&${token.componentCls}-pane-padding-xs`]: {
+                    padding: `${token.paddingXS}px ${token.paddingXS}px`,
+                },
 
-            [`${token.componentCls}-pane-padding-md`]: {
-                padding: `${token.paddingMD}px ${token.paddingMD}px`,
-            },
+                [`&${token.componentCls}-pane-padding-sm`]: {
+                    padding: `${token.paddingSM}px ${token.paddingSM}px`,
+                },
 
-            [`${token.componentCls}-pane-padding-lg`]: {
-                padding: `${token.paddingLG}px ${token.paddingLG}px`,
+                [`&${token.componentCls}-pane-padding-md`]: {
+                    padding: `${token.paddingMD}px ${token.paddingMD}px`,
+                },
+
+                [`&${token.componentCls}-pane-padding-lg`]: {
+                    padding: `${token.paddingLG}px ${token.paddingLG}px`,
+                },
             },
         }
     };
